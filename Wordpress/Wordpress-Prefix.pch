@@ -1,0 +1,15 @@
+//
+//  Wordpress-Prefix.pch
+//  Wordpress
+//
+//  Created by Evgeniy Yurtaev on 30/12/14.
+//  Copyright (c) 2014 Evgeniy Yurtaev. All rights reserved.
+//
+
+#ifndef Wordpress_Wordpress_Prefix_pch
+#define Wordpress_Wordpress_Prefix_pch
+
+#import <Foundation/Foundation.h>
+#import <libextobjc/extobjc.h>
+
+#endif
