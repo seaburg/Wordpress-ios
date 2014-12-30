@@ -193,6 +193,7 @@
 		4757C4CB1A533EBB002AD7A2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = WP;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Evgeniy Yurtaev";
 				TargetAttributes = {
