@@ -23,6 +23,7 @@
 		4757C5281A541662002AD7A2 /* WPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5271A541662002AD7A2 /* WPRequest.m */; };
 		4757C52B1A542EB9002AD7A2 /* WPObjectsSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C52A1A542EB9002AD7A2 /* WPObjectsSerializer.m */; };
 		4757C52E1A543884002AD7A2 /* WPSessionManager+Protected.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C52D1A543884002AD7A2 /* WPSessionManager+Protected.m */; };
+		4757C5321A547645002AD7A2 /* WPDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5311A547645002AD7A2 /* WPDefines.m */; };
 		773E9A071D74FF855947B55E /* libPods-Wordpress.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 201F8ADE350358FD00AF60D7 /* libPods-Wordpress.a */; };
 		E0D98095AE472232185F5CBA /* libPods-WordpressTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD399AB25E2754D292BF3F2 /* libPods-WordpressTests.a */; };
 /* End PBXBuildFile section */
@@ -72,6 +73,8 @@
 		4757C52A1A542EB9002AD7A2 /* WPObjectsSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPObjectsSerializer.m; sourceTree = "<group>"; };
 		4757C52C1A543884002AD7A2 /* WPSessionManager+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WPSessionManager+Protected.h"; sourceTree = "<group>"; };
 		4757C52D1A543884002AD7A2 /* WPSessionManager+Protected.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WPSessionManager+Protected.m"; sourceTree = "<group>"; };
+		4757C5301A547645002AD7A2 /* WPDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPDefines.h; sourceTree = "<group>"; };
+		4757C5311A547645002AD7A2 /* WPDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPDefines.m; sourceTree = "<group>"; };
 		4C0F093EBB11579D5EE8DEA0 /* Pods-WordpressTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordpressTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WordpressTests/Pods-WordpressTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADA8E31BA11BE7095F813C1F /* Pods-WordpressTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordpressTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WordpressTests/Pods-WordpressTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D6E17668CEA29657512D7E7C /* Pods-Wordpress.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wordpress.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wordpress/Pods-Wordpress.debug.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +146,8 @@
 				4757C4E31A533EBC002AD7A2 /* Images.xcassets */,
 				4757C4E51A533EBC002AD7A2 /* LaunchScreen.xib */,
 				4757C4D61A533EBC002AD7A2 /* Supporting Files */,
+				4757C5301A547645002AD7A2 /* WPDefines.h */,
+				4757C5311A547645002AD7A2 /* WPDefines.m */,
 			);
 			path = Wordpress;
 			sourceTree = "<group>";
@@ -422,6 +427,7 @@
 				4757C4DC1A533EBC002AD7A2 /* AppDelegate.m in Sources */,
 				4757C5001A534379002AD7A2 /* WPNavigationController.m in Sources */,
 				4757C5251A54152B002AD7A2 /* WPSessionManager.m in Sources */,
+				4757C5321A547645002AD7A2 /* WPDefines.m in Sources */,
 				4757C52E1A543884002AD7A2 /* WPSessionManager+Protected.m in Sources */,
 				4757C50C1A534F74002AD7A2 /* WPViewModel+Friend.m in Sources */,
 				4757C4D91A533EBC002AD7A2 /* main.m in Sources */,
