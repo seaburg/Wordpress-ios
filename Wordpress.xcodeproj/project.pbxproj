@@ -15,6 +15,7 @@
 		4757C5001A534379002AD7A2 /* WPNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C4FF1A534379002AD7A2 /* WPNavigationController.m */; };
 		4757C5091A534F2C002AD7A2 /* WPViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5081A534F2C002AD7A2 /* WPViewModel.m */; };
 		4757C50C1A534F74002AD7A2 /* WPViewModel+Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C50B1A534F74002AD7A2 /* WPViewModel+Friend.m */; };
+		4757C5141A53DC03002AD7A2 /* UIViewController+RACExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5131A53DC03002AD7A2 /* UIViewController+RACExtension.m */; };
 		773E9A071D74FF855947B55E /* libPods-Wordpress.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 201F8ADE350358FD00AF60D7 /* libPods-Wordpress.a */; };
 		E0D98095AE472232185F5CBA /* libPods-WordpressTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD399AB25E2754D292BF3F2 /* libPods-WordpressTests.a */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,8 @@
 		4757C5081A534F2C002AD7A2 /* WPViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPViewModel.m; sourceTree = "<group>"; };
 		4757C50A1A534F74002AD7A2 /* WPViewModel+Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WPViewModel+Friend.h"; sourceTree = "<group>"; };
 		4757C50B1A534F74002AD7A2 /* WPViewModel+Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WPViewModel+Friend.m"; sourceTree = "<group>"; };
+		4757C5121A53DC03002AD7A2 /* UIViewController+RACExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RACExtension.h"; sourceTree = "<group>"; };
+		4757C5131A53DC03002AD7A2 /* UIViewController+RACExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RACExtension.m"; sourceTree = "<group>"; };
 		4C0F093EBB11579D5EE8DEA0 /* Pods-WordpressTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordpressTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WordpressTests/Pods-WordpressTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADA8E31BA11BE7095F813C1F /* Pods-WordpressTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordpressTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WordpressTests/Pods-WordpressTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D6E17668CEA29657512D7E7C /* Pods-Wordpress.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wordpress.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wordpress/Pods-Wordpress.debug.xcconfig"; sourceTree = "<group>"; };
@@ -111,6 +114,7 @@
 			children = (
 				4757C5061A534F17002AD7A2 /* ViewModels */,
 				4757C4FD1A53424A002AD7A2 /* ViewControllers */,
+				4757C5111A53DBE0002AD7A2 /* Categories */,
 				4757C4DA1A533EBC002AD7A2 /* AppDelegate.h */,
 				4757C4DB1A533EBC002AD7A2 /* AppDelegate.m */,
 				4757C4E31A533EBC002AD7A2 /* Images.xcassets */,
@@ -165,6 +169,15 @@
 				4757C50B1A534F74002AD7A2 /* WPViewModel+Friend.m */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		4757C5111A53DBE0002AD7A2 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				4757C5121A53DC03002AD7A2 /* UIViewController+RACExtension.h */,
+				4757C5131A53DC03002AD7A2 /* UIViewController+RACExtension.m */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		67B77CCC5243F88B9ACE190C /* Frameworks */ = {
@@ -343,6 +356,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4757C5141A53DC03002AD7A2 /* UIViewController+RACExtension.m in Sources */,
 				4757C5091A534F2C002AD7A2 /* WPViewModel.m in Sources */,
 				4757C4DC1A533EBC002AD7A2 /* AppDelegate.m in Sources */,
 				4757C5001A534379002AD7A2 /* WPNavigationController.m in Sources */,
