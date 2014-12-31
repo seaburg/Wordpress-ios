@@ -56,6 +56,9 @@ PODS:
     - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.4.1)
   - libextobjc/UmbrellaHeader (0.4.1)
+  - Mantle (1.5.1):
+    - Mantle/extobjc (= 1.5.1)
+  - Mantle/extobjc (1.5.1)
   - OCMock (3.1.1)
   - ReactiveCocoa (2.4.2):
     - ReactiveCocoa/UI (= 2.4.2)
@@ -73,6 +76,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.5.0)
   - Expecta (~> 0.3.1)
   - libextobjc (~> 0.4.1)
+  - Mantle (~> 1.5.1)
   - OCMock (~> 3.1.1)
   - ReactiveCocoa (~> 2.4.2)
   - SDWebImage (~> 3.7.1)
@@ -92,6 +96,7 @@ SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
   Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
   libextobjc: d6146fce3ebea986b7f75fcb4c967639200b88b0
+  Mantle: d7c5ac734579ec751c58fecbf56189853056c58c
   OCMock: f6cb8c162ab9d5620dddf411282c7b2c0ee78854
   ReactiveCocoa: 8418a82b67af2f1b7587baf29c329040a23c2063
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
