@@ -17,7 +17,7 @@
     };
 }
 
-+ (NSString *)path
++ (NSString *)pathPattern
 {
     NSAssert(NO, @"should be overridden in subclasses");
     return nil;

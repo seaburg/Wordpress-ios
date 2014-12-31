@@ -12,7 +12,7 @@
 
 @property (strong, nonatomic) NSArray *routeObjects;
 
-+ (NSString *)path;
++ (NSString *)pathPattern;
 
 + (NSString *)method;
 
