@@ -28,7 +28,7 @@
 {
     self = [super init];
     if (self) {
-        self = [super init];
+        [self commonInit];
     }
     return self;
 }
@@ -36,15 +36,6 @@
 - (instancetype)initWithNavigationBarClass:(Class)navigationBarClass toolbarClass:(Class)toolbarClass
 {
     self = [super initWithNavigationBarClass:navigationBarClass toolbarClass:toolbarClass];
-    if (self) {
-        [self commonInit];
-    }
-    return self;
-}
-
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         [self commonInit];
     }
