@@ -8,5 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const WPAPIBaseURL;
+extern NSInteger const WPSiteID;
+
 // error domains
 extern NSString *const WPAPIErrorDomain;
