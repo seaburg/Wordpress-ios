@@ -11,9 +11,14 @@
 @class RACSignal;
 @class WPRequest;
 @class WPObjectsSerializer;
+
 @interface WPSessionManager : AFHTTPSessionManager
 
 @property (strong, atomic) WPObjectsSerializer *objectsSerializer;
+
++ (instancetype)sharedInstance;
+
++ (void)setSharedInstance:(WPSessionManager *)sharedInstance;
 
 // performRequest: : -> RACSignal {request.class.responceClass}
 - (RACSignal *)performRequest:(WPRequest *)request;

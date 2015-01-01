@@ -15,6 +15,8 @@
 #import "WPSessionManager+Protected.h"
 #import "AFURLSessionManager+RACExtension.h"
 
+static WPSessionManager *_sharedInstance;
+
 @interface WPSessionManager ()
 
 @property (strong, atomic) RACScheduler *responseSerializeScheduler;
@@ -22,6 +24,16 @@
 @end
 
 @implementation WPSessionManager
+
++ (instancetype)sharedInstance
+{
+    return _sharedInstance;
+}
+
++ (void)setSharedInstance:(WPSessionManager *)sharedInstance
+{
+    _sharedInstance = sharedInstance;
+}
 
 - (void)commonInit
 {
