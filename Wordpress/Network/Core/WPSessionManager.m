@@ -19,7 +19,7 @@ static WPSessionManager *_sharedInstance;
 
 @interface WPSessionManager ()
 
-@property (strong, atomic) RACScheduler *responseSerializeScheduler;
+@property (strong, nonatomic) RACScheduler *responseSerializeScheduler;
 
 @end
 
@@ -121,7 +121,7 @@ static WPSessionManager *_sharedInstance;
                     
                     return [self.objectsSerializer rac_serializeWithObjectClass:[[request class] responseClass] fromDictionary:responseDictionary];
                 }]
-                subscribeOn:[RACScheduler scheduler]]
+                subscribeOn:self.responseSerializeScheduler]
                 deliverOn:[RACScheduler currentScheduler]];
         }]
         try:^BOOL(MTLModel<MTLJSONSerializing> *responseObject, NSError *__autoreleasing *errorPtr) {
