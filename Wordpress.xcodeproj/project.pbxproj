@@ -11,7 +11,6 @@
 		4757C4DC1A533EBC002AD7A2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C4DB1A533EBC002AD7A2 /* AppDelegate.m */; };
 		4757C4E41A533EBC002AD7A2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4757C4E31A533EBC002AD7A2 /* Images.xcassets */; };
 		4757C4E71A533EBC002AD7A2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4757C4E51A533EBC002AD7A2 /* LaunchScreen.xib */; };
-		4757C4F31A533EBC002AD7A2 /* WordpressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C4F21A533EBC002AD7A2 /* WordpressTests.m */; };
 		4757C5001A534379002AD7A2 /* WPNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C4FF1A534379002AD7A2 /* WPNavigationController.m */; };
 		4757C5091A534F2C002AD7A2 /* WPViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5081A534F2C002AD7A2 /* WPViewModel.m */; };
 		4757C50C1A534F74002AD7A2 /* WPViewModel+Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C50B1A534F74002AD7A2 /* WPViewModel+Friend.m */; };
@@ -55,7 +54,6 @@
 		4757C4E61A533EBC002AD7A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		4757C4EC1A533EBC002AD7A2 /* WordpressTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WordpressTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4757C4F11A533EBC002AD7A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4757C4F21A533EBC002AD7A2 /* WordpressTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordpressTests.m; sourceTree = "<group>"; };
 		4757C4FC1A534106002AD7A2 /* Wordpress-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wordpress-Prefix.pch"; sourceTree = "<group>"; };
 		4757C4FE1A534379002AD7A2 /* WPNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPNavigationController.h; sourceTree = "<group>"; };
 		4757C4FF1A534379002AD7A2 /* WPNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPNavigationController.m; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 		4757C4EF1A533EBC002AD7A2 /* WordpressTests */ = {
 			isa = PBXGroup;
 			children = (
-				4757C4F21A533EBC002AD7A2 /* WordpressTests.m */,
 				4757C5501A557BE8002AD7A2 /* TestAppDelegate.h */,
 				4757C5511A557BE8002AD7A2 /* TestAppDelegate.m */,
 				4757C4F01A533EBC002AD7A2 /* Supporting Files */,
@@ -485,7 +482,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4757C5521A557BE8002AD7A2 /* TestAppDelegate.m in Sources */,
-				4757C4F31A533EBC002AD7A2 /* WordpressTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
