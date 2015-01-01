@@ -15,6 +15,10 @@
 
 - (instancetype)initWithWindow:(UIWindow *)window;
 
+// presentRootScreen : -> RACSignal _
+- (RACSignal *)presentRootScreen;
+
+// presentStartScreen : -> RACSignal _
 - (RACSignal *)presentStartScreen;
 
 @end

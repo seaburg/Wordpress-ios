@@ -11,6 +11,10 @@
 #import "WPRouter.h"
 #import "WPNavigationController.h"
 
+#import "WPSplashViewController.h"
+
+#import "WPSplashViewModel.h"
+
 #import "WPViewModel+Friend.h"
 #import "UIViewController+RACExtension.h"
 
@@ -47,6 +51,19 @@ static WPRouter *_sharedInstance;
     }
     
     return self;
+}
+
+- (RACSignal *)presentRootScreen
+{
+    @weakify(self);
+    return [RACSignal defer:^RACSignal *{
+        @strongify(self);
+        
+        WPSplashViewModel *viewModel = [WPSplashViewModel new];
+        WPSplashViewController *viewController = [[WPSplashViewController alloc] initWithViewModel:viewModel];
+        
+        return [self setRootViewController:viewController viewModel:viewModel navigationController:self.rootNavigationController];
+    }];
 }
 
 - (RACSignal *)presentStartScreen
