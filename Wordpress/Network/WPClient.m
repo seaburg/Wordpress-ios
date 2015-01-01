@@ -13,6 +13,7 @@
 #import "WPSite.h"
 
 #import "WPSessionManager+Protected.h"
+#import "NSDictionary+RemovingNull.h"
 
 static NSString *const WPUserDefaultsKeyCurrentSite = @"WPUserDefaultsKeyCurrentSite";
 
@@ -43,6 +44,8 @@ static NSString *const WPUserDefaultsKeyCurrentSite = @"WPUserDefaultsKeyCurrent
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if (_currentSite) {
         NSDictionary *dictionaryRepresentation = [MTLJSONAdapter JSONDictionaryFromModel:_currentSite];
+        dictionaryRepresentation = [dictionaryRepresentation wp_dictionaryByRemovingNullValues];
+        
         [userDefaults setObject:dictionaryRepresentation forKey:WPUserDefaultsKeyCurrentSite];
     } else {
         [userDefaults removeObjectForKey:WPUserDefaultsKeyCurrentSite];
