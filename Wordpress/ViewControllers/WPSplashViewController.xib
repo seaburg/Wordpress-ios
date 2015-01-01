@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WPSplashViewController">
+            <connections>
+                <outlet property="activityIndicatorView" destination="Y9b-WB-IH0" id="HcO-Xd-7Gv"/>
+                <outlet property="errorMessageLabel" destination="DcA-J5-U45" id="WjH-gf-vxd"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Y9b-WB-IH0">
+                    <rect key="frame" x="290" y="555" width="20" height="20"/>
+                </activityIndicatorView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DcA-J5-U45">
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Y9b-WB-IH0" firstAttribute="top" secondItem="DcA-J5-U45" secondAttribute="bottom" constant="25" id="0J3-7q-Eaa"/>
+                <constraint firstAttribute="bottom" secondItem="Y9b-WB-IH0" secondAttribute="bottom" constant="25" id="LUR-vB-Ivn"/>
+                <constraint firstItem="DcA-J5-U45" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="VGZ-JT-lj2"/>
+                <constraint firstAttribute="trailing" secondItem="DcA-J5-U45" secondAttribute="trailing" constant="15" id="s7p-tQ-RIF"/>
+                <constraint firstAttribute="centerX" secondItem="Y9b-WB-IH0" secondAttribute="centerX" id="taC-ko-ubO"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
