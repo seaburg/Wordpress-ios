@@ -15,4 +15,6 @@
 
 - (instancetype)initWithWindow:(UIWindow *)window;
 
+- (RACSignal *)presentStartScreen;
+
 @end

@@ -49,6 +49,11 @@ static WPRouter *_sharedInstance;
     return self;
 }
 
+- (RACSignal *)presentStartScreen
+{
+    return [RACSignal empty];
+}
+
 #pragma mark - Presentation
 
 - (RACSignal *)setRootViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel navigationController:(WPNavigationController *)navigationController

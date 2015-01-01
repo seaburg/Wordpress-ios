@@ -28,7 +28,9 @@
 		4757C5461A554300002AD7A2 /* WPSite.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5451A554300002AD7A2 /* WPSite.m */; };
 		4757C5491A554C54002AD7A2 /* NSValueTransformer+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5481A554C54002AD7A2 /* NSValueTransformer+Factory.m */; };
 		4757C54C1A556D66002AD7A2 /* WPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C54B1A556D66002AD7A2 /* WPClient.m */; };
+		4757C54F1A557A02002AD7A2 /* WPSplashViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C54E1A557A02002AD7A2 /* WPSplashViewModel.m */; };
 		4757C5521A557BE8002AD7A2 /* TestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5511A557BE8002AD7A2 /* TestAppDelegate.m */; };
+		4757C5541A557D6C002AD7A2 /* WPSplashViewModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5531A557D6C002AD7A2 /* WPSplashViewModelTests.m */; };
 		4757C5581A5580F7002AD7A2 /* WPGetSiteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5571A5580F7002AD7A2 /* WPGetSiteRequest.m */; };
 		773E9A071D74FF855947B55E /* libPods-Wordpress.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 201F8ADE350358FD00AF60D7 /* libPods-Wordpress.a */; };
 		E0D98095AE472232185F5CBA /* libPods-WordpressTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD399AB25E2754D292BF3F2 /* libPods-WordpressTests.a */; };
@@ -90,6 +92,8 @@
 		4757C5481A554C54002AD7A2 /* NSValueTransformer+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValueTransformer+Factory.m"; sourceTree = "<group>"; };
 		4757C54A1A556D66002AD7A2 /* WPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPClient.h; sourceTree = "<group>"; };
 		4757C54B1A556D66002AD7A2 /* WPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPClient.m; sourceTree = "<group>"; };
+		4757C54D1A557A02002AD7A2 /* WPSplashViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPSplashViewModel.h; sourceTree = "<group>"; };
+		4757C54E1A557A02002AD7A2 /* WPSplashViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPSplashViewModel.m; sourceTree = "<group>"; };
 		4757C5501A557BE8002AD7A2 /* TestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAppDelegate.h; sourceTree = "<group>"; };
 		4757C5511A557BE8002AD7A2 /* TestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAppDelegate.m; sourceTree = "<group>"; };
 		4757C5561A5580F7002AD7A2 /* WPGetSiteRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPGetSiteRequest.h; sourceTree = "<group>"; };
