@@ -28,6 +28,7 @@
 		4757C5401A5496A7002AD7A2 /* WPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C53F1A5496A7002AD7A2 /* WPModel.m */; };
 		4757C5461A554300002AD7A2 /* WPSite.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5451A554300002AD7A2 /* WPSite.m */; };
 		4757C5491A554C54002AD7A2 /* NSValueTransformer+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5481A554C54002AD7A2 /* NSValueTransformer+Factory.m */; };
+		4757C54C1A556D66002AD7A2 /* WPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C54B1A556D66002AD7A2 /* WPClient.m */; };
 		773E9A071D74FF855947B55E /* libPods-Wordpress.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 201F8ADE350358FD00AF60D7 /* libPods-Wordpress.a */; };
 		E0D98095AE472232185F5CBA /* libPods-WordpressTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD399AB25E2754D292BF3F2 /* libPods-WordpressTests.a */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,8 @@
 		4757C5451A554300002AD7A2 /* WPSite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPSite.m; sourceTree = "<group>"; };
 		4757C5471A554C54002AD7A2 /* NSValueTransformer+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValueTransformer+Factory.h"; sourceTree = "<group>"; };
 		4757C5481A554C54002AD7A2 /* NSValueTransformer+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValueTransformer+Factory.m"; sourceTree = "<group>"; };
+		4757C54A1A556D66002AD7A2 /* WPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPClient.h; sourceTree = "<group>"; };
+		4757C54B1A556D66002AD7A2 /* WPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPClient.m; sourceTree = "<group>"; };
 		4C0F093EBB11579D5EE8DEA0 /* Pods-WordpressTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordpressTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WordpressTests/Pods-WordpressTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADA8E31BA11BE7095F813C1F /* Pods-WordpressTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordpressTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WordpressTests/Pods-WordpressTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D6E17668CEA29657512D7E7C /* Pods-Wordpress.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wordpress.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wordpress/Pods-Wordpress.debug.xcconfig"; sourceTree = "<group>"; };
@@ -240,6 +243,8 @@
 			isa = PBXGroup;
 			children = (
 				4757C5221A54152B002AD7A2 /* Core */,
+				4757C54A1A556D66002AD7A2 /* WPClient.h */,
+				4757C54B1A556D66002AD7A2 /* WPClient.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -456,6 +461,7 @@
 				4757C4DC1A533EBC002AD7A2 /* AppDelegate.m in Sources */,
 				4757C5001A534379002AD7A2 /* WPNavigationController.m in Sources */,
 				4757C5251A54152B002AD7A2 /* WPSessionManager.m in Sources */,
+				4757C54C1A556D66002AD7A2 /* WPClient.m in Sources */,
 				4757C5321A547645002AD7A2 /* WPDefines.m in Sources */,
 				4757C52E1A543884002AD7A2 /* WPSessionManager+Protected.m in Sources */,
 				4757C53D1A54943E002AD7A2 /* WPError.m in Sources */,
