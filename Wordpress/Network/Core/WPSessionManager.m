@@ -42,6 +42,8 @@ static WPSessionManager *_sharedInstance;
     
     char completionQueueLabel[] = "com.wordpress.sessionManager.completionQueue";
     self.completionQueue = dispatch_queue_create(completionQueueLabel, DISPATCH_QUEUE_CONCURRENT);
+    
+    self.objectsSerializer = [[WPObjectsSerializer alloc] init];
 }
 
 - (instancetype)initWithBaseURL:(NSURL *)url
@@ -163,7 +165,7 @@ static WPSessionManager *_sharedInstance;
                 }
                 
                 NSString *key = [path substringWithRange:NSMakeRange(range.location + 1, range.length - 1)];
-                NSString *value = params[key];
+                NSString *value = [params[key] description];
                 NSCAssert(value != nil, @"value with `%@` key should contain in route objects", key);
                 
                 [path replaceCharactersInRange:range withString:value];
