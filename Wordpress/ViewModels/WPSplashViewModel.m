@@ -29,7 +29,7 @@
         defer:^RACSignal *{
             WPGetSiteRequest *getSiteRequest = [[WPGetSiteRequest alloc] init];
             WPSite *currentSite = [WPClient sharedInstance].currentSite;
-            getSiteRequest.routeObjects = @[ currentSite ];
+            getSiteRequest.routeObject = currentSite;
         
             return [[WPClient sharedInstance] performRequest:getSiteRequest];
         }]

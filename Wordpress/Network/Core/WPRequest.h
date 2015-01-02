@@ -10,7 +10,7 @@
 
 @interface WPRequest : MTLModel<MTLJSONSerializing>
 
-@property (strong, nonatomic) NSArray *routeObjects;
+@property (strong, nonatomic) MTLModel<MTLJSONSerializing> *routeObject;
 
 + (NSString *)pathPattern;
 

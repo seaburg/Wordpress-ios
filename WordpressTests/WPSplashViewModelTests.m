@@ -77,7 +77,7 @@ describe(@"Splash", ^{
                     if (![obj isKindOfClass:[WPGetSiteRequest class]]) {
                         return NO;
                     }
-                    return [[obj routeObjects] containsObject:site];
+                    return [[obj routeObject] isEqual:site];
                 }]]);
             });
             

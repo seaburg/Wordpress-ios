@@ -77,7 +77,7 @@ static WPSessionManager *_sharedInstance;
 {
     return [[[[RACSignal defer:^RACSignal *{
         
-            RACSignal *URLSignal = [[self pathFromPatternPath:[[request class] pathPattern] routeObjects:request.routeObjects]
+            RACSignal *URLSignal = [[self pathFromPatternPath:[[request class] pathPattern] routeObject:request.routeObject]
                 map:^id(NSString *path) {
                     return [NSURL URLWithString:path relativeToURL:self.baseURL];
                 }];
@@ -140,13 +140,10 @@ static WPSessionManager *_sharedInstance;
         }];
 }
 
-- (RACSignal *)pathFromPatternPath:(NSString *)patternPath routeObjects:(NSArray *)routeObjects
+- (RACSignal *)pathFromPatternPath:(NSString *)patternPath routeObject:(MTLModel<MTLJSONSerializing> *)routeObject
 {
-    return [[[[RACSignal defer:^RACSignal *{
-            return [routeObjects.rac_sequence signalWithScheduler:[RACScheduler currentScheduler]];
-        }]
-        flattenMap:^RACStream *(MTLModel<MTLJSONSerializing> *value) {
-            return [self.objectsSerializer rac_deserializeObject:value];
+    return [[[RACSignal defer:^RACSignal *{
+            return [self.objectsSerializer rac_deserializeObject:routeObject];
         }]
         aggregateWithStart:nil reduce:^id(NSDictionary *running, NSDictionary *next) {
             
