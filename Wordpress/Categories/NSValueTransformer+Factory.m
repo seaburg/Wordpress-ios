@@ -7,6 +7,7 @@
 //
 
 #import <Mantle/Mantle.h>
+#import <libkern/OSAtomic.h>
 
 static NSString *WPStringByRemovingBackslashEscapesFromString(NSString *string) {
     NSString *result = [string copy];
@@ -25,7 +26,7 @@ static NSString *WPStringByRemovingBackslashEscapesFromString(NSString *string) 
 
 @implementation NSValueTransformer (Factory)
 
-+ (instancetype)wp_URLValueTansformer
++ (NSValueTransformer *)wp_URLValueTansformer
 {
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *value) {
         if (!value) {
@@ -42,6 +43,43 @@ static NSString *WPStringByRemovingBackslashEscapesFromString(NSString *string) 
         }
         NSString *stringURL = [[value absoluteString] stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
         return stringURL;
+    }];
+}
+
++ (NSValueTransformer *)wp_dateTimeValueTransformer
+{
+    static OSSpinLock dateFormatterLock = OS_SPINLOCK_INIT;
+    static NSDateFormatter *dateFormatter;
+    
+    if (!dateFormatter) {
+        OSSpinLockLock(&dateFormatterLock);
+        if (!dateFormatter) {
+            dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"YYYY-MM-DDThh:mm:ssTZD"];
+        }
+        OSSpinLockUnlock(&dateFormatterLock);
+    }
+    
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *value) {
+        if (!value) {
+            return nil;
+        }
+        OSSpinLockLock(&dateFormatterLock);
+        NSDate *date = [dateFormatter dateFromString:value];
+        OSSpinLockUnlock(&dateFormatterLock);
+        
+        return date;
+    
+    } reverseBlock:^id(NSDate *value) {
+        if (!value) {
+            return nil;
+        }
+        
+        OSSpinLockLock(&dateFormatterLock);
+        NSString *result = [dateFormatter stringFromDate:value];
+        OSSpinLockUnlock(&dateFormatterLock);
+        
+        return result;
     }];
 }
 

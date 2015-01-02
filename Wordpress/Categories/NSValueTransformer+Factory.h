@@ -10,6 +10,8 @@
 
 @interface NSValueTransformer (Factory)
 
-+ (instancetype)wp_URLValueTansformer;
++ (NSValueTransformer *)wp_URLValueTansformer;
+
++ (NSValueTransformer *)wp_dateTimeValueTransformer;
 
 @end
