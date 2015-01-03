@@ -38,6 +38,7 @@
 		4757C5691A56D082002AD7A2 /* WPPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5681A56D082002AD7A2 /* WPPost.m */; };
 		4757C5711A5734F4002AD7A2 /* NSArray+RemovingNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C56E1A5734F4002AD7A2 /* NSArray+RemovingNull.m */; };
 		4757C5721A5734F4002AD7A2 /* NSDictionary+RemovingNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5701A5734F4002AD7A2 /* NSDictionary+RemovingNull.m */; };
+		4757C5771A5849EF002AD7A2 /* NSString+RemovingHTMLElements.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5761A5849EF002AD7A2 /* NSString+RemovingHTMLElements.m */; };
 		773E9A071D74FF855947B55E /* libPods-Wordpress.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 201F8ADE350358FD00AF60D7 /* libPods-Wordpress.a */; };
 		E0D98095AE472232185F5CBA /* libPods-WordpressTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD399AB25E2754D292BF3F2 /* libPods-WordpressTests.a */; };
 /* End PBXBuildFile section */
@@ -116,6 +117,8 @@
 		4757C56E1A5734F4002AD7A2 /* NSArray+RemovingNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+RemovingNull.m"; sourceTree = "<group>"; };
 		4757C56F1A5734F4002AD7A2 /* NSDictionary+RemovingNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+RemovingNull.h"; sourceTree = "<group>"; };
 		4757C5701A5734F4002AD7A2 /* NSDictionary+RemovingNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+RemovingNull.m"; sourceTree = "<group>"; };
+		4757C5751A5849EF002AD7A2 /* NSString+RemovingHTMLElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RemovingHTMLElements.h"; sourceTree = "<group>"; };
+		4757C5761A5849EF002AD7A2 /* NSString+RemovingHTMLElements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RemovingHTMLElements.m"; sourceTree = "<group>"; };
 		4C0F093EBB11579D5EE8DEA0 /* Pods-WordpressTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordpressTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WordpressTests/Pods-WordpressTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADA8E31BA11BE7095F813C1F /* Pods-WordpressTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordpressTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WordpressTests/Pods-WordpressTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D6E17668CEA29657512D7E7C /* Pods-Wordpress.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wordpress.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wordpress/Pods-Wordpress.debug.xcconfig"; sourceTree = "<group>"; };
@@ -272,6 +275,8 @@
 				4757C56E1A5734F4002AD7A2 /* NSArray+RemovingNull.m */,
 				4757C56F1A5734F4002AD7A2 /* NSDictionary+RemovingNull.h */,
 				4757C5701A5734F4002AD7A2 /* NSDictionary+RemovingNull.m */,
+				4757C5751A5849EF002AD7A2 /* NSString+RemovingHTMLElements.h */,
+				4757C5761A5849EF002AD7A2 /* NSString+RemovingHTMLElements.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -507,6 +512,7 @@
 			files = (
 				4757C5141A53DC03002AD7A2 /* UIViewController+RACExtension.m in Sources */,
 				4757C5171A53EC45002AD7A2 /* SDWebImageManager+RACExtension.m in Sources */,
+				4757C5771A5849EF002AD7A2 /* NSString+RemovingHTMLElements.m in Sources */,
 				4757C5091A534F2C002AD7A2 /* WPViewModel.m in Sources */,
 				4757C5101A535229002AD7A2 /* WPRouter.m in Sources */,
 				4757C54F1A557A02002AD7A2 /* WPSplashViewModel.m in Sources */,
