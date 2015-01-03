@@ -25,20 +25,37 @@
 - (RACSignal *)fetchData
 {
     @weakify(self);
-    return [[[[[[RACSignal
-        defer:^RACSignal *{
+    return [[[[RACSignal
+        createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            @strongify(self);
+            
             WPGetSiteRequest *getSiteRequest = [[WPGetSiteRequest alloc] init];
             WPSite *currentSite = [WPClient sharedInstance].currentSite;
             getSiteRequest.routeObject = currentSite;
-        
-            return [[WPClient sharedInstance] performRequest:getSiteRequest];
-        }]
-        doNext:^(WPSite *site) {
-            [WPClient sharedInstance].currentSite = site;
-        }]
-        doError:^(NSError *error) {
-            @strongify(self);
-            self.errorMessage = [error localizedDescription];
+            
+            RACMulticastConnection *getSiteConnection = [[[WPClient sharedInstance] performRequest:getSiteRequest]
+                publish];
+            
+            RACCompoundDisposable *diposable = [RACCompoundDisposable compoundDisposable];
+            
+            [diposable addDisposable:[[getSiteConnection.signal
+                catchTo:[RACSignal empty]]
+                setKeyPath:@keypath([WPClient new], currentSite) onObject:[WPClient sharedInstance]]];
+            
+            [diposable addDisposable:[[[[getSiteConnection.signal
+                materialize]
+                filter:^BOOL(RACEvent *value) {
+                    return (value.eventType == RACEventTypeError);
+                }]
+                map:^id(RACEvent *value) {
+                    return [value.error localizedDescription];
+                }]
+                setKeyPath:@keypath(self, errorMessage) onObject:self]];
+            
+            [diposable addDisposable:[getSiteConnection.signal subscribe:subscriber]];
+            [diposable addDisposable:[getSiteConnection connect]];
+            
+            return diposable;
         }]
         catch:^RACSignal *(NSError *error) {
             return [[[[RACSignal error:error]

@@ -63,6 +63,10 @@ describe(@"Splash", ^{
                     [inv setReturnValue:&returnValue];
                 });
                 
+                OCMStub([mockedClient setValue:OCMOCK_ANY forKeyPath:@"currentSite"]).andDo(^(NSInvocation *inv){
+                    [inv retainArguments];
+                });
+                
                 waitUntil(^(DoneCallback done) {
                     [[viewModel fetchData]
                         subscribeCompleted:^{
@@ -82,7 +86,7 @@ describe(@"Splash", ^{
             });
             
             it(@"should update `currentSite` of `WPClient` to recived new site", ^{
-                OCMVerify([mockedClient setCurrentSite:updatedSite]);
+                OCMVerify([mockedClient setValue:updatedSite forKeyPath:@"currentSite"]);
             });
             
             it(@"should present start screen after fetch data", ^{
