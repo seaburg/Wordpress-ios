@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		471A6B0C1A58818800BC7C6E /* UIFont+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 471A6B0B1A58818800BC7C6E /* UIFont+Factory.m */; };
 		4757C4D91A533EBC002AD7A2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C4D81A533EBC002AD7A2 /* main.m */; };
 		4757C4DC1A533EBC002AD7A2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C4DB1A533EBC002AD7A2 /* AppDelegate.m */; };
 		4757C4E41A533EBC002AD7A2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4757C4E31A533EBC002AD7A2 /* Images.xcassets */; };
@@ -57,6 +58,8 @@
 
 /* Begin PBXFileReference section */
 		201F8ADE350358FD00AF60D7 /* libPods-Wordpress.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wordpress.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		471A6B0A1A58818800BC7C6E /* UIFont+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Factory.h"; sourceTree = "<group>"; };
+		471A6B0B1A58818800BC7C6E /* UIFont+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Factory.m"; sourceTree = "<group>"; };
 		4757C4D31A533EBC002AD7A2 /* Wordpress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordpress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4757C4D71A533EBC002AD7A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4757C4D81A533EBC002AD7A2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -279,6 +282,8 @@
 				4757C51C1A540661002AD7A2 /* AFURLSessionManager+RACExtension.m */,
 				4757C5471A554C54002AD7A2 /* NSValueTransformer+Factory.h */,
 				4757C5481A554C54002AD7A2 /* NSValueTransformer+Factory.m */,
+				471A6B0A1A58818800BC7C6E /* UIFont+Factory.h */,
+				471A6B0B1A58818800BC7C6E /* UIFont+Factory.m */,
 				4757C56D1A5734F4002AD7A2 /* NSArray+RemovingNull.h */,
 				4757C56E1A5734F4002AD7A2 /* NSArray+RemovingNull.m */,
 				4757C56F1A5734F4002AD7A2 /* NSDictionary+RemovingNull.h */,
@@ -534,6 +539,7 @@
 				4757C54C1A556D66002AD7A2 /* WPClient.m in Sources */,
 				4757C5321A547645002AD7A2 /* WPDefines.m in Sources */,
 				4757C52E1A543884002AD7A2 /* WPSessionManager+Protected.m in Sources */,
+				471A6B0C1A58818800BC7C6E /* UIFont+Factory.m in Sources */,
 				4757C53D1A54943E002AD7A2 /* WPError.m in Sources */,
 				4757C5661A56C871002AD7A2 /* WPUser.m in Sources */,
 				4757C50C1A534F74002AD7A2 /* WPViewModel+Friend.m in Sources */,
