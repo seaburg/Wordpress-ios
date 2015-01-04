@@ -22,7 +22,7 @@
 - (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager;
 - (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager pageSize:(NSInteger)pageSize;
 
-// reloadData : -> RACSgnal _
+// reloadData : -> RACSignal _
 - (RACSignal *)reloadData;
 
 // loadNextPage : -> RACSignal _
