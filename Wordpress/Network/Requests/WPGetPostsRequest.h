@@ -7,8 +7,9 @@
 //
 
 #import "WPRequest.h"
+#import "WPPaginating.h"
 
-@interface WPGetPostsRequest : WPRequest
+@interface WPGetPostsRequest : WPRequest<WPRequestPaginating>
 
 @property (copy, nonatomic) NSArray *fields;
 

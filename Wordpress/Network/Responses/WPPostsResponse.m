@@ -43,3 +43,17 @@
 }
 
 @end
+
+@implementation WPPostsResponse (Paginating)
+
+- (NSArray *)objects
+{
+    return self.posts;
+}
+
+- (NSNumber *)totalObjects
+{
+    return self.found;
+}
+
+@end
