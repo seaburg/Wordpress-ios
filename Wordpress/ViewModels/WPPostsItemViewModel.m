@@ -44,7 +44,7 @@
                 return [excerpt wp_stringByRemovingHTMLElements];
             }];
         
-        RAC(self, numberOfComments) = RACObserve(self.post, numberOfComments);
+        RAC(self, numberOfComments, @0) = RACObserve(self.post, numberOfComments);
     }
     return self;
 }
