@@ -26,6 +26,9 @@
 // loadNextPage : -> RACSignal _
 - (RACSignal *)loadNextPage;
 
+// dataUpdated : -> RACSignal ()
+- (RACSignal *)dataUpdated;
+
 - (WPPostsItemViewModel *)itemViewModelAtIndex:(NSInteger)index;
 
 @end

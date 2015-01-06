@@ -51,6 +51,13 @@
     return [self.paginator loadNextPage];
 }
 
+- (RACSignal *)dataUpdated
+{
+    return [[RACObserve(self.paginator, objects)
+        skip:1]
+        mapReplace:[RACUnit defaultUnit]];
+}
+
 -  (WPPostsItemViewModel *)itemViewModelAtIndex:(NSInteger)index
 {
     WPPost *post = self.paginator.objects[index];

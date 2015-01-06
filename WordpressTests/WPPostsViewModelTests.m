@@ -109,6 +109,21 @@ describe(@"PostsViewModel", ^{
             expect(itemViewModel.title).to.equal(@"title3");
         });
     });
+    
+    describe(@"when data changed", ^{
+        
+        it(@"should notify that the data has been updated", ^{
+            waitUntil(^(DoneCallback done) {
+                [[[viewModel dataUpdated]
+                    take:1]
+                    subscribeNext:^(id x) {
+                        done();
+                    }];
+                [mockedPaginator willChangeValueForKey:@"objects"];
+                [mockedPaginator didChangeValueForKey:@"objects"];
+            });
+        });
+    });
 });
 
 SpecEnd
