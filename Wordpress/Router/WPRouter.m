@@ -78,6 +78,7 @@ static WPRouter *_sharedInstance;
         
         WPGetPostsRequest *request = [[WPGetPostsRequest alloc] init];
         request.routeObject = [WPClient sharedInstance].currentSite;
+        request.fields = @[@"ID", @"siteID", @"author", @"title", @"excerpt", @"comment_count", @"featured_image" ];
         WPPaginator *paginator = [[WPPaginator alloc] initWithRequest:request sessionManager:[WPClient sharedInstance]];
         
         WPPostsViewModel *viewModel = [[WPPostsViewModel alloc] initWithPaginator:paginator];
