@@ -33,10 +33,11 @@
         
         RAC(self, nextPageExisted) = RACObserve(self.paginator, nextPageExisted);
         
-        RAC(self, numberOfObjets) = [RACObserve(self.paginator, objects)
+        RAC(self, numberOfObjets) = [[RACObserve(self.paginator, objects)
             map:^id(NSArray *objects) {
                 return @([objects count]);
-            }];
+            }]
+            distinctUntilChanged];
     }
     return self;
 }
@@ -53,8 +54,8 @@
 
 - (RACSignal *)dataUpdated
 {
-    return [[RACObserve(self.paginator, objects)
-        skip:1]
+    return [[[[RACObserve(self, numberOfObjets) skip:1] distinctUntilChanged]
+        merge:[RACObserve(self.paginator, objects) skip:1]]
         mapReplace:[RACUnit defaultUnit]];
 }
 
