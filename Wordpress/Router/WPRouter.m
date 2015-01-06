@@ -10,10 +10,16 @@
 
 #import "WPRouter.h"
 #import "WPNavigationController.h"
+#import "WPPaginator.h"
+#import "WPClient.h"
+#import "WPGetPostsRequest.h"
+#import "WPSite.h"
 
 #import "WPSplashViewController.h"
+#import "WPPostsViewController.h"
 
 #import "WPSplashViewModel.h"
+#import "WPPostsViewModel.h"
 
 #import "WPViewModel+Friend.h"
 #import "UIViewController+RACExtension.h"
@@ -68,7 +74,17 @@ static WPRouter *_sharedInstance;
 
 - (RACSignal *)presentStartScreen
 {
-    return [RACSignal empty];
+    return [RACSignal defer:^RACSignal *{
+        
+        WPGetPostsRequest *request = [[WPGetPostsRequest alloc] init];
+        request.routeObject = [WPClient sharedInstance].currentSite;
+        WPPaginator *paginator = [[WPPaginator alloc] initWithRequest:request sessionManager:[WPClient sharedInstance]];
+        
+        WPPostsViewModel *viewModel = [[WPPostsViewModel alloc] initWithPaginator:paginator];
+        WPPostsViewController *viewController = [[WPPostsViewController alloc] initWithPostsViewModel:viewModel];
+        
+        return [self setRootViewController:viewController viewModel:viewModel navigationController:self.rootNavigationController];
+    }];
 }
 
 #pragma mark - Presentation
