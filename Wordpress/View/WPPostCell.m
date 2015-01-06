@@ -37,8 +37,16 @@
     RACCompoundDisposable *disposable = [RACCompoundDisposable compoundDisposable];
     [disposable addDisposable:[RACObserve(self.viewModel, title)
         setKeyPath:@keypath(self.titleLabel, text) onObject:self.titleLabel]];
+    
     [disposable addDisposable:[RACObserve(self.viewModel, excerpt)
         setKeyPath:@keypath(self.excerptLabel, text) onObject:self.excerptLabel]];
+    
+    [disposable addDisposable:[[RACObserve(self.viewModel, numberOfComments)
+        map:^id(NSNumber *value) {
+            return [value stringValue];
+        }]
+        setKeyPath:@keypath(self.commentsLabel, text) onObject:self.commentsLabel]];
+    
     [disposable addDisposable:[[[self.viewModel image]
         catchTo:[RACSignal empty]]
         setKeyPath:@keypath(self.postImageView, image) onObject:self.postImageView]];
