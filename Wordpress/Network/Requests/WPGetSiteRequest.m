@@ -9,6 +9,8 @@
 #import "WPGetSiteRequest.h"
 #import "WPSite.h"
 
+#import "NSValueTransformer+Factory.h"
+
 @implementation WPGetSiteRequest
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey
@@ -34,6 +36,11 @@
 + (Class)responseClass
 {
     return [WPSite class];
+}
+
++ (NSValueTransformer *)fieldsJSONTransformer
+{
+    return [NSValueTransformer wp_arrayValueTansformer];
 }
 
 @end

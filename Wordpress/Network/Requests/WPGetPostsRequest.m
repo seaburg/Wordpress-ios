@@ -9,6 +9,8 @@
 #import "WPGetPostsRequest.h"
 #import "WPPostsResponse.h"
 
+#import "NSValueTransformer+Factory.h"
+
 @implementation WPGetPostsRequest
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey
@@ -37,6 +39,11 @@
 + (Class)responseClass
 {
     return [WPPostsResponse class];
+}
+
++ (NSValueTransformer *)fieldsJSONTransformer
+{
+    return [NSValueTransformer wp_arrayValueTansformer];
 }
 
 @end
