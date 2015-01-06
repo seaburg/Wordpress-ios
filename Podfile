@@ -8,6 +8,7 @@ target :Wordpress do
     pod 'Mantle', '~> 1.5.1'
     pod 'SDWebImage', '~> 3.7.1'
     pod 'AFNetworking', '~> 2.5.0'
+    pod 'SVPullToRefresh', '~> 0.4.1'
 end
 
 target :WordpressTests do
