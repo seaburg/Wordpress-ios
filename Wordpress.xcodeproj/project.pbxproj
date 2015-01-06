@@ -14,6 +14,7 @@
 		471A6B1E1A594BD900BC7C6E /* WPPaginator.m in Sources */ = {isa = PBXBuildFile; fileRef = 471A6B1D1A594BD900BC7C6E /* WPPaginator.m */; };
 		471A6B201A594C4700BC7C6E /* WPPaginatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 471A6B1F1A594C4700BC7C6E /* WPPaginatorTests.m */; };
 		471A6B221A5BE37D00BC7C6E /* WPPostsViewModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 471A6B211A5BE37D00BC7C6E /* WPPostsViewModelTests.m */; };
+		471A6B2A1A5BF9B700BC7C6E /* UITableView+RACCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 471A6B291A5BF9B700BC7C6E /* UITableView+RACCommand.m */; };
 		4757C4D91A533EBC002AD7A2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C4D81A533EBC002AD7A2 /* main.m */; };
 		4757C4DC1A533EBC002AD7A2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C4DB1A533EBC002AD7A2 /* AppDelegate.m */; };
 		4757C4E41A533EBC002AD7A2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4757C4E31A533EBC002AD7A2 /* Images.xcassets */; };
@@ -79,6 +80,8 @@
 		471A6B1D1A594BD900BC7C6E /* WPPaginator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPaginator.m; sourceTree = "<group>"; };
 		471A6B1F1A594C4700BC7C6E /* WPPaginatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPaginatorTests.m; sourceTree = "<group>"; };
 		471A6B211A5BE37D00BC7C6E /* WPPostsViewModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPostsViewModelTests.m; sourceTree = "<group>"; };
+		471A6B281A5BF9B700BC7C6E /* UITableView+RACCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+RACCommand.h"; sourceTree = "<group>"; };
+		471A6B291A5BF9B700BC7C6E /* UITableView+RACCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+RACCommand.m"; sourceTree = "<group>"; };
 		4757C4D31A533EBC002AD7A2 /* Wordpress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordpress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4757C4D71A533EBC002AD7A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4757C4D81A533EBC002AD7A2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -310,6 +313,8 @@
 		4757C5111A53DBE0002AD7A2 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				471A6B281A5BF9B700BC7C6E /* UITableView+RACCommand.h */,
+				471A6B291A5BF9B700BC7C6E /* UITableView+RACCommand.m */,
 				4757C5121A53DC03002AD7A2 /* UIViewController+RACExtension.h */,
 				4757C5131A53DC03002AD7A2 /* UIViewController+RACExtension.m */,
 				4757C5151A53EC45002AD7A2 /* SDWebImageManager+RACExtension.h */,
@@ -580,6 +585,7 @@
 				4757C5141A53DC03002AD7A2 /* UIViewController+RACExtension.m in Sources */,
 				4757C5171A53EC45002AD7A2 /* SDWebImageManager+RACExtension.m in Sources */,
 				4757C5771A5849EF002AD7A2 /* NSString+RemovingHTMLElements.m in Sources */,
+				471A6B2A1A5BF9B700BC7C6E /* UITableView+RACCommand.m in Sources */,
 				4757C5091A534F2C002AD7A2 /* WPViewModel.m in Sources */,
 				4757C56C1A5734C8002AD7A2 /* WPPostsItemViewModel.m in Sources */,
 				4757C5101A535229002AD7A2 /* WPRouter.m in Sources */,
