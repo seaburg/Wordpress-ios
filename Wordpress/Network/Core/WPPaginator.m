@@ -61,49 +61,30 @@
 
 - (RACSignal *)reloadData
 {
-    return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-    
+    @weakify(self);
+    return [[[RACSignal defer:^RACSignal *{
         NSInteger pageSize = MAX([self.objects count], self.pageSize);
-        RACMulticastConnection *requestConnection = [[self performRequestWithPageSize:pageSize offset:0]
-            publish];
-        
-        RACCompoundDisposable *disposable = [RACCompoundDisposable compoundDisposable];
-        
-        [disposable addDisposable:[[requestConnection.signal
-            catchTo:[RACSignal empty]]
-            setKeyPath:@keypath(self, objects) onObject:self]];
-        
-        [disposable addDisposable:[requestConnection.signal subscribe:subscriber]];
-        [disposable addDisposable:[requestConnection connect]];
-        
-        return disposable;
+        return [self performRequestWithPageSize:pageSize offset:0];
+    }]
+    doNext:^(NSArray *objects) {
+        @strongify(self);
+        self.objects = objects;
     }]
     ignoreValues];
 }
 
 - (RACSignal *)loadNextPage
 {
-    return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    @weakify(self);
+    return [[[RACSignal defer:^RACSignal *{
         NSCAssert(self.nextPageExisted, @"next page must exist");
-        
-        RACMulticastConnection *requestConnection = [[self performRequestWithPageSize:self.pageSize offset:[self.objects count]]
-            publish];
-        
-        RACCompoundDisposable *disposable = [RACCompoundDisposable compoundDisposable];
-        [disposable addDisposable:[[[RACSignal combineLatest:@[ [RACSignal return:self.objects], requestConnection.signal]
-            reduce:^id (NSArray *lArray, NSArray *rArray){
-                NSMutableArray *objects = [NSMutableArray arrayWithArray:lArray];
-                [objects addObjectsFromArray:rArray];
-                
-                return [objects copy];
-            }]
-            catchTo:[RACSignal empty]]
-            setKeyPath:@keypath(self, objects) onObject:self]];
-        
-        [disposable addDisposable:[requestConnection.signal subscribe:subscriber]];
-        [disposable addDisposable:[requestConnection connect]];
-        
-        return disposable;
+        return [self performRequestWithPageSize:self.pageSize offset:[self.objects count]];
+    }]
+    doNext:^(NSArray *objects) {
+        @strongify(self);
+        NSMutableArray *mutableObjects = [NSMutableArray arrayWithArray:self.objects];
+        [mutableObjects addObjectsFromArray:objects];
+        self.objects = mutableObjects;
     }]
     ignoreValues];
 }
@@ -112,48 +93,41 @@
 
 - (RACSignal *)performRequestWithPageSize:(NSInteger)pageSize offset:(NSInteger)offset
 {
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    @weakify(self);
+    return [[[RACSignal
+        defer:^RACSignal *{
+            NSInteger numberOfRequests = ceilf((CGFloat)pageSize / self.maxSizeOfPage);
         
-        NSInteger numberOfRealPages = ceilf((CGFloat)pageSize / self.maxSizeOfPage);
+            NSMutableArray *paramsOfRequests = [NSMutableArray array];
+            for (NSInteger requestIndex = 0; requestIndex < numberOfRequests; ++requestIndex) {
+                NSInteger requestOffset = offset + requestIndex * self.maxSizeOfPage;
+                NSInteger requestPageSize = MIN(offset + pageSize - requestOffset, self.maxSizeOfPage);
+                
+                [paramsOfRequests addObject:RACTuplePack(@(requestOffset), @(requestPageSize))];
+            }
         
-        NSMutableArray *requests = [NSMutableArray array];
-        for (NSInteger pageIndex = 0; pageIndex < numberOfRealPages; ++pageIndex) {
-            
-            NSInteger requestOffset = offset + pageIndex * self.maxSizeOfPage;
-            NSInteger requestPageSize = MIN(offset + pageSize - requestOffset, self.maxSizeOfPage);
-            
-            WPRequest<WPRequestPaginating> *request = [self.request copy];
-            [request setNumber:@(requestPageSize)];
-            [request setOffset:@(requestOffset)];
-            [requests addObject:request];
-        }
-        
-        RACMulticastConnection *requestConnection = [[[[requests.rac_sequence
-            signalWithScheduler:[RACScheduler currentScheduler]]
-            map:^RACStream *(WPRequest *request) {
-                return [self.sessionManager performRequest:request];
-            }]
-            concat]
-            publish];
-        
-        RACCompoundDisposable *disposable = [RACCompoundDisposable compoundDisposable];
-        [disposable addDisposable:[[[[requestConnection.signal
-            takeLast:1]
-            map:^id(id<WPResponsePaginating> value) {
-                return [value totalObjects];
-            }]
-            catchTo:[RACSignal empty]]
-            setKeyPath:@keypath(self, totalObjects) onObject:self]];
-        
-        [disposable addDisposable:[[requestConnection.signal
-            aggregateWithStart:[NSArray new] reduce:^id(NSArray *running, id<WPResponsePaginating> next) {
-                return [running arrayByAddingObjectsFromArray:[next objects]];
-            }]
-            subscribe:subscriber]];
-        [disposable addDisposable:[requestConnection connect]];
-        
-        return disposable;
-    }];
+            return [[[[paramsOfRequests.rac_sequence
+                map:^id(RACTuple *value) {
+                    RACTupleUnpack(NSNumber *offset, NSNumber *number) = value;
+                    WPRequest<WPRequestPaginating> *request = [self.request copy];
+                    [request setOffset:offset];
+                    [request setNumber:number];
+                    
+                    return request;
+                }]
+                signalWithScheduler:[RACScheduler currentScheduler]]
+                map:^RACStream *(WPRequest *request) {
+                    return [self.sessionManager performRequest:request];
+                }]
+                concat];
+        }]
+        doNext:^(id<WPResponsePaginating> response) {
+            @strongify(self);
+            self.totalObjects = [[response totalObjects] integerValue];
+        }]
+        aggregateWithStart:[NSArray new] reduce:^id(NSArray *running, id<WPResponsePaginating> next) {
+            return [running arrayByAddingObjectsFromArray:[next objects]];
+        }];
 }
 
 @end
