@@ -70,7 +70,7 @@ describe(@"Paginator", ^{
         mockedSessionManager = OCMClassMock([WPSessionManager class]);
         OCMStub(ClassMethod([mockedSessionManager sharedInstance])).andReturn(mockedSessionManager);
         request = [WPFakeRequest new];
-        paginator = [[WPPaginator alloc] initWithRequest:request sessionManager:mockedSessionManager logicalPageSize:3 maximumRealPageSize:6];
+        paginator = [[WPPaginator alloc] initWithRequest:request sessionManager:mockedSessionManager pageSize:3 maxSizeOfPage:6];
     });
     
     describe(@"when it initialized", ^{

@@ -21,9 +21,9 @@
 
 - (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager;
 
-- (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager logicalPageSize:(NSInteger)logicalPageSize;
+- (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager pageSize:(NSInteger)pageSize;
 
-- (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager logicalPageSize:(NSInteger)logicalPageSize maximumRealPageSize:(NSInteger)maximumRealPageSize;
+- (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager pageSize:(NSInteger)pageSize maxSizeOfPage:(NSInteger)maxSizeOfPage;
 
 // reloadData : -> RACSignal _
 - (RACSignal *)reloadData;

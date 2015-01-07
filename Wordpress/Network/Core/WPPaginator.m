@@ -17,8 +17,8 @@
 @property (copy, nonatomic) NSArray *objects;
 @property (assign, nonatomic) BOOL nextPageExisted;
 
-@property (assign, nonatomic) NSInteger logicalPageSize;
-@property (assign, nonatomic) NSInteger maximumRealPageSize;
+@property (assign, nonatomic) NSInteger pageSize;
+@property (assign, nonatomic) NSInteger maxSizeOfPage;
 @property (assign, nonatomic) NSInteger totalObjects;
 
 @property (strong, nonatomic) WPRequest<WPRequestPaginating> *request;
@@ -30,15 +30,15 @@
 
 - (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager
 {
-    return [self initWithRequest:request sessionManager:sessionManager logicalPageSize:25];
+    return [self initWithRequest:request sessionManager:sessionManager pageSize:25];
 }
 
-- (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager logicalPageSize:(NSInteger)logicalPageSize
+- (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager pageSize:(NSInteger)pageSize
 {
-    return [self initWithRequest:request sessionManager:sessionManager logicalPageSize:logicalPageSize maximumRealPageSize:NSIntegerMax];
+    return [self initWithRequest:request sessionManager:sessionManager pageSize:pageSize maxSizeOfPage:NSIntegerMax];
 }
 
-- (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager logicalPageSize:(NSInteger)logicalPageSize maximumRealPageSize:(NSInteger)maximumRealPageSize;
+- (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager pageSize:(NSInteger)pageSize maxSizeOfPage:(NSInteger)maxSizeOfPage;
 {
     NSParameterAssert(sessionManager);
     NSParameterAssert(request);
@@ -48,8 +48,8 @@
     if (self) {
         self.request = request;
         self.sessionManager = sessionManager;
-        self.logicalPageSize = logicalPageSize;
-        self.maximumRealPageSize = maximumRealPageSize;
+        self.pageSize = pageSize;
+        self.maxSizeOfPage = maxSizeOfPage;
         
         RAC(self, nextPageExisted) = [[RACSignal combineLatest:@[ RACObserve(self, objects), RACObserve(self, totalObjects) ]]
             reduceEach:^id(NSArray *objects, NSNumber *totalObjects){
@@ -63,7 +63,7 @@
 {
     return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
     
-        NSInteger pageSize = MAX([self.objects count], self.logicalPageSize);
+        NSInteger pageSize = MAX([self.objects count], self.pageSize);
         RACMulticastConnection *requestConnection = [[self performRequestWithPageSize:pageSize offset:0]
             publish];
         
@@ -86,7 +86,7 @@
     return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         NSCAssert(self.nextPageExisted, @"next page must exist");
         
-        RACMulticastConnection *requestConnection = [[self performRequestWithPageSize:self.logicalPageSize offset:[self.objects count]]
+        RACMulticastConnection *requestConnection = [[self performRequestWithPageSize:self.pageSize offset:[self.objects count]]
             publish];
         
         RACCompoundDisposable *disposable = [RACCompoundDisposable compoundDisposable];
@@ -114,13 +114,13 @@
 {
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
-        NSInteger numberOfRealPages = ceilf((CGFloat)pageSize / self.maximumRealPageSize);
+        NSInteger numberOfRealPages = ceilf((CGFloat)pageSize / self.maxSizeOfPage);
         
         NSMutableArray *requests = [NSMutableArray array];
         for (NSInteger pageIndex = 0; pageIndex < numberOfRealPages; ++pageIndex) {
             
-            NSInteger requestOffset = offset + pageIndex * self.maximumRealPageSize;
-            NSInteger requestPageSize = MIN(offset + pageSize - requestOffset, self.maximumRealPageSize);
+            NSInteger requestOffset = offset + pageIndex * self.maxSizeOfPage;
+            NSInteger requestPageSize = MIN(offset + pageSize - requestOffset, self.maxSizeOfPage);
             
             WPRequest<WPRequestPaginating> *request = [self.request copy];
             [request setNumber:@(requestPageSize)];
