@@ -83,6 +83,15 @@
         infinityScrollCommand.allowsConcurrentExecution = YES;
         self.tableView.rac_infinityScrollCommand = infinityScrollCommand;
         
+        [[RACSignal merge:@[ infinityScrollCommand.errors, pullToRefreshCommand.errors ]]
+            subscribeNext:^(NSError *error) {
+                @strongify(self);
+                
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
+                [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+                [self presentViewController:alertController animated:YES completion:nil];
+            }];
+        
         self.viewFirstAppeared = YES;
     }
 }
