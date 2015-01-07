@@ -70,7 +70,7 @@ describe(@"Paginator", ^{
         mockedSessionManager = OCMClassMock([WPSessionManager class]);
         OCMStub(ClassMethod([mockedSessionManager sharedInstance])).andReturn(mockedSessionManager);
         request = [WPFakeRequest new];
-        paginator = [[WPPaginator alloc] initWithRequest:request sessionManager:mockedSessionManager pageSize:3];
+        paginator = [[WPPaginator alloc] initWithRequest:request sessionManager:mockedSessionManager logicalPageSize:3 maximumRealPageSize:6];
     });
     
     describe(@"when it initialized", ^{
@@ -196,6 +196,66 @@ describe(@"Paginator", ^{
                             done();
                         }];
                 });
+            });
+        });
+        
+        describe(@"when required page size more than max real page size", ^{
+            
+            beforeEach(^{
+                
+                __block NSInteger numberOfResponseObjects = 3;
+                OCMStub([mockedResponse objects]).andDo(^(NSInvocation *inv) {
+                    NSArray *objects = [fakeObjects subarrayWithRange:NSMakeRange(0, numberOfResponseObjects)];
+                    [inv setReturnValue:&objects];
+                });
+                OCMStub([mockedResponse totalObjects]).andReturn(@12);
+                
+                waitUntil(^(DoneCallback done) {
+                    [[[[[[paginator reloadData]
+                        then:^RACSignal *{
+                            return [paginator loadNextPage];
+                        }]
+                        then:^RACSignal *{
+                            return [paginator loadNextPage];
+                        }]
+                        then:^RACSignal *{
+                            return [paginator loadNextPage];
+                        }]
+                        then:^RACSignal *{
+                            numberOfResponseObjects = 6;
+                            return [paginator reloadData];
+                        }]
+                        subscribeCompleted:^{
+                            done();
+                        }];
+                });
+            });
+            
+            it(@"should load in parts", ^{
+                OCMVerify([mockedSessionManager performRequest:[OCMArg checkWithBlock:^BOOL(WPFakeRequest *obj) {
+                    if (![obj isKindOfClass:[WPFakeRequest class]]) {
+                        return NO;
+                    }
+                    
+                    if ([obj.offset isEqualToNumber:@0] && [obj.number isEqualToNumber:@6]) {
+                        return YES;
+                    }
+                    return NO;
+                }]]);
+                
+                OCMVerify([mockedSessionManager performRequest:[OCMArg checkWithBlock:^BOOL(WPFakeRequest *obj) {
+                    if (![obj isKindOfClass:[WPFakeRequest class]]) {
+                        return NO;
+                    }
+                    if ([obj.offset isEqualToNumber:@6] && [obj.number isEqualToNumber:@6]) {
+                        return YES;
+                    }
+                    return NO;
+                }]]);
+            });
+            
+            it(@"should containt 12 objects after loading", ^{
+                expect([paginator.objects count]).to.equal(12);
             });
         });
     });

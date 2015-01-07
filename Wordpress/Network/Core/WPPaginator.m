@@ -17,7 +17,8 @@
 @property (copy, nonatomic) NSArray *objects;
 @property (assign, nonatomic) BOOL nextPageExisted;
 
-@property (assign, nonatomic) NSInteger pageSize;
+@property (assign, nonatomic) NSInteger logicalPageSize;
+@property (assign, nonatomic) NSInteger maximumRealPageSize;
 @property (assign, nonatomic) NSInteger totalObjects;
 
 @property (strong, nonatomic) WPRequest<WPRequestPaginating> *request;
@@ -29,10 +30,15 @@
 
 - (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager
 {
-    return [self initWithRequest:request sessionManager:sessionManager pageSize:25];
+    return [self initWithRequest:request sessionManager:sessionManager logicalPageSize:25];
 }
 
-- (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager pageSize:(NSInteger)pageSize
+- (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager logicalPageSize:(NSInteger)logicalPageSize
+{
+    return [self initWithRequest:request sessionManager:sessionManager logicalPageSize:logicalPageSize maximumRealPageSize:NSIntegerMax];
+}
+
+- (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager logicalPageSize:(NSInteger)logicalPageSize maximumRealPageSize:(NSInteger)maximumRealPageSize;
 {
     NSParameterAssert(sessionManager);
     NSParameterAssert(request);
@@ -42,7 +48,8 @@
     if (self) {
         self.request = request;
         self.sessionManager = sessionManager;
-        self.pageSize = pageSize;
+        self.logicalPageSize = logicalPageSize;
+        self.maximumRealPageSize = maximumRealPageSize;
         
         RAC(self, nextPageExisted) = [[RACSignal combineLatest:@[ RACObserve(self, objects), RACObserve(self, totalObjects) ]]
             reduceEach:^id(NSArray *objects, NSNumber *totalObjects){
@@ -56,11 +63,8 @@
 {
     return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
     
-        NSInteger pageSize = MAX([self.objects count], self.pageSize);
-        RACMulticastConnection *requestConnection = [[[self performRequestWithPageSize:pageSize offset:0]
-            map:^id(id<WPResponsePaginating> value) {
-                return [value objects];
-            }]
+        NSInteger pageSize = MAX([self.objects count], self.logicalPageSize);
+        RACMulticastConnection *requestConnection = [[self performRequestWithPageSize:pageSize offset:0]
             publish];
         
         RACCompoundDisposable *disposable = [RACCompoundDisposable compoundDisposable];
@@ -82,10 +86,7 @@
     return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         NSCAssert(self.nextPageExisted, @"next page must exist");
         
-        RACMulticastConnection *requestConnection = [[[self performRequestWithPageSize:self.pageSize offset:[self.objects count]]
-            map:^id(id<WPResponsePaginating> value) {
-                return [value objects];
-            }]
+        RACMulticastConnection *requestConnection = [[self performRequestWithPageSize:self.logicalPageSize offset:[self.objects count]]
             publish];
         
         RACCompoundDisposable *disposable = [RACCompoundDisposable compoundDisposable];
@@ -112,22 +113,43 @@
 - (RACSignal *)performRequestWithPageSize:(NSInteger)pageSize offset:(NSInteger)offset
 {
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        WPRequest<WPRequestPaginating> *request = [self.request copy];
-        [request setNumber:@(pageSize)];
-        [request setOffset:@(offset)];
         
-        RACMulticastConnection *requestConnection = [[self.sessionManager performRequest:request]
+        NSInteger numberOfRealPages = ceilf((CGFloat)pageSize / self.maximumRealPageSize);
+        
+        NSMutableArray *requests = [NSMutableArray array];
+        for (NSInteger pageIndex = 0; pageIndex < numberOfRealPages; ++pageIndex) {
+            
+            NSInteger requestOffset = offset + pageIndex * self.maximumRealPageSize;
+            NSInteger requestPageSize = MIN(offset + pageSize - requestOffset, self.maximumRealPageSize);
+            
+            WPRequest<WPRequestPaginating> *request = [self.request copy];
+            [request setNumber:@(requestPageSize)];
+            [request setOffset:@(requestOffset)];
+            [requests addObject:request];
+        }
+        
+        RACMulticastConnection *requestConnection = [[[[requests.rac_sequence
+            signalWithScheduler:[RACScheduler currentScheduler]]
+            map:^RACStream *(WPRequest *request) {
+                return [self.sessionManager performRequest:request];
+            }]
+            concat]
             publish];
         
         RACCompoundDisposable *disposable = [RACCompoundDisposable compoundDisposable];
-        [disposable addDisposable:[[[requestConnection.signal
+        [disposable addDisposable:[[[[requestConnection.signal
+            takeLast:1]
             map:^id(id<WPResponsePaginating> value) {
                 return [value totalObjects];
             }]
             catchTo:[RACSignal empty]]
             setKeyPath:@keypath(self, totalObjects) onObject:self]];
         
-        [disposable addDisposable:[requestConnection.signal subscribe:subscriber]];
+        [disposable addDisposable:[[requestConnection.signal
+            aggregateWithStart:[NSArray new] reduce:^id(NSArray *running, id<WPResponsePaginating> next) {
+                return [running arrayByAddingObjectsFromArray:[next objects]];
+            }]
+            subscribe:subscriber]];
         [disposable addDisposable:[requestConnection connect]];
         
         return disposable;

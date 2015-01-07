@@ -20,7 +20,10 @@
 @property (assign, nonatomic, readonly) BOOL nextPageExisted;
 
 - (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager;
-- (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager pageSize:(NSInteger)pageSize;
+
+- (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager logicalPageSize:(NSInteger)logicalPageSize;
+
+- (instancetype)initWithRequest:(WPRequest<WPRequestPaginating> *)request sessionManager:(WPSessionManager *)sessionManager logicalPageSize:(NSInteger)logicalPageSize maximumRealPageSize:(NSInteger)maximumRealPageSize;
 
 // reloadData : -> RACSignal _
 - (RACSignal *)reloadData;
