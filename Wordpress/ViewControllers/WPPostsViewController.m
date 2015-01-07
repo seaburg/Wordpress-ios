@@ -44,7 +44,7 @@
     [self.tableView registerNib:cellNib forCellReuseIdentifier:NSStringFromClass([WPPostCell class])];
     
     @weakify(self);
-    [[self.viewModel dataUpdated]
+    [self.viewModel.dataUpdated
         subscribeNext:^(id x) {
             @strongify(self);
             [self.tableView reloadData];

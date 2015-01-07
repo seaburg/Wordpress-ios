@@ -18,6 +18,9 @@
 
 @property (assign, nonatomic, readonly) NSInteger numberOfObjets;
 
+// dataUpdated : -> RACSignal ()
+@property (strong, nonatomic, readonly) RACSignal *dataUpdated;
+
 - (instancetype)initWithPaginator:(WPPaginator *)paginator;
 
 // reloadData : -> RACSignal _
@@ -25,9 +28,6 @@
 
 // loadNextPage : -> RACSignal _
 - (RACSignal *)loadNextPage;
-
-// dataUpdated : -> RACSignal ()
-- (RACSignal *)dataUpdated;
 
 - (WPPostsItemViewModel *)itemViewModelAtIndex:(NSInteger)index;
 

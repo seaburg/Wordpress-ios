@@ -18,6 +18,7 @@
 @property (assign, nonatomic) NSInteger numberOfObjets;
 
 @property (strong, nonatomic) WPPaginator *paginator;
+@property (strong, nonatomic) RACSignal *dataUpdated;
 
 @end
 
@@ -30,6 +31,14 @@
     self = [super init];
     if (self) {
         self.paginator = paginator;
+        
+        RACSubject *dataUpdated = [RACSubject subject];
+        [[RACObserve(self.paginator, objects)
+            skip:1]
+            subscribeNext:^(id _) {
+                [dataUpdated sendNext:[RACUnit defaultUnit]];
+            }];
+        self.dataUpdated = dataUpdated;
         
         RAC(self, nextPageExisted) = RACObserve(self.paginator, nextPageExisted);
         
@@ -50,13 +59,6 @@
 - (RACSignal *)loadNextPage
 {
     return [self.paginator loadNextPage];
-}
-
-- (RACSignal *)dataUpdated
-{
-    return [[[[RACObserve(self, numberOfObjets) skip:1] distinctUntilChanged]
-        merge:[RACObserve(self.paginator, objects) skip:1]]
-        mapReplace:[RACUnit defaultUnit]];
 }
 
 -  (WPPostsItemViewModel *)itemViewModelAtIndex:(NSInteger)index
