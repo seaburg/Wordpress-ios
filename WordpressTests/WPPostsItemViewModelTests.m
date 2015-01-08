@@ -27,19 +27,19 @@ describe(@"PostsItemViewModel", ^{
     
     beforeEach(^{
         post = [[WPPost alloc] init];
-        post.title = @"<b>title</b><test>";
-        post.excerpt = @"<b>excerpt</b><test>";
+        post.title = @"&lt;<b>title&#8217;</b><test>";
+        post.excerpt = @"<b>excerpt&#x2019;</b><test>";
         post.numberOfComments = @25;
         post.featuredImageURL = [NSURL URLWithString:@"http://foo.bar"];
         viewModel = [[WPPostsItemViewModel alloc] initWithPost:post];
     });
     
     it(@"should contain title without html elements", ^{
-        expect(viewModel.title).to.equal(@"title");
+        expect(viewModel.title).to.equal(@"<title’");
     });
     
     it(@"should contain excerpt without html element", ^{
-        expect(viewModel.excerpt).to.equal(@"excerpt");
+        expect(viewModel.excerpt).to.equal(@"excerpt’");
     });
     
     it(@"should contain 25 comments", ^{
