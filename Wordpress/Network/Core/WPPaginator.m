@@ -96,16 +96,17 @@
     @weakify(self);
     return [[[RACSignal
         defer:^RACSignal *{
-            NSInteger numberOfRequests = ceilf((CGFloat)pageSize / self.maxSizeOfPage);
         
             NSMutableArray *paramsOfRequests = [NSMutableArray array];
-            for (NSInteger requestIndex = 0; requestIndex < numberOfRequests; ++requestIndex) {
-                NSInteger requestOffset = offset + requestIndex * self.maxSizeOfPage;
-                NSInteger requestPageSize = MIN(offset + pageSize - requestOffset, self.maxSizeOfPage);
-                
+            CGFloat requestOffset = offset;
+            CGFloat lastItemIndex = offset + pageSize;
+            
+            while (requestOffset < lastItemIndex) {
+                NSInteger requestPageSize = MIN(lastItemIndex - requestOffset, self.maxSizeOfPage);
                 [paramsOfRequests addObject:RACTuplePack(@(requestOffset), @(requestPageSize))];
+                requestOffset += requestPageSize;
             }
-        
+         
             return [[[[paramsOfRequests.rac_sequence
                 map:^id(RACTuple *value) {
                     RACTupleUnpack(NSNumber *offset, NSNumber *number) = value;
