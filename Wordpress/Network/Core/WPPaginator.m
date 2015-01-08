@@ -62,31 +62,33 @@
 - (RACSignal *)reloadData
 {
     @weakify(self);
-    return [[[RACSignal defer:^RACSignal *{
-        NSInteger pageSize = MAX([self.objects count], self.pageSize);
-        return [self performRequestWithPageSize:pageSize offset:0];
-    }]
-    doNext:^(NSArray *objects) {
-        @strongify(self);
-        self.objects = objects;
-    }]
-    ignoreValues];
+    return [[[RACSignal
+        defer:^RACSignal *{
+            NSInteger pageSize = MAX([self.objects count], self.pageSize);
+            return [self performRequestWithPageSize:pageSize offset:0];
+        }]
+        doNext:^(NSArray *objects) {
+            @strongify(self);
+            self.objects = objects;
+        }]
+        ignoreValues];
 }
 
 - (RACSignal *)loadNextPage
 {
     @weakify(self);
-    return [[[RACSignal defer:^RACSignal *{
-        NSCAssert(self.nextPageExisted, @"next page must exist");
-        return [self performRequestWithPageSize:self.pageSize offset:[self.objects count]];
-    }]
-    doNext:^(NSArray *objects) {
-        @strongify(self);
-        NSMutableArray *mutableObjects = [NSMutableArray arrayWithArray:self.objects];
-        [mutableObjects addObjectsFromArray:objects];
-        self.objects = mutableObjects;
-    }]
-    ignoreValues];
+    return [[[RACSignal
+        defer:^RACSignal *{
+            NSCAssert(self.nextPageExisted, @"next page must exist");
+            return [self performRequestWithPageSize:self.pageSize offset:[self.objects count]];
+        }]
+        doNext:^(NSArray *objects) {
+            @strongify(self);
+            NSMutableArray *mutableObjects = [NSMutableArray arrayWithArray:self.objects];
+            [mutableObjects addObjectsFromArray:objects];
+            self.objects = mutableObjects;
+        }]
+        ignoreValues];
 }
 
 #pragma mark - Private methods
