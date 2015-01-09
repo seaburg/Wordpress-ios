@@ -93,6 +93,17 @@ static WPRouter *_sharedInstance;
 - (RACSignal *)setRootViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel navigationController:(WPNavigationController *)navigationController
 {
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+
+        @weakify(navigationController);
+        viewModel.closeSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            @strongify(navigationController);
+            NSCAssert([navigationController.viewControllers firstObject] == viewController, @"the root view controller should be `viewController`");
+            
+            [navigationController setViewControllers:@[] animated:NO];
+            [subscriber sendCompleted];
+            
+            return nil;
+        }];
         
         [navigationController setViewControllers:@[ viewController ] animated:NO];
         [subscriber sendCompleted];
