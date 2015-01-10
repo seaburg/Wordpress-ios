@@ -18,6 +18,7 @@
 #import "WPPaginator.h"
 #import "WPPost.h"
 #import "WPPostsItemViewModel.h"
+#import "WPRouter+Post.h"
 
 SpecBegin(PostsViewModel)
 
@@ -34,24 +35,28 @@ describe(@"PostsViewModel", ^{
         {
             WPPost *post = [[WPPost alloc] init];
             post.postID = @1;
+            post.siteID = @2;
             post.title = @"title1";
             [mutableObjects addObject:post];
         }
         {
             WPPost *post = [[WPPost alloc] init];
             post.postID = @2;
+            post.siteID = @2;
             post.title = @"title2";
             [mutableObjects addObject:post];
         }
         {
             WPPost *post = [[WPPost alloc] init];
             post.postID = @3;
+            post.siteID = @2;
             post.title = @"title3";
             [mutableObjects addObject:post];
         }
         {
             WPPost *post = [[WPPost alloc] init];
             post.postID = @4;
+            post.siteID = @2;
             post.title = @"title4";
             [mutableObjects addObject:post];
         }
@@ -107,6 +112,38 @@ describe(@"PostsViewModel", ^{
         it(@"should return item with `title3` title", ^{
             WPPostsItemViewModel *itemViewModel = [viewModel itemViewModelAtIndex:2];
             expect(itemViewModel.title).to.equal(@"title3");
+        });
+    });
+    
+    describe(@"when select a item with 2 index", ^{
+        
+        __block id mockedRouter;
+        
+        beforeEach(^{
+            mockedRouter = OCMClassMock([WPRouter class]);
+            OCMStub(ClassMethod([mockedRouter sharedInstance])).andReturn(mockedRouter);
+            OCMStub([mockedRouter presentPostScreenWithPost:[OCMArg isKindOfClass:[WPPost class]]]).andDo(^(NSInvocation *inv) {
+                [inv retainArguments];
+                
+                RACSignal *signal = [RACSignal empty];
+                [inv setReturnValue:&signal];
+            });
+            
+            waitUntil(^(DoneCallback done) {
+                [[viewModel selectItemViewModelAtIndex:2]
+                    subscribeCompleted:^{
+                        done();
+                    }];
+            });
+        });
+        
+        it(@"should send `presentPostScreenWithPost:` to the router", ^{
+            OCMVerify([mockedRouter presentPostScreenWithPost:[OCMArg checkWithBlock:^BOOL(WPPost *obj) {
+                if (![obj isKindOfClass:[WPPost class]]) {
+                    return NO;
+                }
+                return ([obj.postID isEqualToNumber:@3] && [obj.siteID isEqualToNumber:@2]);
+            }]]);
         });
     });
     

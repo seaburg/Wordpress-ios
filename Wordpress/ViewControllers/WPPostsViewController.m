@@ -111,4 +111,16 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    @weakify(tableView);
+    [[self.viewModel selectItemViewModelAtIndex:indexPath.row]
+        subscribeCompleted:^{
+            @strongify(tableView);
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        }];
+}
+
 @end

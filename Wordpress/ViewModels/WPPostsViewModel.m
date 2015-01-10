@@ -12,6 +12,8 @@
 #import "WPPostsItemViewModel.h"
 #import "WPPaginator.h"
 
+#import "WPRouter+Post.h"
+
 @interface WPPostsViewModel ()
 
 @property (assign, nonatomic) BOOL nextPageExisted;
@@ -67,6 +69,12 @@
     WPPostsItemViewModel *itemViewModel = [[WPPostsItemViewModel alloc] initWithPost:post];
     
     return itemViewModel;
+}
+
+- (RACSignal *)selectItemViewModelAtIndex:(NSInteger)index
+{
+    WPPost *post = self.paginator.objects[index];
+    return [[WPRouter sharedInstance] presentPostScreenWithPost:post];
 }
 
 @end

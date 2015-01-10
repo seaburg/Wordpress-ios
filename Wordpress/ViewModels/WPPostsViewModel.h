@@ -31,4 +31,7 @@
 
 - (WPPostsItemViewModel *)itemViewModelAtIndex:(NSInteger)index;
 
+// selectItemViewModelAtIndex: : -> RACSignal _
+- (RACSignal *)selectItemViewModelAtIndex:(NSInteger)index;
+
 @end
