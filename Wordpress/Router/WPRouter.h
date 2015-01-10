@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class WPSite;
+
 @interface WPRouter : NSObject
 
 + (instancetype)sharedInstance;
@@ -18,7 +20,7 @@
 // presentRootScreen : -> RACSignal _
 - (RACSignal *)presentRootScreen;
 
-// presentStartScreen : -> RACSignal _
-- (RACSignal *)presentStartScreen;
+// presentPostsScreenWithSite: : -> RACSignal _
+- (RACSignal *)presentPostsScreenWithSite:(WPSite *)site;
 
 @end

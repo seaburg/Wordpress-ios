@@ -20,16 +20,24 @@
 #import "WPSite.h"
 #import "WPGetSiteRequest.h"
 
+#import "WPViewModel+Friend.h"
+
 SpecBegin(SplashViewModel)
 
 describe(@"Splash", ^{
     __block WPSplashViewModel *viewModel;
+    __block RACSignal *mockedCloseSignal;
     __block WPSite *site;
     __block id mockedClient;
     
     beforeEach(^{
         
+        RACSubject *closeSignal = [RACReplaySubject replaySubjectWithCapacity:1];
+        [closeSignal sendCompleted];
+        mockedCloseSignal = OCMPartialMock(closeSignal);
+        
         viewModel = [[WPSplashViewModel alloc] init];
+        viewModel.closeSignal = mockedCloseSignal;
         
         site = [WPSite new];
         site.siteID = @1;
@@ -45,7 +53,7 @@ describe(@"Splash", ^{
         beforeEach(^{
             mockedRouter = OCMClassMock([WPRouter class]);
             OCMStub(ClassMethod([mockedRouter sharedInstance])).andReturn(mockedRouter);
-            OCMStub([mockedRouter presentStartScreen]).andReturn([RACSignal empty]);
+            OCMStub([mockedRouter presentPostsScreenWithSite:[OCMArg isKindOfClass:[WPSite class]]]).andReturn([RACSignal empty]);
         });
         
         context(@"when request return description of site", ^{
@@ -61,10 +69,6 @@ describe(@"Splash", ^{
                     
                     id returnValue = [RACSignal return:updatedSite];
                     [inv setReturnValue:&returnValue];
-                });
-                
-                OCMStub([mockedClient setValue:OCMOCK_ANY forKeyPath:@"currentSite"]).andDo(^(NSInvocation *inv){
-                    [inv retainArguments];
                 });
                 
                 waitUntil(^(DoneCallback done) {
@@ -86,11 +90,15 @@ describe(@"Splash", ^{
             });
             
             it(@"should update `currentSite` of `WPClient` to recived new site", ^{
-                OCMVerify([mockedClient setValue:updatedSite forKeyPath:@"currentSite"]);
+                OCMVerify([mockedClient setCurrentSite:updatedSite]);
             });
             
-            it(@"should present start screen after fetch data", ^{
-                OCMVerify([mockedRouter presentStartScreen]);
+            it(@"should present the screen of posts with `siteID` == 1", ^{
+                OCMVerify([mockedRouter presentPostsScreenWithSite:site]);
+            });
+            
+            it(@"should close after fetching a data", ^{
+                OCMVerify([mockedCloseSignal subscribe:OCMOCK_ANY]);
             });
         });
         

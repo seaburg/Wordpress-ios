@@ -14,6 +14,8 @@
 #import "WPGetSiteRequest.h"
 #import "WPSite.h"
 
+#import "WPViewModel+Friend.h"
+
 @interface WPSplashViewModel ()
 
 @property (copy, nonatomic) NSString *errorMessage;
@@ -25,37 +27,22 @@
 - (RACSignal *)fetchData
 {
     @weakify(self);
-    return [[[[RACSignal
-        createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-            @strongify(self);
-            
+    return [[[[[[[RACSignal
+        defer:^RACSignal *{
             WPGetSiteRequest *getSiteRequest = [[WPGetSiteRequest alloc] init];
             WPSite *currentSite = [WPClient sharedInstance].currentSite;
             getSiteRequest.routeObject = currentSite;
             
-            RACMulticastConnection *getSiteConnection = [[[WPClient sharedInstance] performRequest:getSiteRequest]
-                publish];
+            RACSignal *getSiteSignal = [[WPClient sharedInstance] performRequest:getSiteRequest];
             
-            RACCompoundDisposable *diposable = [RACCompoundDisposable compoundDisposable];
-            
-            [diposable addDisposable:[[getSiteConnection.signal
-                catchTo:[RACSignal empty]]
-                setKeyPath:@keypath([WPClient new], currentSite) onObject:[WPClient sharedInstance]]];
-            
-            [diposable addDisposable:[[[[getSiteConnection.signal
-                materialize]
-                filter:^BOOL(RACEvent *value) {
-                    return (value.eventType == RACEventTypeError);
-                }]
-                map:^id(RACEvent *value) {
-                    return [value.error localizedDescription];
-                }]
-                setKeyPath:@keypath(self, errorMessage) onObject:self]];
-            
-            [diposable addDisposable:[getSiteConnection.signal subscribe:subscriber]];
-            [diposable addDisposable:[getSiteConnection connect]];
-            
-            return diposable;
+            return getSiteSignal;
+        }]
+        doError:^(NSError *error) {
+            @strongify(self);
+            self.errorMessage = [error localizedDescription];
+        }]
+        doNext:^(WPSite *site) {
+            [WPClient sharedInstance].currentSite = site;
         }]
         catch:^RACSignal *(NSError *error) {
             return [[[[RACSignal error:error]
@@ -64,8 +51,23 @@
                 dematerialize];
         }]
         retry]
-        then:^RACSignal *{
-            return [[WPRouter sharedInstance] presentStartScreen];
+        flattenMap:^RACStream *(WPSite *value) {
+            @strongify(self);
+            
+            RACSignal *signal = nil;
+            if (self.closeSignal) {
+                signal = [self.closeSignal
+                    then:^RACSignal *{
+                        return [RACSignal return:value];
+                    }];
+            } else {
+                signal = [RACSignal return:value];
+            }
+            
+            return signal;
+        }]
+        flattenMap:^RACStream *(WPSite *site) {
+            return [[WPRouter sharedInstance] presentPostsScreenWithSite:site];
         }];
 }
 
