@@ -10,16 +10,6 @@
 
 #import "WPRouter.h"
 #import "WPNavigationController.h"
-#import "WPPaginator.h"
-#import "WPClient.h"
-#import "WPGetPostsRequest.h"
-#import "WPSite.h"
-
-#import "WPSplashViewController.h"
-#import "WPPostsViewController.h"
-
-#import "WPSplashViewModel.h"
-#import "WPPostsViewModel.h"
 
 #import "WPViewModel+Friend.h"
 #import "UIViewController+RACExtension.h"
@@ -59,39 +49,7 @@ static WPRouter *_sharedInstance;
     return self;
 }
 
-- (RACSignal *)presentRootScreen
-{
-    @weakify(self);
-    return [RACSignal defer:^RACSignal *{
-        @strongify(self);
-        
-        WPSplashViewModel *viewModel = [WPSplashViewModel new];
-        WPSplashViewController *viewController = [[WPSplashViewController alloc] initWithViewModel:viewModel];
-        
-        return [self setRootViewController:viewController viewModel:viewModel navigationController:self.rootNavigationController];
-    }];
-}
-
-- (RACSignal *)presentPostsScreenWithSite:(WPSite *)site
-{
-    NSParameterAssert(site);
-    
-    return [RACSignal defer:^RACSignal *{
-        
-        WPGetPostsRequest *request = [[WPGetPostsRequest alloc] init];
-        request.routeObject = site;
-        request.fields = @[@"ID", @"siteID", @"author", @"title", @"excerpt", @"comment_count", @"featured_image" ];
-        
-        WPPaginator *paginator = [[WPPaginator alloc] initWithRequest:request sessionManager:[WPClient sharedInstance] pageSize:25 maxSizeOfPage:100];
-        
-        WPPostsViewModel *viewModel = [[WPPostsViewModel alloc] initWithPaginator:paginator];
-        WPPostsViewController *viewController = [[WPPostsViewController alloc] initWithPostsViewModel:viewModel];
-        
-        return [self pushViewController:viewController viewModel:viewModel navigationController:self.rootNavigationController animated:YES];
-    }];
-}
-
-#pragma mark - Presentation
+#pragma mark - Private methods
 
 - (RACSignal *)setRootViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel navigationController:(WPNavigationController *)navigationController
 {
@@ -117,9 +75,7 @@ static WPRouter *_sharedInstance;
 
 - (RACSignal *)pushViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel navigationController:(WPNavigationController *)navigationController animated:(BOOL)animated
 {
-    @weakify(self);
     return [RACSignal defer:^RACSignal *{
-        @strongify(self);
         
         if ([navigationController.viewControllers count] == 0) {
             return [self setRootViewController:viewController viewModel:viewModel navigationController:navigationController];
@@ -137,12 +93,31 @@ static WPRouter *_sharedInstance;
     }];
 }
 
+@end
+
+#pragma mark - Protected methods
+
+@implementation WPRouter (Protected)
+
+- (RACSignal *)setRootViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel
+{
+    return [RACSignal
+        defer:^RACSignal *{
+            return [self setRootViewController:viewController viewModel:viewModel navigationController:self.rootNavigationController];
+        }];
+}
+
+- (RACSignal *)pushViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel animated:(BOOL)animated
+{
+    return [RACSignal
+        defer:^RACSignal *{
+            return [self pushViewController:viewController viewModel:viewModel navigationController:self.rootNavigationController animated:animated];
+        }];
+}
+
 - (RACSignal *)presentViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel animated:(BOOL)animated
 {
-    @weakify(self);
     return [RACSignal defer:^RACSignal *{
-        @strongify(self);
-        
         viewModel.closeSignal = [viewController rac_dismissViewControllerAnimated:YES];
         return [self.rootNavigationController rac_presentViewController:viewController animated:YES];
     }];

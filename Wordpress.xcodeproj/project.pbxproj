@@ -53,6 +53,8 @@
 		4757C5771A5849EF002AD7A2 /* NSString+RemovingHTMLElements.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5761A5849EF002AD7A2 /* NSString+RemovingHTMLElements.m */; };
 		4757C57C1A587DA3002AD7A2 /* WPPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C57A1A587DA3002AD7A2 /* WPPostCell.m */; };
 		4757C57D1A587DA3002AD7A2 /* WPPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4757C57B1A587DA3002AD7A2 /* WPPostCell.xib */; };
+		476722CA1A617AB000B2F38B /* WPRouter+Splash.m in Sources */ = {isa = PBXBuildFile; fileRef = 476722C91A617AB000B2F38B /* WPRouter+Splash.m */; };
+		476722CD1A617B2900B2F38B /* WPRouter+Posts.m in Sources */ = {isa = PBXBuildFile; fileRef = 476722CC1A617B2900B2F38B /* WPRouter+Posts.m */; };
 		773E9A071D74FF855947B55E /* libPods-Wordpress.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 201F8ADE350358FD00AF60D7 /* libPods-Wordpress.a */; };
 		E0D98095AE472232185F5CBA /* libPods-WordpressTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD399AB25E2754D292BF3F2 /* libPods-WordpressTests.a */; };
 /* End PBXBuildFile section */
@@ -157,6 +159,10 @@
 		4757C5791A587DA3002AD7A2 /* WPPostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPostCell.h; sourceTree = "<group>"; };
 		4757C57A1A587DA3002AD7A2 /* WPPostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPostCell.m; sourceTree = "<group>"; };
 		4757C57B1A587DA3002AD7A2 /* WPPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPPostCell.xib; sourceTree = "<group>"; };
+		476722C81A617AB000B2F38B /* WPRouter+Splash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WPRouter+Splash.h"; sourceTree = "<group>"; };
+		476722C91A617AB000B2F38B /* WPRouter+Splash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WPRouter+Splash.m"; sourceTree = "<group>"; };
+		476722CB1A617B2900B2F38B /* WPRouter+Posts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WPRouter+Posts.h"; sourceTree = "<group>"; };
+		476722CC1A617B2900B2F38B /* WPRouter+Posts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WPRouter+Posts.m"; sourceTree = "<group>"; };
 		4C0F093EBB11579D5EE8DEA0 /* Pods-WordpressTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordpressTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WordpressTests/Pods-WordpressTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADA8E31BA11BE7095F813C1F /* Pods-WordpressTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordpressTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WordpressTests/Pods-WordpressTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D6E17668CEA29657512D7E7C /* Pods-Wordpress.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wordpress.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wordpress/Pods-Wordpress.debug.xcconfig"; sourceTree = "<group>"; };
@@ -314,6 +320,10 @@
 			children = (
 				4757C50E1A535229002AD7A2 /* WPRouter.h */,
 				4757C50F1A535229002AD7A2 /* WPRouter.m */,
+				476722C81A617AB000B2F38B /* WPRouter+Splash.h */,
+				476722C91A617AB000B2F38B /* WPRouter+Splash.m */,
+				476722CB1A617B2900B2F38B /* WPRouter+Posts.h */,
+				476722CC1A617B2900B2F38B /* WPRouter+Posts.m */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -592,6 +602,7 @@
 			files = (
 				4757C57C1A587DA3002AD7A2 /* WPPostCell.m in Sources */,
 				4757C5141A53DC03002AD7A2 /* UIViewController+RACExtension.m in Sources */,
+				476722CD1A617B2900B2F38B /* WPRouter+Posts.m in Sources */,
 				4757C5171A53EC45002AD7A2 /* SDWebImageManager+RACExtension.m in Sources */,
 				4757C5771A5849EF002AD7A2 /* NSString+RemovingHTMLElements.m in Sources */,
 				471A6B2A1A5BF9B700BC7C6E /* UITableView+RACCommand.m in Sources */,
@@ -600,6 +611,7 @@
 				4757C5101A535229002AD7A2 /* WPRouter.m in Sources */,
 				4757C54F1A557A02002AD7A2 /* WPSplashViewModel.m in Sources */,
 				4757C5461A554300002AD7A2 /* WPSite.m in Sources */,
+				476722CA1A617AB000B2F38B /* WPRouter+Splash.m in Sources */,
 				4757C5691A56D082002AD7A2 /* WPPost.m in Sources */,
 				4757C4DC1A533EBC002AD7A2 /* AppDelegate.m in Sources */,
 				4757C5001A534379002AD7A2 /* WPNavigationController.m in Sources */,

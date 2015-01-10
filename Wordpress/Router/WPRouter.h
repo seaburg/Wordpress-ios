@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class WPSite;
+@class RACSignal;
+@class WPViewModel;
+@class WPNavigationController;
 
 @interface WPRouter : NSObject
 
@@ -17,10 +19,17 @@
 
 - (instancetype)initWithWindow:(UIWindow *)window;
 
-// presentRootScreen : -> RACSignal _
-- (RACSignal *)presentRootScreen;
+@end
 
-// presentPostsScreenWithSite: : -> RACSignal _
-- (RACSignal *)presentPostsScreenWithSite:(WPSite *)site;
+@interface WPRouter (Protected)
+
+// setRootViewController:viewModel: : -> RACSignal _
+- (RACSignal *)setRootViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel;
+
+// pushViewController:viewModel:animated: : -> RACSignal _
+- (RACSignal *)pushViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel animated:(BOOL)animated;
+
+// presentViewController:viewModel:animated: : -> RACSignal _
+- (RACSignal *)presentViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel animated:(BOOL)animated;
 
 @end

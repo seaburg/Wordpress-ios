@@ -12,9 +12,10 @@
 #import "AppDelegate.h"
 #import "WPNavigationController.h"
 #import "WPDefines.h"
-#import "WPRouter.h"
 #import "WPClient.h"
 #import "WPSite.h"
+
+#import "WPRouter+Splash.h"
 
 @implementation AppDelegate
 
@@ -31,7 +32,9 @@
     [WPRouter setSharedInstance:router];
     
     [self.window makeKeyAndVisible];
-    [[[WPRouter sharedInstance] presentRootScreen] replay];
+    [[[WPRouter sharedInstance]
+        presentSplashScreen]
+        subscribeCompleted:^{}];
     
     return YES;
 }

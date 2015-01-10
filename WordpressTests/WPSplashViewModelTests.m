@@ -15,12 +15,12 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "WPSplashViewModel.h"
-#import "WPRouter.h"
 #import "WPClient.h"
 #import "WPSite.h"
 #import "WPGetSiteRequest.h"
 
 #import "WPViewModel+Friend.h"
+#import "WPRouter+Posts.h"
 
 SpecBegin(SplashViewModel)
 

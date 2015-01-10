@@ -9,12 +9,12 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "WPSplashViewModel.h"
-#import "WPRouter.h"
 #import "WPClient.h"
 #import "WPGetSiteRequest.h"
 #import "WPSite.h"
 
 #import "WPViewModel+Friend.h"
+#import "WPRouter+Posts.h"
 
 @interface WPSplashViewModel ()
 
