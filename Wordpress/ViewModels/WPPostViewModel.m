@@ -17,7 +17,7 @@
 
 #import "WPViewModel+Friend.h"
 
-static NSString *const WPHTMLStringOfPostFormat = @"<html><head><style>*{max-width: 100%%};</style></head><body><h1>%@</h1><h5>%@</h5>%@<script>elements = document.getElementsByTagName('*')\nfor(i = 0;i < elements.length; i++) {\nelements[i].removeAttribute('height')\n}</script></body></html>";
+static NSString *const WPHTMLStringOfPostFormat = @"<html><head><style>*{max-width: 100%%};</style></head><body><h2>%@</h2><h4>%@</h4>%@<script>elements = document.getElementsByTagName('*')\nfor(i = 0;i < elements.length; i++) {\nelements[i].removeAttribute('height')\n}</script></body></html>";
 
 @interface WPPostViewModel ()
 
