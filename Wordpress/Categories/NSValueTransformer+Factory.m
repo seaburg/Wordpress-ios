@@ -83,7 +83,7 @@ static NSString *WPStringByRemovingBackslashEscapesFromString(NSString *string) 
     }];
 }
 
-+ (NSValueTransformer *)wp_arrayValueTansformer
++ (NSValueTransformer *)wp_arrayValueTransformer
 {
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *value) {
         return [value componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@","]];

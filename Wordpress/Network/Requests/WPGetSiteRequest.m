@@ -40,7 +40,7 @@
 
 + (NSValueTransformer *)fieldsJSONTransformer
 {
-    return [NSValueTransformer wp_arrayValueTansformer];
+    return [NSValueTransformer wp_arrayValueTransformer];
 }
 
 @end

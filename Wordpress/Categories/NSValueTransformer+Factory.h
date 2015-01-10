@@ -14,6 +14,6 @@
 
 + (NSValueTransformer *)wp_dateTimeValueTransformer;
 
-+ (NSValueTransformer *)wp_arrayValueTansformer;
++ (NSValueTransformer *)wp_arrayValueTransformer;
 
 @end
