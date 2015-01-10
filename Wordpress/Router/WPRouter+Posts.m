@@ -27,7 +27,7 @@
         
             WPGetPostsRequest *request = [[WPGetPostsRequest alloc] init];
             request.routeObject = site;
-            request.fields = @[@"ID", @"siteID", @"author", @"title", @"excerpt", @"comment_count", @"featured_image" ];
+            request.fields = @[@"ID", @"site_ID", @"author", @"title", @"excerpt", @"comment_count", @"featured_image" ];
         
             WPPaginator *paginator = [[WPPaginator alloc] initWithRequest:request sessionManager:[WPClient sharedInstance] pageSize:25 maxSizeOfPage:100];
         

@@ -66,7 +66,7 @@ static NSString *const WPHTMLStringOfPostFormat = @"<html><head><style>*{max-wid
             routeObject.postID = self.postID;
             
             WPGetPostRequest *request = [[WPGetPostRequest alloc] init];
-            request.fields = @[ @"ID", @"site_ID", @"author", @"comment_count", @"content", @"URL" ];
+            request.fields = @[ @"ID", @"site_ID", @"author", @"comment_count", @"content", @"URL", @"title" ];
             request.routeObject = routeObject;
             
             RACCompoundDisposable *disposable = [RACCompoundDisposable compoundDisposable];

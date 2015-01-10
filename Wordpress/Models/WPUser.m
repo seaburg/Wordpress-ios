@@ -19,7 +19,7 @@
     [keyPath addEntriesFromDictionary:@{
         @keypath([WPUser new], userID): @"ID",
         @keypath([WPUser new], displayName): @"display_name",
-        @keypath([WPUser new], name): @"username",
+        @keypath([WPUser new], name): @"name",
         @keypath([WPUser new], niceName): @"nice_name",
         @keypath([WPUser new], email): @"email",
         @keypath([WPUser new], primaryBlog): @"primary_blog",
