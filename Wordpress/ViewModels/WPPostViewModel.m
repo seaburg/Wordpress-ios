@@ -59,44 +59,35 @@ static NSString *const WPHTMLStringOfPostFormat = @"<html><head><style>*{max-wid
     return self;
 }
 
-- (RACSignal *)reloadData
+- (RACSignal *)prepareForUse
 {
-    return [[[RACSignal
-        createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-            
-            WPPostOfSiteRoute *routeObject = [[WPPostOfSiteRoute alloc] init];
-            routeObject.siteID = self.siteID;
-            routeObject.postID = self.postID;
-            
-            WPGetPostRequest *request = [[WPGetPostRequest alloc] init];
-            request.fields = @[ @"ID", @"site_ID", @"author", @"comment_count", @"content", @"URL", @"title" ];
-            request.routeObject = routeObject;
-            
-            RACCompoundDisposable *disposable = [RACCompoundDisposable compoundDisposable];
-            RACMulticastConnection *requestConnection = [[[WPClient sharedInstance] performRequest:request]
-                publish];
-            
-            [disposable addDisposable:[[requestConnection.signal
-                catchTo:[RACSignal empty]]
-                setKeyPath:@keypath([WPPostViewModel new], post) onObject:self]];
-            
-            [disposable addDisposable:[requestConnection.signal subscribe:subscriber]];
-            [disposable addDisposable:[requestConnection connect]];
-            
-            return disposable;
-        }]
-        ignoreValues]
-        catch:^RACSignal *(NSError *error) {
-            RACSignal *signal;
-            if (self.closeSignal) {
-                signal = [self.closeSignal
-                    then:^RACSignal *{
-                        return [RACSignal error:error];
-                    }];
-            } else {
-                signal = [RACSignal error:error];
-            }
-            return signal;
+    return [[super prepareForUse]
+        then:^RACSignal *{
+            return [[RACSignal
+                createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+                
+                    WPPostOfSiteRoute *routeObject = [[WPPostOfSiteRoute alloc] init];
+                    routeObject.siteID = self.siteID;
+                    routeObject.postID = self.postID;
+                    
+                    WPGetPostRequest *request = [[WPGetPostRequest alloc] init];
+                    request.fields = @[ @"ID", @"site_ID", @"author", @"comment_count", @"content", @"URL", @"title" ];
+                    request.routeObject = routeObject;
+                    
+                    RACCompoundDisposable *disposable = [RACCompoundDisposable compoundDisposable];
+                    RACMulticastConnection *requestConnection = [[[WPClient sharedInstance] performRequest:request]
+                                                                 publish];
+                    
+                    [disposable addDisposable:[[requestConnection.signal
+                                                catchTo:[RACSignal empty]]
+                                               setKeyPath:@keypath([WPPostViewModel new], post) onObject:self]];
+                    
+                    [disposable addDisposable:[requestConnection.signal subscribe:subscriber]];
+                    [disposable addDisposable:[requestConnection connect]];
+                
+                return disposable;
+                }]
+                ignoreValues];
         }];
 }
 

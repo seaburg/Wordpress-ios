@@ -20,7 +20,4 @@
 
 - (instancetype)initWithSiteID:(NSNumber *)siteID postID:(NSNumber *)postID;
 
-// reloadData : -> RACSignal _
-- (RACSignal *)reloadData;
-
 @end

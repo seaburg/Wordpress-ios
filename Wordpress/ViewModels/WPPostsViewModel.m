@@ -13,6 +13,7 @@
 #import "WPPaginator.h"
 
 #import "WPRouter+Post.h"
+#import "WPViewModel+Friend.h"
 
 @interface WPPostsViewModel ()
 
@@ -75,6 +76,14 @@
 {
     WPPost *post = self.paginator.objects[index];
     return [[WPRouter sharedInstance] presentPostScreenWithPost:post];
+}
+
+- (RACSignal *)prepareForUse
+{
+    return [[super prepareForUse]
+        then:^RACSignal *{
+            return [self reloadData];
+        }];
 }
 
 @end

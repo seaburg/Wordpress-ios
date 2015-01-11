@@ -9,9 +9,13 @@
 #import "WPViewModel.h"
 
 @class RACSignal;
+
 @interface WPViewModel (Friend)
 
 // closeSignal : RACSignal _
 @property (strong, nonatomic) RACSignal *closeSignal;
+
+// prepareForUse : -> RACSignal _
+- (RACSignal *)prepareForUse;
 
 @end

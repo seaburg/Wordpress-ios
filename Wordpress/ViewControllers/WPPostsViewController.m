@@ -7,6 +7,7 @@
 //
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 #import "WPPostsViewController.h"
 #import "WPPostsViewModel.h"
@@ -112,11 +113,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    @weakify(tableView);
-    [[self.viewModel selectItemViewModelAtIndex:indexPath.row]
-        subscribeCompleted:^{
-            @strongify(tableView);
-            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    @weakify(self);
+    [[[[self.viewModel selectItemViewModelAtIndex:indexPath.row]
+        initially:^{
+            [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+        }]
+        finally:^{
+            [SVProgressHUD dismiss];
+            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        }]
+        subscribeError:^(NSError *error) {
+            @strongify(self);
+            
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+            [self presentViewController:alertController animated:YES completion:nil];
         }];
 }
 

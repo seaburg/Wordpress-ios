@@ -77,12 +77,23 @@
     return self.originDelegate;
 }
 
+- (RACSignal *)rac_setViewControllers:(NSArray *)viewControllers animated:(BOOL)animated
+{
+    return [RACSignal defer:^RACSignal *{
+        RACSignal *didShowSignal = [[[[self rac_signalForSelector:@selector(navigationController:didShowViewController:animated:) fromProtocol:@protocol(UINavigationControllerDelegate)]
+            take:1]
+            ignoreValues]
+            replay];
+        
+        [self setViewControllers:viewControllers animated:animated];
+        
+        return didShowSignal;
+    }];
+}
+
 - (RACSignal *)rac_pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    @weakify(self);
     return [RACSignal defer:^RACSignal *{
-        @strongify(self);
-
         RACSignal *didShowSignal = [[[[self rac_signalForSelector:@selector(navigationController:didShowViewController:animated:) fromProtocol:@protocol(UINavigationControllerDelegate)]
             take:1]
             ignoreValues]
@@ -96,10 +107,7 @@
 
 - (RACSignal *)rac_popToRootViewControllerAnimated:(BOOL)animated
 {
-    @weakify(self);
     return [RACSignal defer:^RACSignal *{
-        @strongify(self);
-        
         RACSignal *didShowSignal = [[[[self rac_signalForSelector:@selector(navigationController:didShowViewController:animated:) fromProtocol:@protocol(UINavigationControllerDelegate)]
             take:1]
             ignoreValues]
@@ -114,10 +122,7 @@
 
 - (RACSignal *)rac_popToViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    @weakify(self);
     return [RACSignal defer:^RACSignal *{
-        @strongify(self);
-        
         RACSignal *didShowSignal = [[[[self rac_signalForSelector:@selector(navigationController:didShowViewController:animated:) fromProtocol:@protocol(UINavigationControllerDelegate)]
             take:1]
             ignoreValues]
@@ -132,10 +137,7 @@
 
 - (RACSignal *)rac_popViewControllerAnimated:(BOOL)animated
 {
-    @weakify(self);
     return [RACSignal defer:^RACSignal *{
-        @strongify(self);
-        
         RACSignal *didShowSignal = [[[[self rac_signalForSelector:@selector(navigationController:didShowViewController:animated:) fromProtocol:@protocol(UINavigationControllerDelegate)]
             take:1]
             ignoreValues]

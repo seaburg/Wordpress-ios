@@ -20,7 +20,7 @@
 #import "WPGetSiteRequest.h"
 
 #import "WPViewModel+Friend.h"
-#import "WPRouter+Posts.h"
+#import "WPRouter+Start.h"
 
 SpecBegin(SplashViewModel)
 
@@ -53,7 +53,7 @@ describe(@"Splash", ^{
         beforeEach(^{
             mockedRouter = OCMClassMock([WPRouter class]);
             OCMStub(ClassMethod([mockedRouter sharedInstance])).andReturn(mockedRouter);
-            OCMStub([mockedRouter presentPostsScreenWithSite:[OCMArg isKindOfClass:[WPSite class]]]).andReturn([RACSignal empty]);
+            OCMStub([mockedRouter presentStartScreenWithSite:[OCMArg isKindOfClass:[WPSite class]]]).andReturn([RACSignal empty]);
         });
         
         context(@"when request return description of site", ^{
@@ -94,11 +94,7 @@ describe(@"Splash", ^{
             });
             
             it(@"should present the screen of posts with `siteID` == 1", ^{
-                OCMVerify([mockedRouter presentPostsScreenWithSite:site]);
-            });
-            
-            it(@"should close after fetching a data", ^{
-                OCMVerify([mockedCloseSignal subscribe:OCMOCK_ANY]);
+                OCMVerify([mockedRouter presentStartScreenWithSite:site]);
             });
         });
         

@@ -18,7 +18,9 @@
 #import "WPPaginator.h"
 #import "WPPost.h"
 #import "WPPostsItemViewModel.h"
+
 #import "WPRouter+Post.h"
+#import "WPViewModel+Friend.h"
 
 SpecBegin(PostsViewModel)
 
@@ -82,6 +84,22 @@ describe(@"PostsViewModel", ^{
         });
     });
     
+    describe(@"when preparing for use", ^{
+        beforeEach(^{
+            OCMStub([mockedPaginator reloadData]).andReturn([RACSignal empty]);
+            waitUntil(^(DoneCallback done) {
+                [[viewModel prepareForUse]
+                    subscribeCompleted:^{
+                        done();
+                    }];
+            });
+        });
+       
+        it(@"should send `loadNextPage` message to paginator", ^{
+            OCMVerify([mockedPaginator reloadData]);
+        });
+    });
+    
     describe(@"when the page loads", ^{
         it(@"should send `reloadData` message to paginatro", ^{
             
@@ -95,7 +113,7 @@ describe(@"PostsViewModel", ^{
             });
         });
         
-        it(@"should send `loadNextPage` message to paginatro", ^{
+        it(@"should send `loadNextPage` message to paginator", ^{
             
             OCMExpect([mockedPaginator loadNextPage]).andReturn([RACSignal empty]);
             waitUntil(^(DoneCallback done) {
