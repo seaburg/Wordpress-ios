@@ -56,10 +56,10 @@ static WPRouter *_sharedInstance;
     return [[viewModel prepareForUse]
         then:^RACSignal *{
 
-            @weakify(navigationController);
+            @weakify(navigationController, viewController);
             viewModel.closeSignal = [RACSignal
                 defer:^RACSignal *{
-                    @strongify(navigationController);
+                    @strongify(navigationController, viewController);
                     NSCAssert([navigationController.viewControllers firstObject] == viewController, @"the root view controller should be `viewController`");
                 
                     return [navigationController rac_setViewControllers:@[] animated:NO];
@@ -77,9 +77,9 @@ static WPRouter *_sharedInstance;
                 return [self setRootViewController:viewController viewModel:viewModel navigationController:navigationController];
             }
             
-            @weakify(navigationController);
+            @weakify(navigationController, viewController);
             viewModel.closeSignal = [RACSignal defer:^RACSignal *{
-                @strongify(navigationController);
+                @strongify(navigationController, viewController);
                 NSCAssert([navigationController.viewControllers lastObject] == viewController, @"last object of `viewControllers` should be `viewController`");
                 
                 return [navigationController rac_popViewControllerAnimated:YES];
