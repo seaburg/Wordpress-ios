@@ -14,7 +14,7 @@
 #import "WPSite.h"
 
 #import "WPViewModel+Friend.h"
-#import "WPRouter+Posts.h"
+#import "WPRouter+Start.h"
 
 @interface WPSplashViewModel ()
 
@@ -27,7 +27,7 @@
 - (RACSignal *)fetchData
 {
     @weakify(self);
-    return [[[[[[[RACSignal
+    return [[[[[[RACSignal
         defer:^RACSignal *{
             WPGetSiteRequest *getSiteRequest = [[WPGetSiteRequest alloc] init];
             WPSite *currentSite = [WPClient sharedInstance].currentSite;
@@ -37,38 +37,23 @@
             
             return getSiteSignal;
         }]
+        doNext:^(WPSite *site) {
+            [WPClient sharedInstance].currentSite = site;
+        }]
+        flattenMap:^RACStream *(WPSite *site) {
+            return [[WPRouter sharedInstance] presentStartScreenWithSite:site];
+        }]
         doError:^(NSError *error) {
             @strongify(self);
             self.errorMessage = [error localizedDescription];
-        }]
-        doNext:^(WPSite *site) {
-            [WPClient sharedInstance].currentSite = site;
         }]
         catch:^RACSignal *(NSError *error) {
             return [[[[RACSignal error:error]
                 materialize]
                 delay:0.3]
                 dematerialize];
-        }]
-        retry]
-        flattenMap:^RACStream *(WPSite *value) {
-            @strongify(self);
-            
-            RACSignal *signal = nil;
-            if (self.closeSignal) {
-                signal = [self.closeSignal
-                    then:^RACSignal *{
-                        return [RACSignal return:value];
-                    }];
-            } else {
-                signal = [RACSignal return:value];
-            }
-            
-            return signal;
-        }]
-        flattenMap:^RACStream *(WPSite *site) {
-            return [[WPRouter sharedInstance] presentPostsScreenWithSite:site];
-        }];
+            }]
+            retry];
 }
 
 @end
