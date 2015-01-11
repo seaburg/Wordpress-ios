@@ -55,7 +55,7 @@ static NSString *WPStringByRemovingBackslashEscapesFromString(NSString *string) 
         OSSpinLockLock(&dateFormatterLock);
         if (!dateFormatter) {
             dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"YYYY-MM-DDThh:mm:ssTZD"];
+            [dateFormatter setDateFormat:@"YYYY'-'MM'-'DD'T'HH':'mm':'sszzz"];
         }
         OSSpinLockUnlock(&dateFormatterLock);
     }
