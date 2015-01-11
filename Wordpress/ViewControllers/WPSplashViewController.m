@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *errorMessageLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
+@property (weak, nonatomic) UINavigationController *navigationControllerWithHiddenNavigationBar;
+
 @end
 
 @implementation WPSplashViewController
@@ -44,7 +46,8 @@
 {
     [super viewWillAppear:animated];
     
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    self.navigationControllerWithHiddenNavigationBar = self.navigationController;
+    [self.navigationControllerWithHiddenNavigationBar setNavigationBarHidden:YES animated:NO];
     
     if (!self.viewFirstAppeared) {
         @weakify(self);
@@ -66,6 +69,13 @@
     [super viewDidAppear:animated];
     
     self.viewFirstAppeared = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.navigationControllerWithHiddenNavigationBar setNavigationBarHidden:NO animated:animated];
 }
 
 @end
