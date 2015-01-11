@@ -125,7 +125,7 @@ static WPRouter *_sharedInstance;
     return [[viewModel prepareForUse]
         then:^RACSignal *{
             viewModel.closeSignal = [viewController rac_dismissViewControllerAnimated:YES];
-            return [self.rootNavigationController rac_presentViewController:viewController animated:YES];
+            return [self.rootNavigationController rac_presentViewController:viewController animated:animated];
         }];
 }
 
