@@ -9,21 +9,6 @@
 #import <Mantle/Mantle.h>
 #import <libkern/OSAtomic.h>
 
-static NSString *WPStringByRemovingBackslashEscapesFromString(NSString *string) {
-    NSString *result = [string copy];
-    NSInteger location = 0;
-    while (location < [result length]) {
-        
-        NSRange range = [result rangeOfString:@"\\" options:0 range:NSMakeRange(location, [result length] - location)];
-        if (range.length == 0) {
-            break;
-        }
-        result = [result stringByReplacingCharactersInRange:NSMakeRange(range.location, 1) withString:@""];
-        location = NSMaxRange(range);
-    }
-    return [result copy];
-}
-
 @implementation NSValueTransformer (Factory)
 
 + (NSValueTransformer *)wp_URLValueTansformer
@@ -32,16 +17,12 @@ static NSString *WPStringByRemovingBackslashEscapesFromString(NSString *string) 
         if (!value) {
             return nil;
         }
-        
-        NSString *stringURL = WPStringByRemovingBackslashEscapesFromString(value);
-        NSURL *URL = [NSURL URLWithString:stringURL];
+        NSURL *URL = [NSURL URLWithString:value];
         
         return URL;
     } reverseBlock:^id(NSURL *value) {
-        if (!value) {
-            return nil;
-        }
-        NSString *stringURL = [[value absoluteString] stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+        
+        NSString *stringURL = [value absoluteString];
         return stringURL;
     }];
 }
