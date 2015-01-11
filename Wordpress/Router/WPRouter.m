@@ -53,44 +53,40 @@ static WPRouter *_sharedInstance;
 
 - (RACSignal *)setRootViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel navigationController:(WPNavigationController *)navigationController
 {
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    return [[viewModel prepareForUse]
+        then:^RACSignal *{
 
-        @weakify(navigationController);
-        viewModel.closeSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-            @strongify(navigationController);
-            NSCAssert([navigationController.viewControllers firstObject] == viewController, @"the root view controller should be `viewController`");
+            @weakify(navigationController);
+            viewModel.closeSignal = [RACSignal
+                defer:^RACSignal *{
+                    @strongify(navigationController);
+                    NSCAssert([navigationController.viewControllers firstObject] == viewController, @"the root view controller should be `viewController`");
+                
+                    return [navigationController rac_setViewControllers:@[] animated:NO];
+            }];
             
-            [navigationController setViewControllers:@[] animated:NO];
-            [subscriber sendCompleted];
-            
-            return nil;
-        }];
-        
-        [navigationController setViewControllers:@[ viewController ] animated:NO];
-        [subscriber sendCompleted];
-        
-        return nil;
+            return [navigationController rac_setViewControllers:@[ viewController ] animated:NO];
     }];
 }
 
 - (RACSignal *)pushViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel navigationController:(WPNavigationController *)navigationController animated:(BOOL)animated
 {
-    return [RACSignal defer:^RACSignal *{
-        
-        if ([navigationController.viewControllers count] == 0) {
-            return [self setRootViewController:viewController viewModel:viewModel navigationController:navigationController];
-        }
-        
-        @weakify(navigationController);
-        viewModel.closeSignal = [RACSignal defer:^RACSignal *{
-            @strongify(navigationController);
-            NSCAssert([navigationController.viewControllers lastObject] == viewController, @"last object of `viewControllers` should be `viewController`");
+    return [[viewModel prepareForUse]
+        then:^RACSignal *{
+            if ([navigationController.viewControllers count] == 0) {
+                return [self setRootViewController:viewController viewModel:viewModel navigationController:navigationController];
+            }
             
-            return [navigationController rac_popViewControllerAnimated:YES];
+            @weakify(navigationController);
+            viewModel.closeSignal = [RACSignal defer:^RACSignal *{
+                @strongify(navigationController);
+                NSCAssert([navigationController.viewControllers lastObject] == viewController, @"last object of `viewControllers` should be `viewController`");
+                
+                return [navigationController rac_popViewControllerAnimated:YES];
+            }];
+            
+            return [navigationController rac_pushViewController:viewController animated:animated];
         }];
-        
-        return [navigationController rac_pushViewController:viewController animated:animated];
-    }];
 }
 
 @end
@@ -101,6 +97,9 @@ static WPRouter *_sharedInstance;
 
 - (RACSignal *)setRootViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel
 {
+    NSParameterAssert(viewController);
+    NSParameterAssert(viewModel);
+    
     return [RACSignal
         defer:^RACSignal *{
             return [self setRootViewController:viewController viewModel:viewModel navigationController:self.rootNavigationController];
@@ -109,6 +108,9 @@ static WPRouter *_sharedInstance;
 
 - (RACSignal *)pushViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel animated:(BOOL)animated
 {
+    NSParameterAssert(viewController);
+    NSParameterAssert(viewModel);
+    
     return [RACSignal
         defer:^RACSignal *{
             return [self pushViewController:viewController viewModel:viewModel navigationController:self.rootNavigationController animated:animated];
@@ -117,10 +119,14 @@ static WPRouter *_sharedInstance;
 
 - (RACSignal *)presentViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel animated:(BOOL)animated
 {
-    return [RACSignal defer:^RACSignal *{
-        viewModel.closeSignal = [viewController rac_dismissViewControllerAnimated:YES];
-        return [self.rootNavigationController rac_presentViewController:viewController animated:YES];
-    }];
+    NSParameterAssert(viewController);
+    NSParameterAssert(viewModel);
+    
+    return [[viewModel prepareForUse]
+        then:^RACSignal *{
+            viewModel.closeSignal = [viewController rac_dismissViewControllerAnimated:YES];
+            return [self.rootNavigationController rac_presentViewController:viewController animated:YES];
+        }];
 }
 
 @end
