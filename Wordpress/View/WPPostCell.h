@@ -12,6 +12,8 @@
 
 @interface WPPostCell : UITableViewCell
 
++ (CGFloat)cellHeightWithVewModel:(WPPostsItemViewModel *)viewModel tableView:(UITableView *)tableView;
+
 @property (strong, nonatomic) WPPostsItemViewModel *viewModel;
 
 @end

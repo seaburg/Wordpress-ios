@@ -37,9 +37,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.estimatedRowHeight = UITableViewAutomaticDimension;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    
     UINib *cellNib = [UINib nibWithNibName:NSStringFromClass([WPPostCell class]) bundle:nil];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:NSStringFromClass([WPPostCell class])];
     
@@ -121,6 +118,14 @@
             @strongify(tableView);
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
         }];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    WPPostsItemViewModel *itemViewModel = [self.viewModel itemViewModelAtIndex:indexPath.row];
+    CGFloat cellHeight = [WPPostCell cellHeightWithVewModel:itemViewModel tableView:tableView];
+    
+    return cellHeight;
 }
 
 @end
