@@ -48,25 +48,18 @@ static NSString *WPStringByRemovingBackslashEscapesFromString(NSString *string) 
 
 + (NSValueTransformer *)wp_dateTimeValueTransformer
 {
-    static OSSpinLock dateFormatterLock = OS_SPINLOCK_INIT;
     static NSDateFormatter *dateFormatter;
-    
-    if (!dateFormatter) {
-        OSSpinLockLock(&dateFormatterLock);
-        if (!dateFormatter) {
-            dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"YYYY'-'MM'-'DD'T'HH':'mm':'sszzz"];
-        }
-        OSSpinLockUnlock(&dateFormatterLock);
-    }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"YYYY'-'MM'-'DD'T'HH':'mm':'sszzz"];
+    });
     
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *value) {
         if (!value) {
             return nil;
         }
-        OSSpinLockLock(&dateFormatterLock);
         NSDate *date = [dateFormatter dateFromString:value];
-        OSSpinLockUnlock(&dateFormatterLock);
         
         return date;
     
@@ -74,10 +67,7 @@ static NSString *WPStringByRemovingBackslashEscapesFromString(NSString *string) 
         if (!value) {
             return nil;
         }
-        
-        OSSpinLockLock(&dateFormatterLock);
         NSString *result = [dateFormatter stringFromDate:value];
-        OSSpinLockUnlock(&dateFormatterLock);
         
         return result;
     }];
