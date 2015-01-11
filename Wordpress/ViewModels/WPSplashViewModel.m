@@ -52,8 +52,8 @@
                 materialize]
                 delay:0.3]
                 dematerialize];
-            }]
-            retry];
+        }]
+        retry];
 }
 
 @end
