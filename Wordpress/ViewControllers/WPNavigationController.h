@@ -11,6 +11,9 @@
 @class RACSignal;
 @interface WPNavigationController : UINavigationController
 
+// rac_setViewControllers:animated: : -> RACSignal _
+- (RACSignal *)rac_setViewControllers:(NSArray *)viewControllers animated:(BOOL)animated;
+
 // rac_pushViewController:animated: : -> RACSignal _
 - (RACSignal *)rac_pushViewController:(UIViewController *)viewController animated:(BOOL)animated;
 
