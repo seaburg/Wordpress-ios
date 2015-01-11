@@ -6,7 +6,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WPPostViewController">
             <connections>
-                <outlet property="activityIndicatorView" destination="90l-xh-HG1" id="8OE-wh-iE0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="webView" destination="gU2-NG-roc" id="dyh-NW-JvT"/>
             </connections>
@@ -20,18 +19,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </webView>
-                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="90l-xh-HG1">
-                    <rect key="frame" x="290" y="290" width="20" height="20"/>
-                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="gU2-NG-roc" secondAttribute="trailing" id="6zQ-s1-Qsp"/>
                 <constraint firstItem="gU2-NG-roc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" placeholder="YES" id="87v-ok-kCH"/>
                 <constraint firstAttribute="bottom" secondItem="gU2-NG-roc" secondAttribute="bottom" id="Pgm-ol-MfM"/>
-                <constraint firstAttribute="centerY" secondItem="90l-xh-HG1" secondAttribute="centerY" id="Vpe-5p-ciY"/>
                 <constraint firstItem="gU2-NG-roc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dhT-qh-bA1"/>
-                <constraint firstAttribute="centerX" secondItem="90l-xh-HG1" secondAttribute="centerX" id="pJ6-kR-TED"/>
             </constraints>
         </view>
     </objects>

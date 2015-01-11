@@ -59,7 +59,7 @@ static NSString *const WPHTMLStringOfPostFormat = @"<html><head><style>*{max-wid
     return self;
 }
 
-- (RACSignal *)reloadData
+- (RACSignal *)prepareForUse
 {
     return [[[RACSignal
         createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {

@@ -16,8 +16,6 @@
 @property (strong, nonatomic) WPPostViewModel *viewModel;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
-@property (assign, nonatomic) BOOL viewFirstAppeared;
 
 @end
 
@@ -47,33 +45,6 @@
     RACSignal *webViewContentSignal = [[RACObserve(self.viewModel, HTMLString) ignore:nil]
         combineLatestWith:[RACObserve(self.viewModel, baseURL) ignore:nil]];
     [self.webView rac_liftSelector:@checkselector(self.webView, loadHTMLString:,baseURL:) withSignalOfArguments:webViewContentSignal];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    if (!self.viewFirstAppeared) {
-        @weakify(self);
-        [[[[self.viewModel reloadData]
-            initially:^{
-                @strongify(self);
-                [self.activityIndicatorView startAnimating];
-            }]
-            finally:^{
-                @strongify(self);
-                [self.activityIndicatorView stopAnimating];
-            }]
-            subscribeError:^(NSError *error) {
-            }];
-    }
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    self.viewFirstAppeared = YES;
 }
 
 @end
