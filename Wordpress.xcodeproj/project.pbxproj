@@ -57,6 +57,7 @@
 		476722DC1A619FD900B2F38B /* WPPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 476722DA1A619FD900B2F38B /* WPPostViewController.xib */; };
 		476722DF1A61A4FD00B2F38B /* WPRouter+Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 476722DE1A61A4FD00B2F38B /* WPRouter+Post.m */; };
 		476722EA1A62912C00B2F38B /* WPRouter+Start.m in Sources */ = {isa = PBXBuildFile; fileRef = 476722E91A62912C00B2F38B /* WPRouter+Start.m */; };
+		4786ED141AE2D9EA00929BD9 /* WPStateMachineImp.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786ED131AE2D9EA00929BD9 /* WPStateMachineImp.m */; };
 		773E9A071D74FF855947B55E /* libPods-Wordpress.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 201F8ADE350358FD00AF60D7 /* libPods-Wordpress.a */; };
 		E0D98095AE472232185F5CBA /* libPods-WordpressTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD399AB25E2754D292BF3F2 /* libPods-WordpressTests.a */; };
 /* End PBXBuildFile section */
@@ -173,6 +174,9 @@
 		476722DE1A61A4FD00B2F38B /* WPRouter+Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WPRouter+Post.m"; sourceTree = "<group>"; };
 		476722E81A62912C00B2F38B /* WPRouter+Start.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WPRouter+Start.h"; sourceTree = "<group>"; };
 		476722E91A62912C00B2F38B /* WPRouter+Start.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WPRouter+Start.m"; sourceTree = "<group>"; };
+		4786ED111AE2D9EA00929BD9 /* WPStateMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPStateMachine.h; sourceTree = "<group>"; };
+		4786ED121AE2D9EA00929BD9 /* WPStateMachineImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPStateMachineImp.h; sourceTree = "<group>"; };
+		4786ED131AE2D9EA00929BD9 /* WPStateMachineImp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPStateMachineImp.m; sourceTree = "<group>"; };
 		4C0F093EBB11579D5EE8DEA0 /* Pods-WordpressTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordpressTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WordpressTests/Pods-WordpressTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADA8E31BA11BE7095F813C1F /* Pods-WordpressTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordpressTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WordpressTests/Pods-WordpressTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D6E17668CEA29657512D7E7C /* Pods-Wordpress.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wordpress.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wordpress/Pods-Wordpress.debug.xcconfig"; sourceTree = "<group>"; };
@@ -245,6 +249,7 @@
 			children = (
 				4757C50D1A5351E3002AD7A2 /* Router */,
 				4757C53A1A54795A002AD7A2 /* Models */,
+				4786ED0F1AE2D9EA00929BD9 /* States */,
 				4757C5061A534F17002AD7A2 /* ViewModels */,
 				4757C4FD1A53424A002AD7A2 /* ViewControllers */,
 				4757C5781A587D76002AD7A2 /* View */,
@@ -446,6 +451,24 @@
 			path = Routes;
 			sourceTree = "<group>";
 		};
+		4786ED0F1AE2D9EA00929BD9 /* States */ = {
+			isa = PBXGroup;
+			children = (
+				4786ED101AE2D9EA00929BD9 /* StateMachine */,
+			);
+			path = States;
+			sourceTree = "<group>";
+		};
+		4786ED101AE2D9EA00929BD9 /* StateMachine */ = {
+			isa = PBXGroup;
+			children = (
+				4786ED111AE2D9EA00929BD9 /* WPStateMachine.h */,
+				4786ED121AE2D9EA00929BD9 /* WPStateMachineImp.h */,
+				4786ED131AE2D9EA00929BD9 /* WPStateMachineImp.m */,
+			);
+			path = StateMachine;
+			sourceTree = "<group>";
+		};
 		67B77CCC5243F88B9ACE190C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -635,6 +658,7 @@
 				476722DF1A61A4FD00B2F38B /* WPRouter+Post.m in Sources */,
 				4757C5771A5849EF002AD7A2 /* NSString+RemovingHTMLElements.m in Sources */,
 				471A6B2A1A5BF9B700BC7C6E /* UITableView+RACCommand.m in Sources */,
+				4786ED141AE2D9EA00929BD9 /* WPStateMachineImp.m in Sources */,
 				4757C5091A534F2C002AD7A2 /* WPViewModel.m in Sources */,
 				4757C56C1A5734C8002AD7A2 /* WPPostsItemViewModel.m in Sources */,
 				4757C5101A535229002AD7A2 /* WPRouter.m in Sources */,
