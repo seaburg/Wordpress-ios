@@ -10,6 +10,7 @@ target :Wordpress do
     pod 'AFNetworking', '~> 2.5.0'
     pod 'SVPullToRefresh', '~> 0.4.1'
     pod 'SVProgressHUD', '~> 1.1.2'
+    pod 'ComponentKit', '~> 0.10'
 end
 
 target :WordpressTests do

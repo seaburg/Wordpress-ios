@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - ComponentKit (0.10)
   - Expecta (0.3.1)
   - libextobjc (0.4.1):
     - libextobjc/EXTADT (= 0.4.1)
@@ -76,6 +77,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.0)
+  - ComponentKit (~> 0.10)
   - Expecta (~> 0.3.1)
   - libextobjc (~> 0.4.1)
   - Mantle (~> 1.5.1)
@@ -97,15 +99,16 @@ CHECKOUT OPTIONS:
     :tag: v0.3.0.beta1
 
 SPEC CHECKSUMS:
-  AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
-  Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
-  libextobjc: d6146fce3ebea986b7f75fcb4c967639200b88b0
-  Mantle: d7c5ac734579ec751c58fecbf56189853056c58c
-  OCMock: f6cb8c162ab9d5620dddf411282c7b2c0ee78854
-  ReactiveCocoa: 8418a82b67af2f1b7587baf29c329040a23c2063
-  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
-  Specta: 63e8ac8e07db6675c7096d37f77a266a1be4c02d
-  SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
-  SVPullToRefresh: d5161ebc833a38b465364412e5e307ca80bbb190
+  AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
+  ComponentKit: b4af3b571640eee92d42c8f78bea6d3b9fae7f77
+  Expecta: a354d4633409dd9fe8c4f5ff5130426adbe31628
+  libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
+  Mantle: 1ec9076f091f3a2f95cb2c94939e92dba35c97e1
+  OCMock: a73f69963a8a542b0b343e2617650e4dca0cbbc2
+  ReactiveCocoa: fdf629a7321cc7504936fa86243d8c616faad302
+  SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
+  Specta: d2158a483ad179e5f8d3a29f75ff4fc0ff6fab16
+  SVProgressHUD: 3afb875b9eb23acd1bed9b82495695c68621a8b2
+  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.36.3
