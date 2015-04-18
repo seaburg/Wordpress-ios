@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47084DB61AE2E27400EBCE55 /* RACSignal+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 47084DB51AE2E27400EBCE55 /* RACSignal+Extension.m */; };
 		471A6B0C1A58818800BC7C6E /* UIFont+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 471A6B0B1A58818800BC7C6E /* UIFont+Factory.m */; };
 		471A6B0F1A59326200BC7C6E /* WPGetPostsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 471A6B0E1A59326200BC7C6E /* WPGetPostsRequest.m */; };
 		471A6B131A5935BE00BC7C6E /* WPPostsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 471A6B121A5935BE00BC7C6E /* WPPostsResponse.m */; };
@@ -74,6 +75,8 @@
 
 /* Begin PBXFileReference section */
 		201F8ADE350358FD00AF60D7 /* libPods-Wordpress.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wordpress.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		47084DB41AE2E27400EBCE55 /* RACSignal+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RACSignal+Extension.h"; sourceTree = "<group>"; };
+		47084DB51AE2E27400EBCE55 /* RACSignal+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RACSignal+Extension.m"; sourceTree = "<group>"; };
 		471A6B0A1A58818800BC7C6E /* UIFont+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Factory.h"; sourceTree = "<group>"; };
 		471A6B0B1A58818800BC7C6E /* UIFont+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Factory.m"; sourceTree = "<group>"; };
 		471A6B0D1A59326200BC7C6E /* WPGetPostsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPGetPostsRequest.h; sourceTree = "<group>"; };
@@ -349,6 +352,8 @@
 		4757C5111A53DBE0002AD7A2 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				47084DB41AE2E27400EBCE55 /* RACSignal+Extension.h */,
+				47084DB51AE2E27400EBCE55 /* RACSignal+Extension.m */,
 				471A6B281A5BF9B700BC7C6E /* UITableView+RACCommand.h */,
 				471A6B291A5BF9B700BC7C6E /* UITableView+RACCommand.m */,
 				4757C5121A53DC03002AD7A2 /* UIViewController+RACExtension.h */,
@@ -687,6 +692,7 @@
 				4757C52B1A542EB9002AD7A2 /* WPObjectsSerializer.m in Sources */,
 				4757C55C1A55CB9F002AD7A2 /* WPSplashViewController.m in Sources */,
 				471A6B131A5935BE00BC7C6E /* WPPostsResponse.m in Sources */,
+				47084DB61AE2E27400EBCE55 /* RACSignal+Extension.m in Sources */,
 				476722D21A6182D000B2F38B /* WPPostOfSiteRoute.m in Sources */,
 				471A6B161A593ECA00BC7C6E /* WPPostsViewModel.m in Sources */,
 				476722D51A6183B700B2F38B /* WPGetPostRequest.m in Sources */,
