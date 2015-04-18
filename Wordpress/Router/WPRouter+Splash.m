@@ -9,7 +9,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "WPRouter+Splash.h"
-#import "WPSplashViewModel.h"
+#import "WPSplashViewModelImp.h"
 #import "WPSplashViewController.h"
 
 @implementation WPRouter (Splash)

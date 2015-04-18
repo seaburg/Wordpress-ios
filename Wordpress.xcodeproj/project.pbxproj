@@ -39,7 +39,6 @@
 		4757C5461A554300002AD7A2 /* WPSite.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5451A554300002AD7A2 /* WPSite.m */; };
 		4757C5491A554C54002AD7A2 /* NSValueTransformer+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5481A554C54002AD7A2 /* NSValueTransformer+Factory.m */; };
 		4757C54C1A556D66002AD7A2 /* WPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C54B1A556D66002AD7A2 /* WPClient.m */; };
-		4757C54F1A557A02002AD7A2 /* WPSplashViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C54E1A557A02002AD7A2 /* WPSplashViewModel.m */; };
 		4757C5581A5580F7002AD7A2 /* WPGetSiteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5571A5580F7002AD7A2 /* WPGetSiteRequest.m */; };
 		4757C55C1A55CB9F002AD7A2 /* WPSplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C55A1A55CB9F002AD7A2 /* WPSplashViewController.m */; };
 		4757C55D1A55CBA0002AD7A2 /* WPSplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4757C55B1A55CB9F002AD7A2 /* WPSplashViewController.xib */; };
@@ -144,9 +143,6 @@
 		4757C5481A554C54002AD7A2 /* NSValueTransformer+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValueTransformer+Factory.m"; sourceTree = "<group>"; };
 		4757C54A1A556D66002AD7A2 /* WPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPClient.h; sourceTree = "<group>"; };
 		4757C54B1A556D66002AD7A2 /* WPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPClient.m; sourceTree = "<group>"; };
-		4757C54D1A557A02002AD7A2 /* WPSplashViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPSplashViewModel.h; sourceTree = "<group>"; };
-		4757C54E1A557A02002AD7A2 /* WPSplashViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPSplashViewModel.m; sourceTree = "<group>"; };
-		4757C5531A557D6C002AD7A2 /* WPSplashViewModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPSplashViewModelTests.m; sourceTree = "<group>"; };
 		4757C5561A5580F7002AD7A2 /* WPGetSiteRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPGetSiteRequest.h; sourceTree = "<group>"; };
 		4757C5571A5580F7002AD7A2 /* WPGetSiteRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPGetSiteRequest.m; sourceTree = "<group>"; };
 		4757C5591A55CB9F002AD7A2 /* WPSplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPSplashViewController.h; sourceTree = "<group>"; };
@@ -188,6 +184,9 @@
 		4786ED151AE2DB1F00929BD9 /* WPSplashState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPSplashState.h; sourceTree = "<group>"; };
 		4786ED191AE2DB7E00929BD9 /* WPSplashStateImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPSplashStateImp.h; sourceTree = "<group>"; };
 		4786ED1A1AE2DB7E00929BD9 /* WPSplashStateImp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPSplashStateImp.m; sourceTree = "<group>"; };
+		4786ED1E1AE2DE7B00929BD9 /* WPSplashViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPSplashViewModel.h; sourceTree = "<group>"; };
+		4786ED1F1AE2DF1E00929BD9 /* WPSplashViewModelImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPSplashViewModelImp.h; sourceTree = "<group>"; };
+		4786ED201AE2DF1E00929BD9 /* WPSplashViewModelImp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPSplashViewModelImp.m; sourceTree = "<group>"; };
 		4C0F093EBB11579D5EE8DEA0 /* Pods-WordpressTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordpressTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WordpressTests/Pods-WordpressTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADA8E31BA11BE7095F813C1F /* Pods-WordpressTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordpressTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WordpressTests/Pods-WordpressTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D6E17668CEA29657512D7E7C /* Pods-Wordpress.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wordpress.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wordpress/Pods-Wordpress.debug.xcconfig"; sourceTree = "<group>"; };
@@ -324,12 +323,12 @@
 		4757C5061A534F17002AD7A2 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				4786ED1D1AE2DE3C00929BD9 /* Signatures */,
+				4786ED1C1AE2DE3C00929BD9 /* Concepts */,
 				4757C5071A534F2C002AD7A2 /* WPViewModel.h */,
 				4757C5081A534F2C002AD7A2 /* WPViewModel.m */,
 				4757C50A1A534F74002AD7A2 /* WPViewModel+Friend.h */,
 				4757C50B1A534F74002AD7A2 /* WPViewModel+Friend.m */,
-				4757C54D1A557A02002AD7A2 /* WPSplashViewModel.h */,
-				4757C54E1A557A02002AD7A2 /* WPSplashViewModel.m */,
 				471A6B141A593ECA00BC7C6E /* WPPostsViewModel.h */,
 				471A6B151A593ECA00BC7C6E /* WPPostsViewModel.m */,
 				4757C56A1A5734C8002AD7A2 /* WPPostsItemViewModel.h */,
@@ -485,6 +484,23 @@
 				4786ED131AE2D9EA00929BD9 /* WPStateMachineImp.m */,
 			);
 			path = StateMachine;
+			sourceTree = "<group>";
+		};
+		4786ED1C1AE2DE3C00929BD9 /* Concepts */ = {
+			isa = PBXGroup;
+			children = (
+				4786ED1F1AE2DF1E00929BD9 /* WPSplashViewModelImp.h */,
+				4786ED201AE2DF1E00929BD9 /* WPSplashViewModelImp.m */,
+			);
+			path = Concepts;
+			sourceTree = "<group>";
+		};
+		4786ED1D1AE2DE3C00929BD9 /* Signatures */ = {
+			isa = PBXGroup;
+			children = (
+				4786ED1E1AE2DE7B00929BD9 /* WPSplashViewModel.h */,
+			);
+			path = Signatures;
 			sourceTree = "<group>";
 		};
 		67B77CCC5243F88B9ACE190C /* Frameworks */ = {
@@ -680,8 +696,8 @@
 				4786ED141AE2D9EA00929BD9 /* WPStateMachineImp.m in Sources */,
 				4757C5091A534F2C002AD7A2 /* WPViewModel.m in Sources */,
 				4757C56C1A5734C8002AD7A2 /* WPPostsItemViewModel.m in Sources */,
+				4786ED211AE2DF1E00929BD9 /* WPSplashViewModelImp.m in Sources */,
 				4757C5101A535229002AD7A2 /* WPRouter.m in Sources */,
-				4757C54F1A557A02002AD7A2 /* WPSplashViewModel.m in Sources */,
 				4757C5461A554300002AD7A2 /* WPSite.m in Sources */,
 				476722CA1A617AB000B2F38B /* WPRouter+Splash.m in Sources */,
 				4786ED1B1AE2DB7E00929BD9 /* WPSplashStateImp.m in Sources */,
