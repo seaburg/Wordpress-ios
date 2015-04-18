@@ -60,6 +60,8 @@
 		476722DF1A61A4FD00B2F38B /* WPRouter+Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 476722DE1A61A4FD00B2F38B /* WPRouter+Post.m */; };
 		476722EA1A62912C00B2F38B /* WPRouter+Start.m in Sources */ = {isa = PBXBuildFile; fileRef = 476722E91A62912C00B2F38B /* WPRouter+Start.m */; };
 		4786ED141AE2D9EA00929BD9 /* WPStateMachineImp.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786ED131AE2D9EA00929BD9 /* WPStateMachineImp.m */; };
+		4786ED1B1AE2DB7E00929BD9 /* WPSplashStateImp.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786ED1A1AE2DB7E00929BD9 /* WPSplashStateImp.m */; };
+		4786ED211AE2DF1E00929BD9 /* WPSplashViewModelImp.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786ED201AE2DF1E00929BD9 /* WPSplashViewModelImp.m */; };
 		773E9A071D74FF855947B55E /* libPods-Wordpress.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 201F8ADE350358FD00AF60D7 /* libPods-Wordpress.a */; };
 		E0D98095AE472232185F5CBA /* libPods-WordpressTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD399AB25E2754D292BF3F2 /* libPods-WordpressTests.a */; };
 /* End PBXBuildFile section */
@@ -183,6 +185,9 @@
 		4786ED111AE2D9EA00929BD9 /* WPStateMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPStateMachine.h; sourceTree = "<group>"; };
 		4786ED121AE2D9EA00929BD9 /* WPStateMachineImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPStateMachineImp.h; sourceTree = "<group>"; };
 		4786ED131AE2D9EA00929BD9 /* WPStateMachineImp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPStateMachineImp.m; sourceTree = "<group>"; };
+		4786ED151AE2DB1F00929BD9 /* WPSplashState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPSplashState.h; sourceTree = "<group>"; };
+		4786ED191AE2DB7E00929BD9 /* WPSplashStateImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPSplashStateImp.h; sourceTree = "<group>"; };
+		4786ED1A1AE2DB7E00929BD9 /* WPSplashStateImp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPSplashStateImp.m; sourceTree = "<group>"; };
 		4C0F093EBB11579D5EE8DEA0 /* Pods-WordpressTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordpressTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WordpressTests/Pods-WordpressTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADA8E31BA11BE7095F813C1F /* Pods-WordpressTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordpressTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WordpressTests/Pods-WordpressTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D6E17668CEA29657512D7E7C /* Pods-Wordpress.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wordpress.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wordpress/Pods-Wordpress.debug.xcconfig"; sourceTree = "<group>"; };
@@ -465,6 +470,9 @@
 			isa = PBXGroup;
 			children = (
 				4786ED101AE2D9EA00929BD9 /* StateMachine */,
+				4786ED151AE2DB1F00929BD9 /* WPSplashState.h */,
+				4786ED191AE2DB7E00929BD9 /* WPSplashStateImp.h */,
+				4786ED1A1AE2DB7E00929BD9 /* WPSplashStateImp.m */,
 			);
 			path = States;
 			sourceTree = "<group>";
@@ -676,6 +684,7 @@
 				4757C54F1A557A02002AD7A2 /* WPSplashViewModel.m in Sources */,
 				4757C5461A554300002AD7A2 /* WPSite.m in Sources */,
 				476722CA1A617AB000B2F38B /* WPRouter+Splash.m in Sources */,
+				4786ED1B1AE2DB7E00929BD9 /* WPSplashStateImp.m in Sources */,
 				4757C5691A56D082002AD7A2 /* WPPost.m in Sources */,
 				4757C4DC1A533EBC002AD7A2 /* AppDelegate.m in Sources */,
 				4757C5001A534379002AD7A2 /* WPNavigationController.m in Sources */,
