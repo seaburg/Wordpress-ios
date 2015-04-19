@@ -61,12 +61,12 @@ PODS:
     - Mantle/extobjc (= 1.5.1)
   - Mantle/extobjc (1.5.1)
   - OCMock (3.1.1)
-  - ReactiveCocoa (2.4.2):
-    - ReactiveCocoa/UI (= 2.4.2)
-  - ReactiveCocoa/Core (2.4.2):
+  - ReactiveCocoa (2.4.7):
+    - ReactiveCocoa/UI (= 2.4.7)
+  - ReactiveCocoa/Core (2.4.7):
     - ReactiveCocoa/no-arc
-  - ReactiveCocoa/no-arc (2.4.2)
-  - ReactiveCocoa/UI (2.4.2):
+  - ReactiveCocoa/no-arc (2.4.7)
+  - ReactiveCocoa/UI (2.4.7):
     - ReactiveCocoa/Core
   - SDWebImage (3.7.1):
     - SDWebImage/Core (= 3.7.1)
@@ -105,7 +105,7 @@ SPEC CHECKSUMS:
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
   Mantle: 1ec9076f091f3a2f95cb2c94939e92dba35c97e1
   OCMock: a73f69963a8a542b0b343e2617650e4dca0cbbc2
-  ReactiveCocoa: fdf629a7321cc7504936fa86243d8c616faad302
+  ReactiveCocoa: eb38dee0a0e698f73a9b25e5c1faea2bb4c79240
   SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
   Specta: d2158a483ad179e5f8d3a29f75ff4fc0ff6fab16
   SVProgressHUD: 3afb875b9eb23acd1bed9b82495695c68621a8b2
