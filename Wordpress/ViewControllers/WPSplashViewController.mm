@@ -75,26 +75,16 @@
 
 + (CKComponent *)componentForModel:(id<WPSplashState>)model context:(id<NSObject>)context
 {
-    std::vector<CKStackLayoutComponentChild> children;
-
-    if ([model loading]) {
-        children.push_back({ [self throbberComponent] });
-    }
-
-    if ([[model errorMessage] length] > 0) {
-        CKComponent *errorLabelComponent = [CKCenterLayoutComponent newWithCenteringOptions:CKCenterLayoutComponentCenteringX sizingOptions:0
-            child:[CKLabelComponent newWithLabelAttributes:{
-                [model errorMessage],
-                nil,
-                [UIFont wp_regularFontWithSize:14]
-            } viewAttributes:{}]
-        size:{}];
-        children.push_back({errorLabelComponent});
-    }
-
     return [CKInsetComponent
         newWithInsets:UIEdgeInsetsMake(15, 15, 15, 15)
-        component:[CKStackLayoutComponent newWithView:{} size:{} style:{CKStackLayoutDirectionVertical, 15, CKStackLayoutJustifyContentEnd, CKStackLayoutAlignItemsEnd} children:children]];
+        component:[CKStackLayoutComponent newWithView:{} size:{} style:{CKStackLayoutDirectionVertical, 15, CKStackLayoutJustifyContentEnd, CKStackLayoutAlignItemsEnd} children:{
+            {
+                .component = [model loading] ? [self throbberComponent] : nil,
+            },
+            {
+                .component = [[model errorMessage ] length] ? [self errorLabelComponentWithErrorMessage:[model errorMessage]] : nil
+            }
+        }]];
 }
 
 + (CKComponent *)throbberComponent
@@ -108,6 +98,16 @@
     } size:{ 20, 20 }];
 
     return [CKCenterLayoutComponent newWithCenteringOptions:CKCenterLayoutComponentCenteringXY sizingOptions:0 child:throbberComponent size:{}];
+}
+
++ (CKComponent *)errorLabelComponentWithErrorMessage:(NSString *)errorMessage
+{
+    return [CKCenterLayoutComponent newWithCenteringOptions:CKCenterLayoutComponentCenteringX sizingOptions:0 child:
+            [CKLabelComponent newWithLabelAttributes:{
+                .string = errorMessage,
+                .font = [UIFont wp_regularFontWithSize:14]
+            } viewAttributes:{}]
+        size:{}];
 }
 
 @end
