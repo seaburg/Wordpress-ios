@@ -1,5 +1,5 @@
 //
-//  UITableView+RACCommand.m
+//  UIScrollView+RACCommand.m
 //  Wordpress
 //
 //  Created by Evgeniy Yurtaev on 02.09.14.
@@ -10,14 +10,14 @@
 #import <SVPullToRefresh/SVPullToRefresh.h>
 #import <libextobjc/extobjc.h>
 
-#import "UITableView+RACCommand.h"
+#import "UIScrollView+RACCommand.h"
 
 #pragma mark - PullToRefresh
 
 static void* RACPullToRefreshCommandKey = &RACPullToRefreshCommandKey;
 static void* RACPullToRefreshDisponseKey = &RACPullToRefreshDisponseKey;
 
-@implementation UITableView (RACCommand_PullToRefresh)
+@implementation UIScrollView (RACCommand_PullToRefresh)
 
 - (RACCommand *)rac_pullToRefreshCommand
 {
@@ -65,7 +65,7 @@ static void* RACPullToRefreshDisponseKey = &RACPullToRefreshDisponseKey;
 static void* RACInfinityScrollCommandKey = &RACInfinityScrollCommandKey;
 static void* RACInfinityScrollDisponseKey = &RACInfinityScrollDisponseKey;
 
-@implementation UITableView (RACCommand_InfinityScroll)
+@implementation UIScrollView (RACCommand_InfinityScroll)
 
 - (RACCommand *)rac_infinityScrollCommand
 {

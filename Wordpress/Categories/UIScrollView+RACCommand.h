@@ -1,5 +1,5 @@
 //
-//  UITableView+RACCommand.h
+//  UIScrollView+RACCommand.h
 //  Wordpress
 //
 //  Created by Evgeniy Yurtaev on 02.09.14.
@@ -8,13 +8,13 @@
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface UITableView (RACCommand_PullToRefresh)
+@interface UIScrollView (RACCommand_PullToRefresh)
 
 @property (nonatomic, strong) RACCommand *rac_pullToRefreshCommand;
 
 @end
 
-@interface UITableView (RACCommand_InfinityScroll)
+@interface UIScrollView (RACCommand_InfinityScroll)
 
 @property (nonatomic, strong) RACCommand *rac_infinityScrollCommand;
 
