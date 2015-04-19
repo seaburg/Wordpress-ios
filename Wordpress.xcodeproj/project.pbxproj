@@ -49,8 +49,6 @@
 		4757C5711A5734F4002AD7A2 /* NSArray+RemovingNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C56E1A5734F4002AD7A2 /* NSArray+RemovingNull.m */; };
 		4757C5721A5734F4002AD7A2 /* NSDictionary+RemovingNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5701A5734F4002AD7A2 /* NSDictionary+RemovingNull.m */; };
 		4757C5771A5849EF002AD7A2 /* NSString+RemovingHTMLElements.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5761A5849EF002AD7A2 /* NSString+RemovingHTMLElements.m */; };
-		4757C57C1A587DA3002AD7A2 /* WPPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C57A1A587DA3002AD7A2 /* WPPostCell.m */; };
-		4757C57D1A587DA3002AD7A2 /* WPPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4757C57B1A587DA3002AD7A2 /* WPPostCell.xib */; };
 		476722CA1A617AB000B2F38B /* WPRouter+Splash.m in Sources */ = {isa = PBXBuildFile; fileRef = 476722C91A617AB000B2F38B /* WPRouter+Splash.m */; };
 		476722CD1A617B2900B2F38B /* WPRouter+Posts.m in Sources */ = {isa = PBXBuildFile; fileRef = 476722CC1A617B2900B2F38B /* WPRouter+Posts.m */; };
 		476722D21A6182D000B2F38B /* WPPostOfSiteRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 476722D11A6182D000B2F38B /* WPPostOfSiteRoute.m */; };
@@ -167,9 +165,6 @@
 		4757C5701A5734F4002AD7A2 /* NSDictionary+RemovingNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+RemovingNull.m"; sourceTree = "<group>"; };
 		4757C5751A5849EF002AD7A2 /* NSString+RemovingHTMLElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RemovingHTMLElements.h"; sourceTree = "<group>"; };
 		4757C5761A5849EF002AD7A2 /* NSString+RemovingHTMLElements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RemovingHTMLElements.m"; sourceTree = "<group>"; };
-		4757C5791A587DA3002AD7A2 /* WPPostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPostCell.h; sourceTree = "<group>"; };
-		4757C57A1A587DA3002AD7A2 /* WPPostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPostCell.m; sourceTree = "<group>"; };
-		4757C57B1A587DA3002AD7A2 /* WPPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPPostCell.xib; sourceTree = "<group>"; };
 		476722C81A617AB000B2F38B /* WPRouter+Splash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WPRouter+Splash.h"; sourceTree = "<group>"; };
 		476722C91A617AB000B2F38B /* WPRouter+Splash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WPRouter+Splash.m"; sourceTree = "<group>"; };
 		476722CB1A617B2900B2F38B /* WPRouter+Posts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WPRouter+Posts.h"; sourceTree = "<group>"; };
@@ -278,7 +273,6 @@
 				4786ED0F1AE2D9EA00929BD9 /* States */,
 				4757C5061A534F17002AD7A2 /* ViewModels */,
 				4757C4FD1A53424A002AD7A2 /* ViewControllers */,
-				4757C5781A587D76002AD7A2 /* View */,
 				47084DC61AE38BFA00EBCE55 /* Components */,
 				4757C51E1A54138E002AD7A2 /* Network */,
 				4757C5111A53DBE0002AD7A2 /* Categories */,
@@ -458,16 +452,6 @@
 			path = Requests;
 			sourceTree = "<group>";
 		};
-		4757C5781A587D76002AD7A2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				4757C5791A587DA3002AD7A2 /* WPPostCell.h */,
-				4757C57A1A587DA3002AD7A2 /* WPPostCell.m */,
-				4757C57B1A587DA3002AD7A2 /* WPPostCell.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		476722CF1A6182A600B2F38B /* Routes */ = {
 			isa = PBXGroup;
 			children = (
@@ -620,7 +604,6 @@
 			files = (
 				471A6B271A5BF92D00BC7C6E /* WPPostsViewController.xib in Resources */,
 				476722DC1A619FD900B2F38B /* WPPostViewController.xib in Resources */,
-				4757C57D1A587DA3002AD7A2 /* WPPostCell.xib in Resources */,
 				4757C4E71A533EBC002AD7A2 /* LaunchScreen.xib in Resources */,
 				4757C4E41A533EBC002AD7A2 /* Images.xcassets in Resources */,
 			);
@@ -703,7 +686,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4757C57C1A587DA3002AD7A2 /* WPPostCell.m in Sources */,
 				4757C5141A53DC03002AD7A2 /* UIViewController+RACExtension.m in Sources */,
 				476722CD1A617B2900B2F38B /* WPRouter+Posts.m in Sources */,
 				47084DC51AE324CF00EBCE55 /* WPPostsViewModelImp.m in Sources */,
