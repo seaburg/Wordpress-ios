@@ -55,8 +55,7 @@
 		476722CD1A617B2900B2F38B /* WPRouter+Posts.m in Sources */ = {isa = PBXBuildFile; fileRef = 476722CC1A617B2900B2F38B /* WPRouter+Posts.m */; };
 		476722D21A6182D000B2F38B /* WPPostOfSiteRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 476722D11A6182D000B2F38B /* WPPostOfSiteRoute.m */; };
 		476722D51A6183B700B2F38B /* WPGetPostRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 476722D41A6183B700B2F38B /* WPGetPostRequest.m */; };
-		476722DB1A619FD900B2F38B /* WPPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 476722D91A619FD900B2F38B /* WPPostViewController.m */; };
-		476722DC1A619FD900B2F38B /* WPPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 476722DA1A619FD900B2F38B /* WPPostViewController.xib */; };
+		476722DB1A619FD900B2F38B /* WPPostViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 476722D91A619FD900B2F38B /* WPPostViewController.mm */; };
 		476722DF1A61A4FD00B2F38B /* WPRouter+Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 476722DE1A61A4FD00B2F38B /* WPRouter+Post.m */; };
 		476722EA1A62912C00B2F38B /* WPRouter+Start.m in Sources */ = {isa = PBXBuildFile; fileRef = 476722E91A62912C00B2F38B /* WPRouter+Start.m */; };
 		4786ED141AE2D9EA00929BD9 /* WPStateMachineImp.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786ED131AE2D9EA00929BD9 /* WPStateMachineImp.m */; };
@@ -182,8 +181,7 @@
 		476722D31A6183B700B2F38B /* WPGetPostRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPGetPostRequest.h; sourceTree = "<group>"; };
 		476722D41A6183B700B2F38B /* WPGetPostRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPGetPostRequest.m; sourceTree = "<group>"; };
 		476722D81A619FD900B2F38B /* WPPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPostViewController.h; sourceTree = "<group>"; };
-		476722D91A619FD900B2F38B /* WPPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPostViewController.m; sourceTree = "<group>"; };
-		476722DA1A619FD900B2F38B /* WPPostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPPostViewController.xib; sourceTree = "<group>"; };
+		476722D91A619FD900B2F38B /* WPPostViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WPPostViewController.mm; sourceTree = "<group>"; };
 		476722DD1A61A4FD00B2F38B /* WPRouter+Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WPRouter+Post.h"; sourceTree = "<group>"; };
 		476722DE1A61A4FD00B2F38B /* WPRouter+Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WPRouter+Post.m"; sourceTree = "<group>"; };
 		476722E81A62912C00B2F38B /* WPRouter+Start.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WPRouter+Start.h"; sourceTree = "<group>"; };
@@ -332,8 +330,7 @@
 				471A6B241A5BF92D00BC7C6E /* WPPostsViewController.mm */,
 				471A6B251A5BF92D00BC7C6E /* WPPostsViewController.xib */,
 				476722D81A619FD900B2F38B /* WPPostViewController.h */,
-				476722D91A619FD900B2F38B /* WPPostViewController.m */,
-				476722DA1A619FD900B2F38B /* WPPostViewController.xib */,
+				476722D91A619FD900B2F38B /* WPPostViewController.mm */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -617,7 +614,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				471A6B271A5BF92D00BC7C6E /* WPPostsViewController.xib in Resources */,
-				476722DC1A619FD900B2F38B /* WPPostViewController.xib in Resources */,
 				4757C4E71A533EBC002AD7A2 /* LaunchScreen.xib in Resources */,
 				4757C4E41A533EBC002AD7A2 /* Images.xcassets in Resources */,
 			);
@@ -704,7 +700,7 @@
 				476722CD1A617B2900B2F38B /* WPRouter+Posts.m in Sources */,
 				474FB0791AE586680070BB30 /* WPPostViewModelImp.m in Sources */,
 				47084DC51AE324CF00EBCE55 /* WPPostsViewModelImp.m in Sources */,
-				476722DB1A619FD900B2F38B /* WPPostViewController.m in Sources */,
+				476722DB1A619FD900B2F38B /* WPPostViewController.mm in Sources */,
 				476722EA1A62912C00B2F38B /* WPRouter+Start.m in Sources */,
 				47084DBD1AE31D5900EBCE55 /* WPPostsStateImp.m in Sources */,
 				4757C5171A53EC45002AD7A2 /* SDWebImageManager+RACExtension.m in Sources */,

@@ -6,12 +6,10 @@
 //  Copyright (c) 2015 Evgeniy Yurtaev. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-@class WPPostViewModel;
+#import "WPPostViewModel.h"
 
 @interface WPPostViewController : UIViewController
 
-- (instancetype)initWithViewModel:(WPPostViewModel *)viewModel;
+- (instancetype)initWithViewModel:(id<WPPostViewModel>)viewModel;
 
 @end
