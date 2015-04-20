@@ -21,6 +21,7 @@
 		471A6B271A5BF92D00BC7C6E /* WPPostsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 471A6B251A5BF92D00BC7C6E /* WPPostsViewController.xib */; };
 		471A6B2A1A5BF9B700BC7C6E /* UIScrollView+RACCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 471A6B291A5BF9B700BC7C6E /* UIScrollView+RACCommand.m */; };
 		471A6B2D1A6062E700BC7C6E /* WPPostViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 471A6B2C1A6062E700BC7C6E /* WPPostViewModel.m */; };
+		474FB07D1AE586F50070BB30 /* WPPostStateImp.m in Sources */ = {isa = PBXBuildFile; fileRef = 474FB07C1AE586F50070BB30 /* WPPostStateImp.m */; };
 		4757C4D91A533EBC002AD7A2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C4D81A533EBC002AD7A2 /* main.m */; };
 		4757C4DC1A533EBC002AD7A2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C4DB1A533EBC002AD7A2 /* AppDelegate.m */; };
 		4757C4E41A533EBC002AD7A2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4757C4E31A533EBC002AD7A2 /* Images.xcassets */; };
@@ -107,6 +108,9 @@
 		471A6B291A5BF9B700BC7C6E /* UIScrollView+RACCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+RACCommand.m"; sourceTree = "<group>"; };
 		471A6B2B1A6062E700BC7C6E /* WPPostViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPostViewModel.h; sourceTree = "<group>"; };
 		471A6B2C1A6062E700BC7C6E /* WPPostViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPostViewModel.m; sourceTree = "<group>"; };
+		474FB07A1AE586DB0070BB30 /* WPPostState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPostState.h; sourceTree = "<group>"; };
+		474FB07B1AE586F50070BB30 /* WPPostStateImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPostStateImp.h; sourceTree = "<group>"; };
+		474FB07C1AE586F50070BB30 /* WPPostStateImp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPostStateImp.m; sourceTree = "<group>"; };
 		4757C4D31A533EBC002AD7A2 /* Wordpress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordpress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4757C4D71A533EBC002AD7A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4757C4D81A533EBC002AD7A2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -474,6 +478,9 @@
 				47084DBA1AE31D4600EBCE55 /* WPPostsState.h */,
 				47084DBB1AE31D5900EBCE55 /* WPPostsStateImp.h */,
 				47084DBC1AE31D5900EBCE55 /* WPPostsStateImp.m */,
+				474FB07A1AE586DB0070BB30 /* WPPostState.h */,
+				474FB07B1AE586F50070BB30 /* WPPostStateImp.h */,
+				474FB07C1AE586F50070BB30 /* WPPostStateImp.m */,
 			);
 			path = States;
 			sourceTree = "<group>";
@@ -734,6 +741,7 @@
 				4757C5491A554C54002AD7A2 /* NSValueTransformer+Factory.m in Sources */,
 				4757C51D1A540661002AD7A2 /* AFURLSessionManager+RACExtension.m in Sources */,
 				4757C5711A5734F4002AD7A2 /* NSArray+RemovingNull.m in Sources */,
+				474FB07D1AE586F50070BB30 /* WPPostStateImp.m in Sources */,
 				4757C5281A541662002AD7A2 /* WPRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
