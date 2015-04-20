@@ -25,7 +25,7 @@
 
 + (NSString *)pathPattern
 {
-    return @"sites/:siteID/posts/:postID";
+    return @"sites/:site_ID/posts/:ID";
 }
 
 + (NSString *)method

@@ -9,7 +9,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "WPRouter+Post.h"
-#import "WPPostViewModel.h"
+#import "WPPostViewModelImp.h"
 #import "WPPostViewController.h"
 #import "WPPost.h"
 
@@ -19,7 +19,7 @@
 {
     return [RACSignal defer:^RACSignal *{
         
-        WPPostViewModel *viewModel = [[WPPostViewModel alloc] initWithSiteID:post.siteID postID:post.postID];
+        WPPostViewModel *viewModel = [[WPPostViewModel alloc] initWithPost:post];
         WPPostViewController *viewController = [[WPPostViewController alloc] initWithViewModel:viewModel];
         
         return [self pushViewController:viewController viewModel:viewModel animated:YES];

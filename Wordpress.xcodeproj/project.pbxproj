@@ -20,7 +20,7 @@
 		471A6B261A5BF92D00BC7C6E /* WPPostsViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 471A6B241A5BF92D00BC7C6E /* WPPostsViewController.mm */; };
 		471A6B271A5BF92D00BC7C6E /* WPPostsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 471A6B251A5BF92D00BC7C6E /* WPPostsViewController.xib */; };
 		471A6B2A1A5BF9B700BC7C6E /* UIScrollView+RACCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 471A6B291A5BF9B700BC7C6E /* UIScrollView+RACCommand.m */; };
-		471A6B2D1A6062E700BC7C6E /* WPPostViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 471A6B2C1A6062E700BC7C6E /* WPPostViewModel.m */; };
+		474FB0791AE586680070BB30 /* WPPostViewModelImp.m in Sources */ = {isa = PBXBuildFile; fileRef = 474FB0781AE586680070BB30 /* WPPostViewModelImp.m */; };
 		474FB07D1AE586F50070BB30 /* WPPostStateImp.m in Sources */ = {isa = PBXBuildFile; fileRef = 474FB07C1AE586F50070BB30 /* WPPostStateImp.m */; };
 		4757C4D91A533EBC002AD7A2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C4D81A533EBC002AD7A2 /* main.m */; };
 		4757C4DC1A533EBC002AD7A2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C4DB1A533EBC002AD7A2 /* AppDelegate.m */; };
@@ -106,8 +106,9 @@
 		471A6B251A5BF92D00BC7C6E /* WPPostsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPPostsViewController.xib; sourceTree = "<group>"; };
 		471A6B281A5BF9B700BC7C6E /* UIScrollView+RACCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+RACCommand.h"; sourceTree = "<group>"; };
 		471A6B291A5BF9B700BC7C6E /* UIScrollView+RACCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+RACCommand.m"; sourceTree = "<group>"; };
-		471A6B2B1A6062E700BC7C6E /* WPPostViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPostViewModel.h; sourceTree = "<group>"; };
-		471A6B2C1A6062E700BC7C6E /* WPPostViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPostViewModel.m; sourceTree = "<group>"; };
+		474FB0761AE5858F0070BB30 /* WPPostViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPostViewModel.h; sourceTree = "<group>"; };
+		474FB0771AE586680070BB30 /* WPPostViewModelImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPostViewModelImp.h; sourceTree = "<group>"; };
+		474FB0781AE586680070BB30 /* WPPostViewModelImp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPostViewModelImp.m; sourceTree = "<group>"; };
 		474FB07A1AE586DB0070BB30 /* WPPostState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPostState.h; sourceTree = "<group>"; };
 		474FB07B1AE586F50070BB30 /* WPPostStateImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPostStateImp.h; sourceTree = "<group>"; };
 		474FB07C1AE586F50070BB30 /* WPPostStateImp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPostStateImp.m; sourceTree = "<group>"; };
@@ -343,8 +344,6 @@
 				4757C5081A534F2C002AD7A2 /* WPViewModel.m */,
 				4757C50A1A534F74002AD7A2 /* WPViewModel+Friend.h */,
 				4757C50B1A534F74002AD7A2 /* WPViewModel+Friend.m */,
-				471A6B2B1A6062E700BC7C6E /* WPPostViewModel.h */,
-				471A6B2C1A6062E700BC7C6E /* WPPostViewModel.m */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -502,6 +501,8 @@
 				4786ED201AE2DF1E00929BD9 /* WPSplashViewModelImp.m */,
 				47084DC31AE324CF00EBCE55 /* WPPostsViewModelImp.h */,
 				47084DC41AE324CF00EBCE55 /* WPPostsViewModelImp.m */,
+				474FB0771AE586680070BB30 /* WPPostViewModelImp.h */,
+				474FB0781AE586680070BB30 /* WPPostViewModelImp.m */,
 			);
 			path = Concepts;
 			sourceTree = "<group>";
@@ -511,6 +512,7 @@
 			children = (
 				4786ED1E1AE2DE7B00929BD9 /* WPSplashViewModel.h */,
 				47084DC21AE3241200EBCE55 /* WPPostsViewModel.h */,
+				474FB0761AE5858F0070BB30 /* WPPostViewModel.h */,
 			);
 			path = Signatures;
 			sourceTree = "<group>";
@@ -695,6 +697,7 @@
 			files = (
 				4757C5141A53DC03002AD7A2 /* UIViewController+RACExtension.m in Sources */,
 				476722CD1A617B2900B2F38B /* WPRouter+Posts.m in Sources */,
+				474FB0791AE586680070BB30 /* WPPostViewModelImp.m in Sources */,
 				47084DC51AE324CF00EBCE55 /* WPPostsViewModelImp.m in Sources */,
 				476722DB1A619FD900B2F38B /* WPPostViewController.m in Sources */,
 				476722EA1A62912C00B2F38B /* WPRouter+Start.m in Sources */,
@@ -726,7 +729,6 @@
 				47084DC91AE38C2200EBCE55 /* WPPostCellComponent.mm in Sources */,
 				471A6B261A5BF92D00BC7C6E /* WPPostsViewController.mm in Sources */,
 				4757C5661A56C871002AD7A2 /* WPUser.m in Sources */,
-				471A6B2D1A6062E700BC7C6E /* WPPostViewModel.m in Sources */,
 				47084DC11AE31DCD00EBCE55 /* WPPostsItemStateImp.m in Sources */,
 				4757C50C1A534F74002AD7A2 /* WPViewModel+Friend.m in Sources */,
 				4757C4D91A533EBC002AD7A2 /* main.m in Sources */,
