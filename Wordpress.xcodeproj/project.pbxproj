@@ -18,7 +18,6 @@
 		471A6B131A5935BE00BC7C6E /* WPPostsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 471A6B121A5935BE00BC7C6E /* WPPostsResponse.m */; };
 		471A6B1E1A594BD900BC7C6E /* WPPaginator.m in Sources */ = {isa = PBXBuildFile; fileRef = 471A6B1D1A594BD900BC7C6E /* WPPaginator.m */; };
 		471A6B261A5BF92D00BC7C6E /* WPPostsViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 471A6B241A5BF92D00BC7C6E /* WPPostsViewController.mm */; };
-		471A6B271A5BF92D00BC7C6E /* WPPostsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 471A6B251A5BF92D00BC7C6E /* WPPostsViewController.xib */; };
 		471A6B2A1A5BF9B700BC7C6E /* UIScrollView+RACCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 471A6B291A5BF9B700BC7C6E /* UIScrollView+RACCommand.m */; };
 		474FB0791AE586680070BB30 /* WPPostViewModelImp.m in Sources */ = {isa = PBXBuildFile; fileRef = 474FB0781AE586680070BB30 /* WPPostViewModelImp.m */; };
 		474FB07D1AE586F50070BB30 /* WPPostStateImp.m in Sources */ = {isa = PBXBuildFile; fileRef = 474FB07C1AE586F50070BB30 /* WPPostStateImp.m */; };
@@ -103,7 +102,6 @@
 		471A6B1D1A594BD900BC7C6E /* WPPaginator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPaginator.m; sourceTree = "<group>"; };
 		471A6B231A5BF92D00BC7C6E /* WPPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPostsViewController.h; sourceTree = "<group>"; };
 		471A6B241A5BF92D00BC7C6E /* WPPostsViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WPPostsViewController.mm; sourceTree = "<group>"; };
-		471A6B251A5BF92D00BC7C6E /* WPPostsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPPostsViewController.xib; sourceTree = "<group>"; };
 		471A6B281A5BF9B700BC7C6E /* UIScrollView+RACCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+RACCommand.h"; sourceTree = "<group>"; };
 		471A6B291A5BF9B700BC7C6E /* UIScrollView+RACCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+RACCommand.m"; sourceTree = "<group>"; };
 		474FB0761AE5858F0070BB30 /* WPPostViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPostViewModel.h; sourceTree = "<group>"; };
@@ -328,7 +326,6 @@
 				4757C55A1A55CB9F002AD7A2 /* WPSplashViewController.mm */,
 				471A6B231A5BF92D00BC7C6E /* WPPostsViewController.h */,
 				471A6B241A5BF92D00BC7C6E /* WPPostsViewController.mm */,
-				471A6B251A5BF92D00BC7C6E /* WPPostsViewController.xib */,
 				476722D81A619FD900B2F38B /* WPPostViewController.h */,
 				476722D91A619FD900B2F38B /* WPPostViewController.mm */,
 			);
@@ -613,7 +610,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				471A6B271A5BF92D00BC7C6E /* WPPostsViewController.xib in Resources */,
 				4757C4E71A533EBC002AD7A2 /* LaunchScreen.xib in Resources */,
 				4757C4E41A533EBC002AD7A2 /* Images.xcassets in Resources */,
 			);
