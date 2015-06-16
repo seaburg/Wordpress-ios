@@ -11,7 +11,7 @@
 
 @class WPSite;
 
-@interface WPPostsViewModel : WPViewModel <WPPostsViewModel>
+@interface WPPostsViewModel : NSObject <WPViewModel, WPPostsViewModel>
 
 - (instancetype)initWithSite:(WPSite *)site NS_DESIGNATED_INITIALIZER;
 

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol WPViewModel;
+
 @class RACSignal;
-@class WPViewModel;
 @class WPNavigationController;
 
 @interface WPRouter : NSObject
@@ -24,12 +25,12 @@
 @interface WPRouter (Protected)
 
 // setRootViewController:viewModel: : -> RACSignal _
-- (RACSignal *)setRootViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel;
+- (RACSignal *)setRootViewController:(UIViewController *)viewController viewModel:(id<WPViewModel>)viewModel;
 
 // pushViewController:viewModel:animated: : -> RACSignal _
-- (RACSignal *)pushViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel animated:(BOOL)animated;
+- (RACSignal *)pushViewController:(UIViewController *)viewController viewModel:(id<WPViewModel>)viewModel animated:(BOOL)animated;
 
 // presentViewController:viewModel:animated: : -> RACSignal _
-- (RACSignal *)presentViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel animated:(BOOL)animated;
+- (RACSignal *)presentViewController:(UIViewController *)viewController viewModel:(id<WPViewModel>)viewModel animated:(BOOL)animated;
 
 @end

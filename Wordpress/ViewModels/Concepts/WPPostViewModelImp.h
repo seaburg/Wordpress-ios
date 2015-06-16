@@ -11,7 +11,7 @@
 
 @class WPPost;
 
-@interface WPPostViewModel : WPViewModel <WPPostViewModel>
+@interface WPPostViewModel : NSObject <WPViewModel, WPPostViewModel>
 
 - (instancetype)initWithPost:(WPPost *)post NS_DESIGNATED_INITIALIZER;
 

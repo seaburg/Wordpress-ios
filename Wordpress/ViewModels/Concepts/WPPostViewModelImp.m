@@ -14,9 +14,6 @@
 #import "WPStateMachineImp.h"
 #import "WPClient.h"
 #import "WPGetPostRequest.h"
-#pragma "WP"
-
-#import "WPViewModel+Friend.h"
 
 @interface WPPostViewModel ()
 
@@ -48,9 +45,8 @@
 
 - (RACSignal *)prepareForUse
 {
-    return [[[super prepareForUse]
-        then:^RACSignal *{
-
+    return [[RACSignal
+        defer:^RACSignal *{
             WPGetPostRequest *request = [[WPGetPostRequest alloc] init];
             request.fields = @[ @"ID", @"site_ID", @"author", @"comment_count", @"content", @"URL", @"title" ];
             request.routeObject = self.post;

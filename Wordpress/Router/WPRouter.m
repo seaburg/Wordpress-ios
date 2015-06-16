@@ -10,8 +10,8 @@
 
 #import "WPRouter.h"
 #import "WPNavigationController.h"
+#import "WPViewModel.h"
 
-#import "WPViewModel+Friend.h"
 #import "UIViewController+RACExtension.h"
 
 static WPRouter *_sharedInstance;
@@ -51,42 +51,71 @@ static WPRouter *_sharedInstance;
 
 #pragma mark - Private methods
 
-- (RACSignal *)setRootViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel navigationController:(WPNavigationController *)navigationController
+- (RACSignal *)setRootViewController:(UIViewController *)viewController viewModel:(id<WPViewModel>)viewModel navigationController:(WPNavigationController *)navigationController
 {
-    return [[viewModel prepareForUse]
+    return [[RACSignal
+        defer:^RACSignal *{
+            return [self prepareViewModel:viewModel];
+        }]
         then:^RACSignal *{
+            if ([viewModel respondsToSelector:@selector(setCloseSignal:)]) {
+                @weakify(navigationController, viewController);
 
-            @weakify(navigationController, viewController);
-            viewModel.closeSignal = [RACSignal
-                defer:^RACSignal *{
-                    @strongify(navigationController, viewController);
-                    NSCAssert([navigationController.viewControllers firstObject] == viewController, @"the root view controller should be `viewController`");
-                
-                    return [navigationController rac_setViewControllers:@[] animated:NO];
-            }];
-            
+                RACSignal *closeSignal = [RACSignal
+                    defer:^RACSignal *{
+                        @strongify(navigationController, viewController);
+                        NSCAssert([navigationController.viewControllers firstObject] == viewController, @"the root view controller should be `viewController`");
+
+                        return [navigationController rac_setViewControllers:@[] animated:NO];
+                    }];
+                [viewModel setCloseSignal:closeSignal];
+            }
             return [navigationController rac_setViewControllers:@[ viewController ] animated:NO];
-    }];
+        }];
 }
 
-- (RACSignal *)pushViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel navigationController:(WPNavigationController *)navigationController animated:(BOOL)animated
+- (RACSignal *)pushViewController:(UIViewController *)viewController viewModel:(id<WPViewModel>)viewModel navigationController:(WPNavigationController *)navigationController animated:(BOOL)animated
 {
-    return [[viewModel prepareForUse]
+    return [[RACSignal
+        defer:^RACSignal *{
+            return [self prepareViewModel:viewModel];
+        }]
         then:^RACSignal *{
             if ([navigationController.viewControllers count] == 0) {
                 return [self setRootViewController:viewController viewModel:viewModel navigationController:navigationController];
             }
-            
-            @weakify(navigationController, viewController);
-            viewModel.closeSignal = [RACSignal defer:^RACSignal *{
-                @strongify(navigationController, viewController);
-                NSCAssert([navigationController.viewControllers lastObject] == viewController, @"last object of `viewControllers` should be `viewController`");
-                
-                return [navigationController rac_popViewControllerAnimated:YES];
-            }];
+
+            if ([viewModel respondsToSelector:@selector(setCloseSignal:)]) {
+                @weakify(navigationController, viewController);
+
+                RACSignal *closeSignal = [RACSignal defer:^RACSignal *{
+                    @strongify(navigationController, viewController);
+                    NSCAssert([navigationController.viewControllers lastObject] == viewController, @"last object of `viewControllers` should be `viewController`");
+
+                    return [navigationController rac_popViewControllerAnimated:YES];
+                }];
+                [viewModel setCloseSignal:closeSignal];
+            }
             
             return [navigationController rac_pushViewController:viewController animated:animated];
         }];
+}
+
+- (RACSignal *)prepareViewModel:(id<WPViewModel>)viewModel
+{
+    return [RACSignal defer:^RACSignal *{
+        if ([viewModel respondsToSelector:@selector(setRouter:)]) {
+            [viewModel setRouter:self];
+        }
+
+        RACSignal *signal;
+        if ([viewModel respondsToSelector:@selector(prepareForUse)]) {
+            signal = [viewModel prepareForUse];
+        } else {
+            signal = [RACSignal empty];
+        }
+        return signal;
+    }];
 }
 
 @end
@@ -95,7 +124,7 @@ static WPRouter *_sharedInstance;
 
 @implementation WPRouter (Protected)
 
-- (RACSignal *)setRootViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel
+- (RACSignal *)setRootViewController:(UIViewController *)viewController viewModel:(id<WPViewModel>)viewModel
 {
     NSParameterAssert(viewController);
     NSParameterAssert(viewModel);
@@ -106,7 +135,7 @@ static WPRouter *_sharedInstance;
         }];
 }
 
-- (RACSignal *)pushViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel animated:(BOOL)animated
+- (RACSignal *)pushViewController:(UIViewController *)viewController viewModel:(id<WPViewModel>)viewModel animated:(BOOL)animated
 {
     NSParameterAssert(viewController);
     NSParameterAssert(viewModel);
@@ -117,14 +146,20 @@ static WPRouter *_sharedInstance;
         }];
 }
 
-- (RACSignal *)presentViewController:(UIViewController *)viewController viewModel:(WPViewModel *)viewModel animated:(BOOL)animated
+- (RACSignal *)presentViewController:(UIViewController *)viewController viewModel:(id<WPViewModel>)viewModel animated:(BOOL)animated
 {
     NSParameterAssert(viewController);
     NSParameterAssert(viewModel);
     
-    return [[viewModel prepareForUse]
+    return [[RACSignal
+        defer:^RACSignal *{
+            return [self prepareViewModel:viewModel];
+        }]
         then:^RACSignal *{
-            viewModel.closeSignal = [viewController rac_dismissViewControllerAnimated:YES];
+            if ([viewModel respondsToSelector:@selector(setCloseSignal:)]) {
+                RACSignal *closeSignal = [viewController rac_dismissViewControllerAnimated:YES];
+                [viewModel setCloseSignal:closeSignal];
+            }
             return [self.rootNavigationController rac_presentViewController:viewController animated:animated];
         }];
 }

@@ -17,7 +17,6 @@
 #import "WPClient.h"
 
 #import "WPRouter+Post.h"
-#import "WPViewModel+Friend.h"
 
 static NSInteger WPPostsPageSize = 25;
 
@@ -43,10 +42,7 @@ static NSInteger WPPostsPageSize = 25;
 
 - (RACSignal *)prepareForUse
 {
-    return [[super prepareForUse]
-        then:^RACSignal *{
-            return [self reloadData];
-        }];
+    return [self reloadData];
 }
 
 - (RACSignal *)state

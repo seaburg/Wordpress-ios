@@ -9,7 +9,7 @@
 #import "WPViewModel.h"
 #import "WPSplashViewModel.h"
 
-@interface WPSplashViewModel : WPViewModel
+@interface WPSplashViewModel : NSObject <WPViewModel>
 
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 
