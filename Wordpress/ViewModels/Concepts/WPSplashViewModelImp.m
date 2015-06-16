@@ -22,6 +22,8 @@
 
 @property (strong, nonatomic) WPStateMachine *stateMachine;
 
+@property (weak, nonatomic) WPRouter *router;
+
 @end
 
 @implementation WPSplashViewModel
@@ -55,7 +57,7 @@
             [WPClient sharedInstance].currentSite = site;
         }]
         flattenMap:^RACStream *(WPSite *site) {
-            return [[WPRouter sharedInstance] presentStartScreenWithSite:site];
+            return [self.router presentStartScreenWithSite:site];
         }]
         initially:^{
             @strongify(self);

@@ -15,10 +15,7 @@
 
 @interface WPRouter : NSObject
 
-+ (instancetype)sharedInstance;
-+ (void)setSharedInstance:(WPRouter *)instance;
-
-- (instancetype)initWithWindow:(UIWindow *)window;
+- (instancetype)initWithWindow:(UIWindow *)window NS_DESIGNATED_INITIALIZER;
 
 @end
 

@@ -26,6 +26,8 @@ static NSInteger WPPostsPageSize = 25;
 
 @property (strong, nonatomic) WPSite *site;
 
+@property (weak, nonatomic) WPRouter *router;
+
 @end
 
 @implementation WPPostsViewModel
@@ -94,7 +96,7 @@ static NSInteger WPPostsPageSize = 25;
 
             WPPost *selectedPost = [[value.posts skip:index] head];
 
-            return [[WPRouter sharedInstance] presentPostScreenWithPost:selectedPost];
+            return [self.router presentPostScreenWithPost:selectedPost];
         }];
 }
 

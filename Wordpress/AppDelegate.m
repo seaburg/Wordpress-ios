@@ -17,6 +17,12 @@
 
 #import "WPRouter+Splash.h"
 
+@interface AppDelegate ()
+
+@property (strong, nonatomic) WPRouter *router;
+
+@end
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -26,15 +32,12 @@
     site.siteID = @(WPSiteID);
     client.currentSite = site;
     [WPClient setSharedInstance:client];
-    
+
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    WPRouter *router = [[WPRouter alloc] initWithWindow:self.window];
-    [WPRouter setSharedInstance:router];
-    
+    self.router = [[WPRouter alloc] initWithWindow:self.window];
     [self.window makeKeyAndVisible];
-    [[[WPRouter sharedInstance]
-        presentSplashScreen]
-        subscribeCompleted:^{}];
+
+    [[self.router presentSplashScreen] subscribeCompleted:^{}];
     
     return YES;
 }

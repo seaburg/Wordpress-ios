@@ -14,8 +14,6 @@
 
 #import "UIViewController+RACExtension.h"
 
-static WPRouter *_sharedInstance;
-
 @interface WPRouter ()
 
 @property (strong, nonatomic) UIWindow *window;
@@ -24,16 +22,6 @@ static WPRouter *_sharedInstance;
 @end
 
 @implementation WPRouter
-
-+ (instancetype)sharedInstance
-{
-    return _sharedInstance;
-}
-
-+ (void)setSharedInstance:(WPRouter *)instance
-{
-    _sharedInstance = instance;
-}
 
 - (instancetype)initWithWindow:(UIWindow *)window
 {
@@ -156,10 +144,6 @@ static WPRouter *_sharedInstance;
             return [self prepareViewModel:viewModel];
         }]
         then:^RACSignal *{
-            if ([viewModel respondsToSelector:@selector(setCloseSignal:)]) {
-                RACSignal *closeSignal = [viewController rac_dismissViewControllerAnimated:YES];
-                [viewModel setCloseSignal:closeSignal];
-            }
             return [self.rootNavigationController rac_presentViewController:viewController animated:animated];
         }];
 }
