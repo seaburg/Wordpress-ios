@@ -27,8 +27,6 @@
 		4757C4E41A533EBC002AD7A2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4757C4E31A533EBC002AD7A2 /* Images.xcassets */; };
 		4757C4E71A533EBC002AD7A2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4757C4E51A533EBC002AD7A2 /* LaunchScreen.xib */; };
 		4757C5001A534379002AD7A2 /* WPNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C4FF1A534379002AD7A2 /* WPNavigationController.m */; };
-		4757C5091A534F2C002AD7A2 /* WPViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5081A534F2C002AD7A2 /* WPViewModel.m */; };
-		4757C50C1A534F74002AD7A2 /* WPViewModel+Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C50B1A534F74002AD7A2 /* WPViewModel+Friend.m */; };
 		4757C5101A535229002AD7A2 /* WPRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C50F1A535229002AD7A2 /* WPRouter.m */; };
 		4757C5141A53DC03002AD7A2 /* UIViewController+RACExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5131A53DC03002AD7A2 /* UIViewController+RACExtension.m */; };
 		4757C5171A53EC45002AD7A2 /* SDWebImageManager+RACExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4757C5161A53EC45002AD7A2 /* SDWebImageManager+RACExtension.m */; };
@@ -124,10 +122,6 @@
 		4757C4FC1A534106002AD7A2 /* Wordpress-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wordpress-Prefix.pch"; sourceTree = "<group>"; };
 		4757C4FE1A534379002AD7A2 /* WPNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPNavigationController.h; sourceTree = "<group>"; };
 		4757C4FF1A534379002AD7A2 /* WPNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPNavigationController.m; sourceTree = "<group>"; };
-		4757C5071A534F2C002AD7A2 /* WPViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPViewModel.h; sourceTree = "<group>"; };
-		4757C5081A534F2C002AD7A2 /* WPViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPViewModel.m; sourceTree = "<group>"; };
-		4757C50A1A534F74002AD7A2 /* WPViewModel+Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WPViewModel+Friend.h"; sourceTree = "<group>"; };
-		4757C50B1A534F74002AD7A2 /* WPViewModel+Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WPViewModel+Friend.m"; sourceTree = "<group>"; };
 		4757C50E1A535229002AD7A2 /* WPRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPRouter.h; sourceTree = "<group>"; };
 		4757C50F1A535229002AD7A2 /* WPRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPRouter.m; sourceTree = "<group>"; };
 		4757C5121A53DC03002AD7A2 /* UIViewController+RACExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RACExtension.h"; sourceTree = "<group>"; };
@@ -338,10 +332,6 @@
 			children = (
 				4786ED1D1AE2DE3C00929BD9 /* Signatures */,
 				4786ED1C1AE2DE3C00929BD9 /* Concepts */,
-				4757C5071A534F2C002AD7A2 /* WPViewModel.h */,
-				4757C5081A534F2C002AD7A2 /* WPViewModel.m */,
-				4757C50A1A534F74002AD7A2 /* WPViewModel+Friend.h */,
-				4757C50B1A534F74002AD7A2 /* WPViewModel+Friend.m */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -707,7 +697,6 @@
 				4757C5771A5849EF002AD7A2 /* NSString+RemovingHTMLElements.m in Sources */,
 				471A6B2A1A5BF9B700BC7C6E /* UIScrollView+RACCommand.m in Sources */,
 				4786ED141AE2D9EA00929BD9 /* WPStateMachineImp.m in Sources */,
-				4757C5091A534F2C002AD7A2 /* WPViewModel.m in Sources */,
 				4786ED211AE2DF1E00929BD9 /* WPSplashViewModelImp.m in Sources */,
 				4757C5101A535229002AD7A2 /* WPRouter.m in Sources */,
 				4757C5461A554300002AD7A2 /* WPSite.m in Sources */,
@@ -730,7 +719,6 @@
 				471A6B261A5BF92D00BC7C6E /* WPPostsViewController.mm in Sources */,
 				4757C5661A56C871002AD7A2 /* WPUser.m in Sources */,
 				47084DC11AE31DCD00EBCE55 /* WPPostsItemStateImp.m in Sources */,
-				4757C50C1A534F74002AD7A2 /* WPViewModel+Friend.m in Sources */,
 				4757C4D91A533EBC002AD7A2 /* main.m in Sources */,
 				4757C5401A5496A7002AD7A2 /* WPModel.m in Sources */,
 				4757C5721A5734F4002AD7A2 /* NSDictionary+RemovingNull.m in Sources */,
