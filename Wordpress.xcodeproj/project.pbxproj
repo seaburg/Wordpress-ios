@@ -184,6 +184,7 @@
 		476722DE1A61A4FD00B2F38B /* WPRouter+Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WPRouter+Post.m"; sourceTree = "<group>"; };
 		476722E81A62912C00B2F38B /* WPRouter+Start.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WPRouter+Start.h"; sourceTree = "<group>"; };
 		476722E91A62912C00B2F38B /* WPRouter+Start.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WPRouter+Start.m"; sourceTree = "<group>"; };
+		476852CD1B30773F00242E19 /* WPViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPViewModel.h; sourceTree = "<group>"; };
 		4786ED111AE2D9EA00929BD9 /* WPStateMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPStateMachine.h; sourceTree = "<group>"; };
 		4786ED121AE2D9EA00929BD9 /* WPStateMachineImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPStateMachineImp.h; sourceTree = "<group>"; };
 		4786ED131AE2D9EA00929BD9 /* WPStateMachineImp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPStateMachineImp.m; sourceTree = "<group>"; };
@@ -496,6 +497,7 @@
 		4786ED1C1AE2DE3C00929BD9 /* Concepts */ = {
 			isa = PBXGroup;
 			children = (
+				476852CD1B30773F00242E19 /* WPViewModel.h */,
 				4786ED1F1AE2DF1E00929BD9 /* WPSplashViewModelImp.h */,
 				4786ED201AE2DF1E00929BD9 /* WPSplashViewModelImp.m */,
 				47084DC31AE324CF00EBCE55 /* WPPostsViewModelImp.h */,
