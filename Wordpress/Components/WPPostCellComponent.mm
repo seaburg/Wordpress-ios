@@ -7,17 +7,12 @@
 //
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <ComponentKit/CKComponentScope.h>
-#import <ComponentKit/CKInsetComponent.h>
-#import <ComponentKit/CKStackLayoutComponent.h>
-#import <ComponentKit/CKLabelComponent.h>
-#import <ComponentKit/CKComponentSubclass.h>
-#import <ComponentKit/CKComponentGestureActions.h>
+#import <ComponentKit/ComponentKit.h>
 
 #import "WPPostCellComponent.h"
 
 #import "UIFont+Factory.h"
-#import "SDWebImageManager+RACExtension.h"
+#import "SDWebImageManager+CKNetworkImageDownloading.h"
 
 @interface WPPostCellComponent ()
 
@@ -29,8 +24,6 @@
 
 + (instancetype)newWithPostsItemState:(id<WPPostsItemState>)state tapHandler:(void (^)())tapHandler
 {
-    CKComponentScope scope(self);
-    UIImage *image = scope.state();
 
     WPPostCellComponent *component = [self
         newWithView:{
@@ -50,7 +43,7 @@
                     {
                         .component = [CKInsetComponent
                             newWithInsets:UIEdgeInsetsMake(5, 15, 5, 15)
-                            component:[self contentComponentWithPostsItemState:state image:image]],
+                            component:[self contentComponentWithPostsItemState:state]],
                     },
                     {
                         [CKComponent
@@ -67,15 +60,12 @@
         ];
     component.tapHandler = tapHandler;
 
-    if (!image) {
-        [component rac_liftSelector:@checkselector(component, setThumbnailImage:) withSignalsFromArray:@[ [state loadImage] ]];
-    }
-
     return component;
 }
 
-+ (CKCompositeComponent *)contentComponentWithPostsItemState:(id<WPPostsItemState>)state image:(UIImage *)image
++ (CKCompositeComponent *)contentComponentWithPostsItemState:(id<WPPostsItemState>)state
 {
+
     return [CKCompositeComponent
         newWithView:{}
         component:
@@ -97,15 +87,16 @@
                             }
                                 children:{
                                     {
-                                        .component = image ? [CKComponent
-                                            newWithView:{
-                                                [UIImageView class],
-                                                {
-                                                    { @selector(setImage:), image },
-                                                    { @selector(setContentMode:), @(UIViewContentModeScaleAspectFill) },
-                                                    { @selector(setClipsToBounds:), @YES },
-                                                }
-                                            } size:{ 64, 64 }] : nil,
+                                        .component = [state imageURL] ? [CKNetworkImageComponent
+                                            newWithURL:[state imageURL]
+                                            imageDownloader:[SDWebImageManager sharedManager]
+                                            scenePath:nil
+                                            size:{ 64, 64 }
+                                            options:{}
+                                            attributes:{
+                                                { @selector(setContentMode:), @(UIViewContentModeScaleAspectFill) },
+                                                { @selector(setClipsToBounds:), @YES },
+                                            }] : nil,
                                     },
                                     {
                                         .component = [CKStackLayoutComponent
@@ -170,13 +161,6 @@
                             }]
                     },
                 }]];
-}
-
-- (void)setThumbnailImage:(UIImage *)image
-{
-    [self updateState:^id(id) {
-        return image;
-    }];
 }
 
 - (void)didTapOnView

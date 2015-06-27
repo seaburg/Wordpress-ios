@@ -18,7 +18,6 @@
 
 - (NSNumber *)numberOfComments;
 
-// loadImage : -> RACSignal UIImage
-- (RACSignal *)loadImage;
+- (NSURL *)imageURL;
 
 @end

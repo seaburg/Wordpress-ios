@@ -46,15 +46,9 @@
     return self.post.numberOfComments;
 }
 
-- (RACSignal *)loadImage
+- (NSURL *)imageURL
 {
-    return [[RACSignal
-        defer:^RACSignal *{
-            if (!self.post.featuredImageURL) return [RACSignal empty];
-
-            return [[SDWebImageManager sharedManager] rac_downloadImageWithURL:self.post.featuredImageURL options:0];
-        }]
-        catchTo:[RACSignal empty]];
+    return self.post.featuredImageURL;
 }
 
 - (BOOL)isEqual:(WPPostsItemState *)object
