@@ -14,7 +14,7 @@
 + (NSValueTransformer *)wp_URLValueTansformer
 {
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *value) {
-        if (!value) {
+        if ([value length] < 1) {
             return nil;
         }
         NSURL *URL = [NSURL URLWithString:value];
