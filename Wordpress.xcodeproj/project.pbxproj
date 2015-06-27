@@ -55,6 +55,7 @@
 		476722DB1A619FD900B2F38B /* WPPostViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 476722D91A619FD900B2F38B /* WPPostViewController.mm */; };
 		476722DF1A61A4FD00B2F38B /* WPRouter+Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 476722DE1A61A4FD00B2F38B /* WPRouter+Post.m */; };
 		476722EA1A62912C00B2F38B /* WPRouter+Start.m in Sources */ = {isa = PBXBuildFile; fileRef = 476722E91A62912C00B2F38B /* WPRouter+Start.m */; };
+		4769E4B31B3F0C9E00FC2526 /* SDWebImageManager+CKNetworkImageDownloading.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4769E4B21B3F0C9E00FC2526 /* SDWebImageManager+CKNetworkImageDownloading.mm */; };
 		4786ED141AE2D9EA00929BD9 /* WPStateMachineImp.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786ED131AE2D9EA00929BD9 /* WPStateMachineImp.m */; };
 		4786ED1B1AE2DB7E00929BD9 /* WPSplashStateImp.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786ED1A1AE2DB7E00929BD9 /* WPSplashStateImp.m */; };
 		4786ED211AE2DF1E00929BD9 /* WPSplashViewModelImp.m in Sources */ = {isa = PBXBuildFile; fileRef = 4786ED201AE2DF1E00929BD9 /* WPSplashViewModelImp.m */; };
@@ -179,6 +180,8 @@
 		476722E81A62912C00B2F38B /* WPRouter+Start.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WPRouter+Start.h"; sourceTree = "<group>"; };
 		476722E91A62912C00B2F38B /* WPRouter+Start.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WPRouter+Start.m"; sourceTree = "<group>"; };
 		476852CD1B30773F00242E19 /* WPViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPViewModel.h; sourceTree = "<group>"; };
+		4769E4B11B3F0C9E00FC2526 /* SDWebImageManager+CKNetworkImageDownloading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDWebImageManager+CKNetworkImageDownloading.h"; sourceTree = "<group>"; };
+		4769E4B21B3F0C9E00FC2526 /* SDWebImageManager+CKNetworkImageDownloading.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "SDWebImageManager+CKNetworkImageDownloading.mm"; sourceTree = "<group>"; };
 		4786ED111AE2D9EA00929BD9 /* WPStateMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPStateMachine.h; sourceTree = "<group>"; };
 		4786ED121AE2D9EA00929BD9 /* WPStateMachineImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPStateMachineImp.h; sourceTree = "<group>"; };
 		4786ED131AE2D9EA00929BD9 /* WPStateMachineImp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPStateMachineImp.m; sourceTree = "<group>"; };
@@ -380,6 +383,8 @@
 				47084DB81AE2F13300EBCE55 /* UIActivityIndicatorView+Animated.m */,
 				474FB07E1AE595420070BB30 /* UIWebView+Tuple.h */,
 				474FB07F1AE595420070BB30 /* UIWebView+Tuple.m */,
+				4769E4B11B3F0C9E00FC2526 /* SDWebImageManager+CKNetworkImageDownloading.h */,
+				4769E4B21B3F0C9E00FC2526 /* SDWebImageManager+CKNetworkImageDownloading.mm */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -687,6 +692,7 @@
 				4757C5141A53DC03002AD7A2 /* UIViewController+RACExtension.m in Sources */,
 				476722CD1A617B2900B2F38B /* WPRouter+Posts.m in Sources */,
 				474FB0791AE586680070BB30 /* WPPostViewModelImp.m in Sources */,
+				4769E4B31B3F0C9E00FC2526 /* SDWebImageManager+CKNetworkImageDownloading.mm in Sources */,
 				47084DC51AE324CF00EBCE55 /* WPPostsViewModelImp.m in Sources */,
 				476722DB1A619FD900B2F38B /* WPPostViewController.mm in Sources */,
 				476722EA1A62912C00B2F38B /* WPRouter+Start.m in Sources */,
