@@ -58,6 +58,16 @@ static NSString *const WPHTMLPageFormat = @"<html><head><style>*{max-width: 100%
     return self.post.numberOfComments;
 }
 
+- (NSString *)authorName
+{
+    return self.post.author.niceName;
+}
+
+- (NSURL *)authorAvatarURL
+{
+    return self.post.author.avatarImageURL;
+}
+
 #pragma mark - NSCopying
 
 - (id)copyWithZone:(NSZone *)zone

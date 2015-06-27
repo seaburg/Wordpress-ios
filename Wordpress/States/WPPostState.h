@@ -16,4 +16,8 @@
 
 - (NSNumber *)numberOfComments;
 
+- (NSString *)authorName;
+
+- (NSURL *)authorAvatarURL;
+
 @end

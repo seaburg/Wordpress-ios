@@ -7,17 +7,16 @@
 //
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <ComponentKit/CKComponent.h>
-#import <ComponentKit/CKCompositeComponent.h>
-#import <ComponentKit/CKComponentHostingView.h>
+#import <ComponentKit/ComponentKit.h>
 
 #import "WPPostViewController.h"
 #import "WPPostViewModel.h"
 #import "WPPostState.h"
+#import "WPPostHeaderComponent.h"
 
 #import "UIWebView+Tuple.h"
 
-@interface WPPostViewController () <CKComponentProvider>
+@interface WPPostViewController () <CKComponentProvider, CKComponentSizeRangeProviding>
 
 @property (strong, nonatomic) id<WPPostViewModel> viewModel;
 
@@ -42,7 +41,7 @@
 
 - (void)loadView
 {
-    self.componentHostingView = [[CKComponentHostingView alloc] initWithComponentProvider:[self class] sizeRangeProvider:nil context:nil];
+    self.componentHostingView = [[CKComponentHostingView alloc] initWithComponentProvider:[self class] sizeRangeProvider:[self class] context:nil];
     self.view = self.componentHostingView;
 }
 
@@ -51,23 +50,69 @@
     [super viewDidLoad];
 
     self.edgesForExtendedLayout = UIRectEdgeBottom;
-    RAC(self.componentHostingView, model) = [[self.viewModel state]
-        map:^id(id<WPPostState> value) {
-            return RACTuplePack([value HTMLString], [value baseURL]);
-        }];
+    RAC(self.componentHostingView, model) = [self.viewModel state];
 }
 
-+ (CKComponent *)componentForModel:(RACTuple *)model context:(id<NSObject>)context;
+#pragma mark - CKComponentProvider
+
++ (CKComponent *)componentForModel:(id<WPPostState>)model context:(id<NSObject>)context;
 {
-    return [CKCompositeComponent
-        newWithComponent:
-            [CKComponent
-             newWithView:{
-                 [UIWebView class],
-                 {
-                     {@selector(wp_loadWithHTMLStringAndBaseURLTuple:), model },
-                 }
-             } size:{}]];
+    return [CKCompositeComponent newWithComponent:
+        [CKStackLayoutComponent newWithView:{}
+            size:{}
+            style:{
+                .direction = CKStackLayoutDirectionVertical,
+                .alignItems = CKStackLayoutAlignItemsStretch
+            }
+            children:{
+                {
+                    .component = [CKCompositeComponent
+                        newWithView:{
+                            [UIView class],
+                            {
+                                {@selector(setBackgroundColor:), [UIColor whiteColor]}
+                            }
+                        }
+                        component:[WPPostHeaderComponent newWithPostState:model
+                            size:{
+                                .width = CKRelativeDimension::Percent(1)
+                            }]]
+                },
+                {
+                    .component = [CKComponent
+                        newWithView:{
+                            [UIView class],
+                            {
+                                {@selector(setBackgroundColor:), [UIColor colorWithWhite:0.8 alpha:1]}
+                            }
+                        } size:{
+                            .width = CKRelativeDimension::Percent(1),
+                            .height = 1,
+                        }]
+                },
+                {
+                    .component = [CKComponent
+                        newWithView:{
+                            [UIWebView class],
+                            {
+                                {@selector(wp_loadWithHTMLStringAndBaseURLTuple:), RACTuplePack([model HTMLString], [model baseURL]) },
+                            }
+                        }
+                        size:{
+                            .width = CKRelativeDimension::Percent(1) 
+                        }],
+                    .flexGrow = YES,
+                    .flexShrink = YES,
+                }
+            }]];
+}
+
+#pragma mark - CKComponentSizeRangeProviding
+
+- (CKSizeRange)sizeRangeForBoundingSize:(CGSize)size
+{
+    CGSize viewSize = self.view.frame.size;
+    return { viewSize, viewSize };
 }
 
 @end
