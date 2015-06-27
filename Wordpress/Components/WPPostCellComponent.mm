@@ -14,24 +14,13 @@
 #import "UIFont+Factory.h"
 #import "SDWebImageManager+CKNetworkImageDownloading.h"
 
-@interface WPPostCellComponent ()
-
-@property (copy, nonatomic) void(^tapHandler)(void);
-
-@end
-
 @implementation WPPostCellComponent
 
-+ (instancetype)newWithPostsItemState:(id<WPPostsItemState>)state tapHandler:(void (^)())tapHandler
++ (instancetype)newWithPostsItemState:(id<WPPostsItemState>)state
 {
 
     WPPostCellComponent *component = [self
-        newWithView:{
-            [UIView class],
-            {
-                { CKComponentTapGestureAttribute(@selector(didTapOnView)) },
-            },
-        }
+        newWithView:{}
         component:
             [CKStackLayoutComponent
                 newWithView:{}
@@ -58,7 +47,6 @@
              }]
 
         ];
-    component.tapHandler = tapHandler;
 
     return component;
 }
@@ -161,13 +149,6 @@
                             }]
                     },
                 }]];
-}
-
-- (void)didTapOnView
-{
-    if (self.tapHandler) {
-        self.tapHandler();
-    }
 }
 
 @end

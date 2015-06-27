@@ -158,25 +158,33 @@
     return [self.dataSource sizeForItemAtIndexPath:indexPath];
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    id<WPPostsItemState> itemState = (id<WPPostsItemState>)[self.dataSource modelForItemAtIndexPath:indexPath];
+
+    @weakify(self);
+    [[[[[self.viewModel selectPostsItemState:itemState]
+        initially:^{
+            [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+        }]
+        finally:^{
+            [SVProgressHUD dismiss];
+        }]
+        takeUntil:self.rac_willDeallocSignal]
+        subscribeError:^(NSError *error) {
+            @strongify(self);
+
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+            [self presentViewController:alertController animated:YES completion:nil];
+        }];
+}
+
 #pragma mark - CKComponentProvider
 
 + (CKComponent *)componentForModel:(id<WPPostsItemState>)model context:(id<WPPostsViewModel>)context
 {
-    return [WPPostCellComponent newWithPostsItemState:model tapHandler:^{
-        [[[[context selectPostsItemState:model]
-            initially:^{
-                [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-            }]
-            finally:^{
-                [SVProgressHUD dismiss];
-            }]
-            subscribeError:^(NSError *error) {
-                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
-                [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
-
-                [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
-            }];
-    }];
+    return [WPPostCellComponent newWithPostsItemState:model];
 }
 
 @end

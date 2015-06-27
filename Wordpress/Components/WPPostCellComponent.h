@@ -12,6 +12,6 @@
 
 @interface WPPostCellComponent : CKCompositeComponent
 
-+ (instancetype)newWithPostsItemState:(id<WPPostsItemState>)state tapHandler:(void(^)(void))tapHandler;
++ (instancetype)newWithPostsItemState:(id<WPPostsItemState>)state;
 
 @end
