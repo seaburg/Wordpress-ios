@@ -6,11 +6,8 @@
 //  Copyright (c) 2015 Evgeniy Yurtaev. All rights reserved.
 //
 
+#import <ComponentKit/ComponentKit.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <ComponentKit/CKComponentProvider.h>
-#import <ComponentKit/CKComponentFlexibleSizeRangeProvider.h>
-#import <ComponentKit/CKCollectionViewDataSource.h>
-#import <ComponentKit/CKArrayControllerChangeset.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 
 #import "WPPostsViewController.h"
@@ -184,7 +181,32 @@
 
 + (CKComponent *)componentForModel:(id<WPPostsItemState>)model context:(id<WPPostsViewModel>)context
 {
-    return [WPPostCellComponent newWithPostsItemState:model];
+    return [CKStackLayoutComponent
+        newWithView:{}
+        size:{}
+        style:{
+            .direction = CKStackLayoutDirectionVertical
+        }
+        children:{
+            {
+                .component = [CKInsetComponent
+                    newWithInsets:UIEdgeInsetsMake(5, 10, 5, 10)
+                    component:[WPPostCellComponent newWithPostsItemState:model]]
+            },
+            {
+                .component = [CKComponent
+                    newWithView:{
+                        [UIView class],
+                        {
+                            { @selector(setBackgroundColor:), [UIColor colorWithWhite:0.8 alpha:1] }
+                        }
+                    }
+                    size:{
+                        .width = CKRelativeDimension::Percent(1),
+                        .height = 1
+                    }]
+            }
+        }];
 }
 
 @end

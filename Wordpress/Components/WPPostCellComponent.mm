@@ -18,137 +18,131 @@
 
 + (instancetype)newWithPostsItemState:(id<WPPostsItemState>)state
 {
-
-    WPPostCellComponent *component = [self
+    return [super newWithComponent:[CKStackLayoutComponent
         newWithView:{}
-        component:
-            [CKStackLayoutComponent
-                newWithView:{}
-                size:{}
-                style:{
-                    .direction = CKStackLayoutDirectionVertical,
-                }
-                children:{
-                    {
-                        .component = [CKInsetComponent
-                            newWithInsets:UIEdgeInsetsMake(5, 15, 5, 15)
-                            component:[self contentComponentWithPostsItemState:state]],
-                    },
-                    {
-                        [CKComponent
-                            newWithView:{
-                                [UIView class],
-                                {
-                                    { @selector(setBackgroundColor:), [UIColor colorWithWhite:0.87 alpha:1] },
+        size:{}
+        style:{
+            .direction = CKStackLayoutDirectionVertical,
+            .alignItems = CKStackLayoutAlignItemsStretch,
+        }
+        children:{
+            {
+                .component = [CKStackLayoutComponent
+                    newWithView:{}
+                    size:{
+                        .width = CKRelativeDimension::Percent(1)
+                    }
+                    style:{
+                        .direction = CKStackLayoutDirectionHorizontal,
+                        .alignItems = CKStackLayoutAlignItemsStretch,
+                        .spacing = 5
+                    }
+                    children:{
+                        {
+                            .component =
+                                [state imageURL] ? [CKStackLayoutComponent
+                                    newWithView:{}
+                                    size:{
+                                        .width = 64
+                                    }
+                                    style:{
+                                        .direction = CKStackLayoutDirectionVertical,
+                                        .alignItems = CKStackLayoutAlignItemsStretch
+                                    }
+                                    children:{
+                                        {
+                                            .component = [CKNetworkImageComponent newWithURL:[state imageURL]
+                                                imageDownloader:[SDWebImageManager sharedManager]
+                                                scenePath:nil
+                                                size:{
+                                                    .width = 64,
+                                                    .height = 64,
+                                                }
+                                                options:{}
+                                                attributes:{
+                                                    { @selector(setClipsToBounds:), @YES },
+                                                    { @selector(setContentMode:), @(UIViewContentModeScaleAspectFill) }
+                                                }]
+                                        },
+                                        {
+                                            .component = [CKComponent newWithView:{} size:{}],
+                                            .flexGrow = YES,
+                                            .flexShrink = YES
+                                        }
+                                    }]
+                                :
+                                    nil
+                        },
+                        {
+                            .component = [CKStackLayoutComponent
+                                newWithView:{[UIView class]}
+                                size:{
                                 }
-                            }
-                            size:{ .width = CKRelativeDimension::Percent(1), .height = 1}],
-                    },
-             }]
-
-        ];
-
-    return component;
-}
-
-+ (CKCompositeComponent *)contentComponentWithPostsItemState:(id<WPPostsItemState>)state
-{
-
-    return [CKCompositeComponent
-        newWithView:{}
-        component:
-            [CKStackLayoutComponent
-                newWithView:{}
-                size:{}
-                style:{
-                    .direction = CKStackLayoutDirectionVertical,
-                    .spacing = 10,
-                }
-                children:{
-                    {
-                        .component = [CKStackLayoutComponent
-                            newWithView:{}
-                            size:{}
-                            style:{
-                                .direction = CKStackLayoutDirectionHorizontal,
-                                .spacing = 5,
-                            }
+                                style:{
+                                    .direction = CKStackLayoutDirectionVertical
+                                }
                                 children:{
                                     {
-                                        .component = [state imageURL] ? [CKNetworkImageComponent
-                                            newWithURL:[state imageURL]
-                                            imageDownloader:[SDWebImageManager sharedManager]
-                                            scenePath:nil
-                                            size:{ 64, 64 }
-                                            options:{}
-                                            attributes:{
-                                                { @selector(setContentMode:), @(UIViewContentModeScaleAspectFill) },
-                                                { @selector(setClipsToBounds:), @YES },
-                                            }] : nil,
+                                        .component = [CKLabelComponent
+                                            newWithLabelAttributes:{
+                                                .string = [state title],
+                                                .font = [UIFont wp_boldFontWithSize:14],
+                                                .maximumNumberOfLines = 0
+                                            } viewAttributes:{
+                                                { @selector(setUserInteractionEnabled:), @NO }
+                                            }]
                                     },
                                     {
-                                        .component = [CKStackLayoutComponent
+                                        .component = [CKLabelComponent
+                                            newWithLabelAttributes:{
+                                                .string = [state excerpt],
+                                                .font = [UIFont wp_regularFontWithSize:14],
+                                                .maximumNumberOfLines = 0
+                                            } viewAttributes:{
+                                                { @selector(setUserInteractionEnabled:), @NO }
+                                            }]
+                                    },
+                                    {
+                                        .component = [CKComponent
                                             newWithView:{}
-                                            size:{}
-                                            style:{
-                                                .direction = CKStackLayoutDirectionVertical,
-                                                .spacing = 5,
-                                            }
-                                            children:{
-                                                {
-                                                    .component = [CKLabelComponent
-                                                        newWithLabelAttributes:{
-                                                            .string = [state title],
-                                                            .font = [UIFont wp_boldFontWithSize:16],
-                                                        } viewAttributes:{
-                                                            { @selector(setUserInteractionEnabled:), @NO },
-                                                        }],
-                                                },
-                                                {
-                                                    .component = [CKLabelComponent
-                                                        newWithLabelAttributes:{
-                                                            .string = [state excerpt],
-                                                            .font = [UIFont wp_regularFontWithSize:14],
-                                                        } viewAttributes:{
-                                                            { @selector(setUserInteractionEnabled:), @NO },
-                                                        }]
-                                                },
-                                        }]
+                                            size:{}],
+                                        .flexGrow = YES,
+                                        .flexShrink = YES
                                     }
-                        }]
-                    },
-                    {
-                        .component = [CKStackLayoutComponent
-                            newWithView:{}
-                            size:{}
-                            style:{
-                                .direction = CKStackLayoutDirectionHorizontal,
-                                .spacing = 4,
-                            }
-                            children:{
-                                {
-                                    .component = [CKComponent
-                                        newWithView:{
-                                            [UIImageView class],
-                                            {
-                                                { @selector(setImage:), [UIImage imageNamed:@"comment_small"] },
-                                                { @selector(setTintColor:), [UIColor colorWithWhite:0.46 alpha:1] },
-                                            }
-                                        } size:{ 22, 22 }]
-                                },
-                                {
-                                    .component = [CKLabelComponent
-                                        newWithLabelAttributes:{
-                                            .string = [[state numberOfComments] stringValue],
-                                            .font = [UIFont wp_regularFontWithSize:12],
-                                            .color = [UIColor colorWithWhite:0.46 alpha:1],
-                                        } viewAttributes:{
-                                            { @selector(setUserInteractionEnabled:), @NO },
-                                        }]
+                                }],
+                            .flexShrink = YES
+                        }
+                    }]
+            },
+            {
+                .component = [CKStackLayoutComponent
+                    newWithView:{}
+                    size:{
+                        .width = CKRelativeDimension::Percent(1)
+                    }
+                    style:{
+                        .direction = CKStackLayoutDirectionHorizontal,
+                        .alignItems = CKStackLayoutAlignItemsStart,
+                        .spacing = 3
+                    }
+                    children:{
+                        {
+                            .component = [CKLabelComponent
+                                newWithLabelAttributes:{
+                                    .string = [([state numberOfComments] ?: @0) stringValue],
+                                    .font = [UIFont wp_regularFontWithSize:14]
                                 }
-                            }]
-                    },
-                }]];
+                                viewAttributes:{
+                                    { @selector(setUserInteractionEnabled:), @NO }
+                                }]
+                        },
+                        {
+                            .component = [CKImageComponent newWithImage:[UIImage imageNamed:@"comment_small"]]
+                        }
+                    }]
+            }
+        }]];
 }
+
 
 @end
